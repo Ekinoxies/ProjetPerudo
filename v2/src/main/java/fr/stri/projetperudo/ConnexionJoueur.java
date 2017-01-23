@@ -35,6 +35,8 @@ public class ConnexionJoueur extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         TexteNomRejoindrePartie = new javax.swing.JTextField();
+        nomPartie = new javax.swing.JTextField();
+        nombreJoueurs = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         NomJoueur = new javax.swing.JTextField();
         ValideConnexionJoueur = new javax.swing.JButton();
@@ -55,6 +57,20 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             }
         });
 
+        nomPartie.setText("Nom partie");
+        nomPartie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomPartieActionPerformed(evt);
+            }
+        });
+
+        nombreJoueurs.setText("Nombre de joueurs");
+        nombreJoueurs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreJoueursActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
         jFrame1Layout.setHorizontalGroup(
@@ -62,25 +78,39 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             .addGroup(jFrame1Layout.createSequentialGroup()
                 .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jFrame1Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addGroup(jFrame1Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
-                        .addComponent(TexteNomRejoindrePartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                        .addComponent(TexteNomRejoindrePartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jButton1)))
+                .addGap(24, 24, 24)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nombreJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
+                            .addComponent(nomPartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(24, 24, 24))))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jFrame1Layout.setVerticalGroup(
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFrame1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(TexteNomRejoindrePartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(TexteNomRejoindrePartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))
+                    .addGroup(jFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(nomPartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nombreJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,9 +154,21 @@ public class ConnexionJoueur extends javax.swing.JFrame {
     }//GEN-LAST:event_TexteNomRejoindrePartieActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-JOptionPane.showMessageDialog(null, "Partie créée");
+        Joueurs cjoueurs = new Joueurs();
+        cjoueurs.creerPartie(, ABORT);
+        JOptionPane.showMessageDialog(null, "Partie créée");
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void nomPartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomPartieActionPerformed
+        // TODO add your handling code here:
+                String resultnomPartie = nomPartieActionPerformed.getText();
+
+    }//GEN-LAST:event_nomPartieActionPerformed
+
+    private void nombreJoueursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreJoueursActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreJoueursActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,5 +213,7 @@ JOptionPane.showMessageDialog(null, "Partie créée");
     private javax.swing.JButton jButton2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField nomPartie;
+    private javax.swing.JTextField nombreJoueurs;
     // End of variables declaration//GEN-END:variables
 }
