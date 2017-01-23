@@ -120,6 +120,11 @@ public class ConnexionJoueur extends javax.swing.JFrame {
         jLabel1.setText("Nom du joueur");
 
         ValideConnexionJoueur.setText("Connexion");
+        ValideConnexionJoueur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ValideConnexionJoueurActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,6 +178,12 @@ public class ConnexionJoueur extends javax.swing.JFrame {
     private void nombreJoueursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreJoueursActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreJoueursActionPerformed
+
+    private void ValideConnexionJoueurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValideConnexionJoueurActionPerformed
+    String resultnomJoueur = NomJoueur.getText();
+    Joueurs validejoueur = new Joueurs();
+    validejoueur.seConnecter(resultnomJoueur);
+    }//GEN-LAST:event_ValideConnexionJoueurActionPerformed
 
     /**
      * @param args the command line arguments

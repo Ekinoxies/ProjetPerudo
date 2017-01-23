@@ -25,7 +25,7 @@ try {
             InterfaceServCli stub2 = (InterfaceServCli) registry.lookup("CreerPartie");
             System.out.println(stub2.CreerPartie("DOFUS",1)); // On entre les parametres pour Methode CreerPartie
             
-            /* APPELLE METHODE CreerPartie*/
+            /* APPELLE METHODE se connecter*/
             InterfaceServCli stub3 = (InterfaceServCli) registry.lookup("SeConnecter");
             System.out.println(stub3.SeConnecter("Xelor")); // On entre les parametres pour Methode SeConnecter
             

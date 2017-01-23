@@ -23,4 +23,10 @@ public class Joueurs {
          InterfaceServCli stub1 = (InterfaceServCli) registry.lookup("CreerPartie");
          System.out.println(stub1.CreerPartie(nomP,nbJ)); // On entre les parametres pour Methode CreerPartie
     }
+    void seConnecter(String nomJ)
+    {
+        InterfaceServCli stub2 = (InterfaceServCli) registry.lookup("SeConnecter");
+        System.out.println(stub2.SeConnecter(nomJ)); // On entre les parametres pour Methode SeConnecter
+    }
+    
 }
