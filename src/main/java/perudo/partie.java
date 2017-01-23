@@ -7,6 +7,7 @@
 /**
  *
  * @author jerome
+ * bonsoir
  */
 public class Partie {
     private int nbJoueur;
