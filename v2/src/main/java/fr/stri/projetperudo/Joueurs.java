@@ -20,7 +20,7 @@ public class Joueurs {
     
     void creerPartie(String nomP, int nbJ)
     {
-         InterfaceServCli stub2 = (InterfaceServCli) registry.lookup("CreerPartie");
-         System.out.println(stub2.CreerPartie(nomP,nbJ)); // On entre les parametres pour Methode CreerPartie
+         InterfaceServCli stub1 = (InterfaceServCli) registry.lookup("CreerPartie");
+         System.out.println(stub1.CreerPartie(nomP,nbJ)); // On entre les parametres pour Methode CreerPartie
     }
 }
