@@ -1,5 +1,5 @@
 /* ICI on va entrer les fonctions des mÃ©thodes, elles pourront etre appellÃ©es via le client si elles sont dans InterfaceServ*/
-
+package fr.stri.projetperudo;
 
 /**
  *

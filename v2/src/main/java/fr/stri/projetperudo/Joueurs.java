@@ -5,6 +5,8 @@
  */
 package fr.stri.projetperudo;
 
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 /**
  *
  * @author Quizz
@@ -20,13 +22,24 @@ public class Joueurs {
     
     void creerPartie(String nomP, int nbJ)
     {
+        try {
+         Registry registry = LocateRegistry.getRegistry(10000);
          InterfaceServCli stub1 = (InterfaceServCli) registry.lookup("CreerPartie");
          System.out.println(stub1.CreerPartie(nomP,nbJ)); // On entre les parametres pour Methode CreerPartie
+          } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     void seConnecter(String nomJ)
     {
+        try {
+        Registry registry = LocateRegistry.getRegistry(10000);
         InterfaceServCli stub2 = (InterfaceServCli) registry.lookup("SeConnecter");
         System.out.println(stub2.SeConnecter(nomJ)); // On entre les parametres pour Methode SeConnecter
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
 }

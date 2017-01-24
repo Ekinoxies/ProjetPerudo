@@ -1,4 +1,5 @@
 /* ICI on entre les methodes que le client pourra appeller */
+package fr.stri.projetperudo;
 /**
  *
  * @author florian b
