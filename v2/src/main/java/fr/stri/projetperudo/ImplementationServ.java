@@ -9,13 +9,14 @@ import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject; 
  import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.util.ArrayList;
 
 
 
  public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli{
     private String nom;
     private String name; 
-    
+    private ArrayList<Partie> listePartie = new ArrayList<Partie>();
     
     public ImplementationServ(String s) throws RemoteException {
     super();
@@ -37,6 +38,16 @@ import java.rmi.registry.LocateRegistry;
         return "Vous avez fait : "+Des;
     }
      
+    
+    
+    /*Methode Creer partier*/
+     public String creerPartie (String nomPartie, int nbJoueurs )
+    {
+        Partie a = new Partie(nomPartie, nbJoueurs);
+        listePartie.add(a);  
+        
+        return "Le joueurs nomJ ";
+    }
     
 public static void main(String[] args) throws Exception {
 	 	 LocateRegistry.createRegistry(1099);
