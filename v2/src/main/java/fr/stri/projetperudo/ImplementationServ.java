@@ -77,7 +77,19 @@ attendre
 Fin tanque
     
     TANT QUE La liste de joueur est superieur a 1 faire 
-    SENARIO DE LA PARTIE QUI BOUCLE !!
+
+MANCHE SENARIO DE LA PARTIE QUI BOUCLE !!
+    
+         Debut de manche --> codé avantManche
+         Quel joueur Joue
+            joueur lance des 
+             tant que attente de la class Parti = NUUL atendre METHODE GETATTENTE
+ pile  et menteur on va dans fin de manche -->  joueur decide action --> on l'aisse l'interface agir
+Si non on continue la boucle (surcharge)
+         FIn de la boucle
+    fin du sénario
+fin de la manche 
+REsultat
 
 */
 
