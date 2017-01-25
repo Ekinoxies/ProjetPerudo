@@ -15,12 +15,10 @@ import java.util.ArrayList;
 
  public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli{
     private String nom;
-    private String name; 
     private ArrayList<Partie> listePartie = new ArrayList<Partie>();
     
-    public ImplementationServ(String s) throws RemoteException {
+    public ImplementationServ() throws RemoteException {
     super();
-    name = s; 
 } 
     
     /* Methode CreerPartie*/
@@ -60,8 +58,7 @@ import java.util.ArrayList;
      
 public static void main(String[] args) throws Exception {
 	 	 LocateRegistry.createRegistry(1099);
-                 ImplementationServ obj = new ImplementationServ("MonServeur"); 
-	 	 Naming.rebind("MonServeur", obj);
+	 	 Naming.rebind("MonServeur", new ImplementationServ());
 	 	 System.out.println("RMI OK");
                  
           
