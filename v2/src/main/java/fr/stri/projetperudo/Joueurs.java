@@ -17,7 +17,13 @@ public class Joueurs {
     private int nbDes;
     private ArrayList<int []> listeDes = new ArrayList<int []>();
 
-    
+    public int getNbDes() {
+        return nbDes;
+    }
+
+    public void setListeDes(ArrayList<int[]> listeDes) {
+        this.listeDes = listeDes;
+    }
     
     
     public ArrayList<int[]> getListeDes() {

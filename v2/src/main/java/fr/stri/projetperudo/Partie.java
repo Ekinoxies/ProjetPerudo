@@ -19,6 +19,9 @@ public class Partie {
     private ArrayList<Joueurs> listeJoueur = new ArrayList<Joueurs>();
     private ArrayList<Manche> listeManche = new ArrayList<Manche>();
     
+
+  
+
     
     private String  NomDernieJoueur;
     private int desValeur;
@@ -77,16 +80,24 @@ public class Partie {
         }
 
 
-	public Integer lanceDes(int nbDes ){
+	public void lanceDes(int nbDes, Joueurs j){
             // liste 
-		valeur = (int)(1+ 6*Math.random());
-                return valeur;
+               int nb = j.getNbDes();
+               ArrayList listeDes = new ArrayList();
+               for (int i=0;i<=nb;i++)
+                    {
+                    valeur = (int)(1+ 6*Math.random());  
+                    listeDes.add(valeur);
+                    }
+                j.setListeDes(listeDes);
+                
 		}
-
+  
+        
 }
     
     
     
-    }      
+          
        
             
