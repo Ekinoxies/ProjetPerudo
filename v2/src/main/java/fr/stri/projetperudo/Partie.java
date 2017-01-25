@@ -73,7 +73,7 @@ public class Partie {
     
     /*Methode pile manche*/
     
-      void pileMache() {
+      void pileMache(Joueurs j) {
      /*Récupère la liste de DES de chaque joueur et regarde si 
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
      ArrayList listeDes = new ArrayList();
@@ -88,15 +88,53 @@ public class Partie {
         for(int x = 0; x < listeDes.size(); x++)
         {
             val = (int) listeDes.get(i);
-           if ( val == desValeur || val == 1)  //le 1 en perrudo est un joker 
-           {
+            if ( val == desValeur || val == 1)  //le 1 en perrudo est un joker 
+            {
                compter = compter +1;
                
-           }
+            }
         }
+    }
+    
+    if ( compter == nbVdes){
+        int nb = j.getNbDes();
+        nb = nb+1;
+        j.setNbDes(nb);
     }
 }
 
+      
+      /*Methode menteur*/
+    
+      void menteur(Joueurs j) {
+     /*Récupère la liste de DES de chaque joueur et regarde si 
+     la valeur correspond aux annonces en cours (valeurDes nbDes) */
+     ArrayList listeDes = new ArrayList();
+      int val;
+      int compter = 0;
+     
+     for(int i = 0; i < listeJoueur.size(); i++)
+    {
+     
+        listeDes = listeJoueur.get(i).getListeDes(); // on recup la liste de des d'un joueur
+     
+        for(int x = 0; x < listeDes.size(); x++)
+        {
+            val = (int) listeDes.get(i);
+            if ( val == desValeur || val == 1)  //le 1 en perrudo est un joker 
+            {
+               compter = compter +1;
+               
+            }
+        }
+    }
+    
+    if ( compter != nbVdes){
+        int nb = j.getNbDes();
+        nb = nb-1;
+        j.setNbDes(nb);
+    }
+}
       
       
       
@@ -115,9 +153,25 @@ public class Partie {
 		}
   
         
+        
+ public void surcharge ( int valDes,int nbDes){
+        if ( valDes < 7 && valDes > 0 && desValeur <= valDes ){
+        desValeur = valDes;
+        }
+        
+        if ( nbDes < 30 && nbDes > 0 && nbVdes <= nbDes ){
+        nbVdes = nbDes;   
+        }
+        
+        
+}
+ 
+ 
+ 
 }
     
-    
+   
+
     
           
        
