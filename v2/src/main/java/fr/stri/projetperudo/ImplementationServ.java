@@ -1,3 +1,5 @@
+
+
 /* ICI on va entrer les fonctions des mÃ©thodes, elles pourront etre appellÃ©es via le client si elles sont dans InterfaceServ*/
 package fr.stri.projetperudo;
 
@@ -5,6 +7,7 @@ package fr.stri.projetperudo;
  *
  * @author florian b
  */
+import static java.lang.Thread.sleep;
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject; 
 import java.rmi.RemoteException;
@@ -15,10 +18,15 @@ import java.util.ArrayList;
 
  public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli{
     private String nom;
+ 
+    
+    
+    
     private ArrayList<Partie> listePartie = new ArrayList<Partie>();
     
     public ImplementationServ() throws RemoteException {
     super();
+ 
 } 
     
     /* Methode CreerPartie*/
@@ -54,10 +62,22 @@ import java.util.ArrayList;
     }
     
      
+    /*Methode pour sénario*/
+    public void attPartie() throws InterruptedException
+    {
+        while (listePartie.isEmpty())    
+        { 
+            sleep(2000);
+        }
+    }
+    
+    
+    
      
      
 public static void main(String[] args) throws Exception {
 	 	 LocateRegistry.createRegistry(1099);
+                 
 	 	 Naming.rebind("MonServeur", new ImplementationServ());
 	 	 System.out.println("RMI OK");
                  
@@ -76,13 +96,14 @@ public static void main(String[] args) throws Exception {
 
 /*
 
-TANT QUE LISTE PARTIE = NULL ATTENDRE 
+TANT QUE LISTE PARTIE = NULL ATTENDRE --> methode attPartie 
 
 TANT QUE NB JOUEUR < nb joueur qui soit y avoir
 attendre
-Fin tanque
+Fin tanque  --> attJoueur (int nb)
     
     TANT QUE La liste de joueur est superieur a 1 faire 
+--> Y a t'il un gagnant gagnant() qui return 1 ou 0 
 
 MANCHE SENARIO DE LA PARTIE QUI BOUCLE !!
     
@@ -99,11 +120,8 @@ REsultat
 
 */
 
-
-while()    
-{ 
-    
-}
+s = new ImplementationServ();
+s.attPartie();
 
 
 
