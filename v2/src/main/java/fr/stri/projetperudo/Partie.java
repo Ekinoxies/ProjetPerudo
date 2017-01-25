@@ -17,7 +17,13 @@ public class Partie {
     private String nomPartie;
     private  int nbJoueur;
     private ArrayList<Joueurs> listeJoueur = new ArrayList<Joueurs>();
-
+    private ArrayList<Manche> listeManche = new ArrayList<Manche>();
+    
+    
+    private String  NomDernieJoueur;
+    private int desValeur;
+    private int nbVdes;
+    
     
     /*Constructeur*/
     
@@ -29,26 +35,41 @@ public class Partie {
     
     
     
-   /*Methode*/
+   /*MethodeS*/
+    
+    /*Ajouter un joueur dans la listejoueur*/
     public String connexion (Joueurs a)
     {
         String nomJ;
         listeJoueur.add(a);  
         nomJ= a.getNomJoueurs();
-        return "Le joueurs nomJ ";
+        return "Le joueurs est ajouté ";
     }
    
+    
+    /*Test Avant de débuter une manche*/
     public String avantManche ()
     {
-    
-       for(int i = 0; i <nbJoueur; i++)
+    String retour;
+    retour = "La Manche peut commencer";
+      
+    for(int i = 0; i <nbJoueur; i++)
        {
-           /*get de truck */
+           /*on déroula la liste joueur et on regarde le nombre de dé de chaque 
+           personne et on vires les gents qui on pas des Des */
        }
         
-        return"";
+        return retour;
     }
    
+    
+    /*Methode pile manche*/
+    
+      void pileMache() {
+     /*Récupère la liste de DES de chaque joueur et regarde si 
+     la valeur correspond aux annonces en cours (valeurDes nbDes) */
+      
+        }
     
     
     

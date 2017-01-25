@@ -7,7 +7,7 @@ package fr.stri.projetperudo;
  */
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject; 
- import java.rmi.RemoteException;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 
@@ -68,7 +68,18 @@ public static void main(String[] args) throws Exception {
                  */
 
 
+/*
 
+TANT QUE LISTE PARTIE = NULL ATTENDRE 
+
+TANT QUE NB JOUEUR < nb joueur qui soit y avoir
+attendre
+Fin tanque
+    
+    TANT QUE La liste de joueur est superieur a 1 faire 
+    SENARIO DE LA PARTIE QUI BOUCLE !!
+
+*/
 
 
 
