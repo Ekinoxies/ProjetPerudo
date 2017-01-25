@@ -40,15 +40,24 @@ import java.util.ArrayList;
      
     
     
-    /*Methode Creer partier*/
-     public String creerPartie (String nomPartie, int nbJoueurs )
+    /*Méthode get Liste partie*/
+     public ArrayList<Partie> getListePartie ( )
     {
+        return listePartie;
+    }
+     
+
+    /*Methode Creer partier*/
+    public String creerPartie(String nomPartie, int nbJoueurs) {
         Partie a = new Partie(nomPartie, nbJoueurs);
         listePartie.add(a);  
         
         return "La Partie a bien était créer ";
     }
     
+     
+     
+     
 public static void main(String[] args) throws Exception {
 	 	 LocateRegistry.createRegistry(1099);
                  ImplementationServ obj = new ImplementationServ("MonServeur"); 
@@ -94,13 +103,18 @@ REsultat
 */
 
 
+while()    
+{ 
+    
+}
 
 
 
 
 
 
-    } 
 
 
-}   
+    
+    } //crochet du main
+}   // crochet de la classe
