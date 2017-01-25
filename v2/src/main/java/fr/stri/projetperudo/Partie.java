@@ -76,9 +76,30 @@ public class Partie {
       void pileMache() {
      /*Récupère la liste de DES de chaque joueur et regarde si 
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
-      
+     ArrayList listeDes = new ArrayList();
+      int val;
+      int compter = 0;
+     
+     for(int i = 0; i < listeJoueur.size(); i++)
+    {
+     
+        listeDes = listeJoueur.get(i).getListeDes(); // on recup la liste de des d'un joueur
+     
+        for(int x = 0; x < listeDes.size(); x++)
+        {
+            val = (int) listeDes.get(i);
+           if ( val == desValeur || val == 1)  //le 1 en perrudo est un joker 
+           {
+               compter = compter +1;
+               
+           }
         }
+    }
+}
 
+      
+      
+      
 
 	public void lanceDes(int nbDes, Joueurs j){
             // liste 
