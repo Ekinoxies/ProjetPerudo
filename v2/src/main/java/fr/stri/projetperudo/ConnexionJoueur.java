@@ -181,17 +181,17 @@ public class ConnexionJoueur extends javax.swing.JFrame {
 
     private void ValideConnexionJoueurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValideConnexionJoueurActionPerformed
     String resultnomJoueur = NomJoueur.getText();
-    Partie connexionjoueur = new Partie();
+    //Partie connexionjoueur = new Partie();
         Joueurs validejoueur = new Joueurs(resultnomJoueur);
-
-    connexionjoueur.connexion(validejoueur);
+        
+    //connexionjoueur.connexion(validejoueur);
     jFrameRejoindreCreerPartie.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_ValideConnexionJoueurActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     String resultnomJoueur2 = NomJoueur.getText(); 
-     Joueurs validejoueur = new Joueurs(resultnomJoueur2);
+     String resultnomJoueur2 = NomJoueur.getText();
+     Partie connexionjoueur = new Partie();
       connexionjoueur.connexion(validejoueur);
 
 // TODO add your handling code here:
