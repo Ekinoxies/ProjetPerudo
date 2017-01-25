@@ -35,9 +35,9 @@ public class ConnexionJoueur extends javax.swing.JFrame {
         jFrameRejoindreCreerPartie = new javax.swing.JFrame();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        TexteNomRejoindrePartie = new javax.swing.JTextField();
         nomPartie = new javax.swing.JTextField();
         nombreJoueurs = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         NomJoueur = new javax.swing.JTextField();
         ValideConnexionJoueur = new javax.swing.JButton();
@@ -56,13 +56,6 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             }
         });
 
-        TexteNomRejoindrePartie.setText("Nom");
-        TexteNomRejoindrePartie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TexteNomRejoindrePartieActionPerformed(evt);
-            }
-        });
-
         nomPartie.setText("Nom partie");
         nomPartie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +70,13 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jFrameRejoindreCreerPartieLayout = new javax.swing.GroupLayout(jFrameRejoindreCreerPartie.getContentPane());
         jFrameRejoindreCreerPartie.getContentPane().setLayout(jFrameRejoindreCreerPartieLayout);
         jFrameRejoindreCreerPartieLayout.setHorizontalGroup(
@@ -84,12 +84,13 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
                 .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(TexteNomRejoindrePartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(jButton1)))
-                .addGap(24, 24, 24)
+                        .addComponent(jButton1)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameRejoindreCreerPartieLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)))
                 .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
@@ -104,17 +105,13 @@ public class ConnexionJoueur extends javax.swing.JFrame {
         jFrameRejoindreCreerPartieLayout.setVerticalGroup(
             jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(TexteNomRejoindrePartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
-                    .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(nomPartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nombreJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                .addContainerGap()
+                .addComponent(nomPartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -162,10 +159,6 @@ public class ConnexionJoueur extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TexteNomRejoindrePartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TexteNomRejoindrePartieActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TexteNomRejoindrePartieActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          String resultnomPartie = nomPartie.getText();
          int resultnombreJoueurs = nombreJoueurs.getItemCount();
@@ -204,6 +197,10 @@ public class ConnexionJoueur extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,10 +238,10 @@ public class ConnexionJoueur extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NomJoueur;
-    private javax.swing.JTextField TexteNomRejoindrePartie;
     private javax.swing.JButton ValideConnexionJoueur;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFrame jFrameRejoindreCreerPartie;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField nomPartie;
