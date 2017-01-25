@@ -7,6 +7,7 @@ package fr.stri.projetperudo;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 /**
  *
  * @author Quizz
@@ -14,6 +15,16 @@ import java.rmi.registry.Registry;
 public class Joueurs {
     public String nomJoueurs;
     private int nbDes;
+    private ArrayList<int []> listeDes = new ArrayList<int []>();
+
+    
+    
+    
+    public ArrayList<int[]> getListeDes() {
+        return listeDes;
+    }
+    
+    
 
     public Joueurs(String nomJoueurs) {
         this.nomJoueurs = nomJoueurs;
