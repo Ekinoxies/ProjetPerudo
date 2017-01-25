@@ -9,13 +9,14 @@ import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject; 
  import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.util.ArrayList;
 
 
 
  public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli{
-    private String nom;
-    private String name; 
-    
+    private String nom; /* liens propre au rmi*/
+    private String name; /*liens propre au rmi*/
+    private ArrayList<Partie>listePartie = new ArrayList<>();
     
     public ImplementationServ(String s) throws RemoteException {
     super();
@@ -38,10 +39,53 @@ import java.rmi.registry.LocateRegistry;
     }
      
     
+    
+    
+    /*Créer une partie */
+   public String creerPartie (String nomPartie, int nbJoueur)
+    {
+    Partie a = new Partie(nomPartie,nbJoueur);
+        listePartie.add(a);  
+      
+        return " La partie a était corectement ajouté";
+    }
+   
+
+
+    
+    
 public static void main(String[] args) throws Exception {
 	 	 LocateRegistry.createRegistry(1099);
                  ImplementationServ obj = new ImplementationServ("MonServeur"); 
 	 	 Naming.rebind("MonServeur", obj);
 	 	 System.out.println("RMI OK");
-} 
-}   
+
+
+
+
+
+/*          //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+                                  ICI LE CODE COTé SERVEUR
+            //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////
+*/
+
+         
+         
+
+
+
+
+
+  } 
+
+ 
+ 
+ 
+ 
+ 
+ }   

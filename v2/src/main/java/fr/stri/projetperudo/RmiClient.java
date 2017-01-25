@@ -12,6 +12,8 @@ import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
 
 
 public class RmiClient {
@@ -20,6 +22,7 @@ public class RmiClient {
             InterfaceServCli proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
             
             // Attention les systemeout sont juste des teste pour voir que ca fonctionne bien !!!!!!!!
+            
             /* APPELLE METHODE CreerPartie*/
             System.out.println(proxy.CreerPartie("DOFUS",1)); // On entre les parametres pour Methode CreerPartie
             
@@ -31,7 +34,8 @@ public class RmiClient {
             
             
          
-
+         
     }
-}   
+}
+  
 

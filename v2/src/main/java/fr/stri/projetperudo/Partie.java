@@ -21,10 +21,10 @@ public class Partie {
     
     /*Constructeur*/
     
-    public Partie() 
+    public Partie(String nomPartie, int nbJoueur) 
     {
-    this.nomPartie="temp";
-    this.nbJoueur = 2;     
+    this.nomPartie=nomPartie;
+    this.nbJoueur = nbJoueur;     
     }
     
     
@@ -37,7 +37,9 @@ public class Partie {
         nomJ= a.getNomJoueurs();
         return "Le joueurs nomJ ";
     }
-   
+    
+    
+  
     public String avantManche ()
     {
     
