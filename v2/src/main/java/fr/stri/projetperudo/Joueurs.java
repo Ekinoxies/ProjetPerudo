@@ -21,6 +21,10 @@ public class Joueurs {
         return nbDes;
     }
 
+    public void setNbDes(int nbDes) {
+        this.nbDes = nbDes;
+    }
+
     public void setListeDes(ArrayList<int[]> listeDes) {
         this.listeDes = listeDes;
     }

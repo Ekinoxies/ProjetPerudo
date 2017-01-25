@@ -19,9 +19,7 @@ import java.util.ArrayList;
  public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli{
     private String nom;
  
-    
-    
-    
+       
     private ArrayList<Partie> listePartie = new ArrayList<Partie>();
     
     public ImplementationServ() throws RemoteException {
@@ -70,6 +68,19 @@ import java.util.ArrayList;
             sleep(2000);
         }
     }
+    
+   public void attJoueur (int nb)
+   {
+       ArrayList listeJ = new ArrayList();
+      listePartie.get(nb).getListeJoueur;
+       
+       
+    while (listeJoueur.isEmpty())    
+        { 
+            sleep(2000);
+        }
+   
+   }
     
     
     
@@ -120,9 +131,9 @@ REsultat
 
 */
 
-s = new ImplementationServ();
+ImplementationServ s = new ImplementationServ();
 s.attPartie();
-
+s.attJoueur(0);
 
 
 

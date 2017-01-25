@@ -20,8 +20,6 @@ public class Partie {
     private ArrayList<Manche> listeManche = new ArrayList<Manche>();
     
 
-  
-
     
     private String  NomDernieJoueur;
     private int desValeur;
@@ -40,10 +38,9 @@ public class Partie {
     this.nbJoueur = nbJoueur;
     
     }
+   
     
-    
-    
-   /*MethodeS*/
+       /*MethodeS*/
     
     /*Ajouter un joueur dans la listejoueur*/
     public String connexion (Joueurs a)
@@ -53,7 +50,12 @@ public class Partie {
         nomJ= a.getNomJoueurs();
         return "Le joueurs est ajouté ";
     }
+
+    public ArrayList<Joueurs> getListeJoueur() {
+        return listeJoueur;
+    }
    
+    
     
     /*Test Avant de débuter une manche*/
     public String avantManche ()
