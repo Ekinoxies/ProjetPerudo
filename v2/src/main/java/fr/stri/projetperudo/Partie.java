@@ -39,6 +39,21 @@ public class Partie {
     
     }
    
+     public ArrayList<Joueurs> getListeJoueur() {
+        return listeJoueur;
+    }
+
+    public int getNbJoueur() {
+        return nbJoueur;
+    }
+     
+     
+    
+    
+    
+    
+    
+    
     
        /*MethodeS*/
     
@@ -51,9 +66,6 @@ public class Partie {
         return "Le joueurs est ajouté ";
     }
 
-    public ArrayList<Joueurs> getListeJoueur() {
-        return listeJoueur;
-    }
    
     
     

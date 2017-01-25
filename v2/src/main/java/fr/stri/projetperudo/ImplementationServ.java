@@ -69,17 +69,33 @@ import java.util.ArrayList;
         }
     }
     
-   public void attJoueur (int nb)
+   public void attJoueur (int nb) throws InterruptedException
    {
        ArrayList listeJ = new ArrayList();
-      listePartie.get(nb).getListeJoueur;
+       int nbj = listePartie.get(nb).getNbJoueur();
        
+      listeJ = listePartie.get(nb).getListeJoueur();
        
-    while (listeJoueur.isEmpty())    
+ 
+    while (listeJ.size()<nbj)    
         { 
             sleep(2000);
         }
+   }
    
+   
+   
+   public int gagnant(int nb) 
+   {
+       int val = 0;
+         ArrayList listeJ = new ArrayList();  
+         listeJ = listePartie.get(nb).getListeJoueur();
+         
+         if (listeJ.size()==1)
+         {
+             val = 1;
+         }
+   return val;
    }
     
     
@@ -93,14 +109,11 @@ public static void main(String[] args) throws Exception {
 	 	 System.out.println("RMI OK");
                  
           
-/*
-               
-                 
+/*                          
                  
                  ICI LE CODE SERVEUR  
                        
-                 
-                       
+                              
                  
                  */
 
@@ -133,10 +146,15 @@ REsultat
 
 ImplementationServ s = new ImplementationServ();
 s.attPartie();
-s.attJoueur(0);
+s.attJoueur(0); // v1 du site on attend que la partie 1 soit compplete
+
+while(s.gagnant(0) == 0)
+{
 
 
+}
 
+/*LE GAGNANT EST :::: */
 
 
 
