@@ -7,6 +7,7 @@ package fr.stri.projetperudo;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 
 public interface InterfaceServCli extends java.rmi.Remote  {
@@ -17,7 +18,7 @@ public interface InterfaceServCli extends java.rmi.Remote  {
     
     public String LanceDes(Integer Des)throws java.rmi.RemoteException;
     
-   
+   public ArrayList<Partie> getListePartie() throws java.rmi.RemoteException;
     
     
     // Ecrire les methodes ici pour consulter le client via le serveur :
