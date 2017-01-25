@@ -5,15 +5,22 @@ package fr.stri.projetperudo;
  *
  * @author florian b
  */
-
+import java.rmi.*;
+import java.rmi.server.UnicastRemoteObject; 
  import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 
-public class ImplementationServ implements InterfaceServCli {
+
+
+ public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli{
+    private String nom;
+    private String name; 
     
-    /* Methode Erreur*/
-    public Integer Erreur(Integer x) throws RemoteException {
-        return x;
-    }
+    
+    public ImplementationServ(String s) throws RemoteException {
+    super();
+    name = s; 
+} 
     
     /* Methode CreerPartie*/
     public String CreerPartie(String nomPartie,Integer NbJoueur)throws RemoteException {
@@ -29,4 +36,12 @@ public class ImplementationServ implements InterfaceServCli {
     public String LanceDes(Integer Des)throws RemoteException{
         return "Vous avez fait : "+Des;
     }
+     
+    
+public static void main(String[] args) throws Exception {
+	 	 LocateRegistry.createRegistry(1099);
+                 ImplementationServ obj = new ImplementationServ("MonServeur"); 
+	 	 Naming.rebind("MonServeur", obj);
+	 	 System.out.println("RMI OK");
+} 
 }   

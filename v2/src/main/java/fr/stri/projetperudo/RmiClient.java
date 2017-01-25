@@ -8,41 +8,29 @@ package fr.stri.projetperudo;
  *
  * @author florian b
  */
+import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 
 public class RmiClient {
-    public static void main(String[] argv) {
-try {
-            Registry registry = LocateRegistry.getRegistry(10000);
+    public static void main(String[] argv)throws Exception  {
+
+            InterfaceServCli proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
             
-            /* APPELLE METHODE ERREUR*/
-            InterfaceServCli stub = (InterfaceServCli) registry.lookup("Erreur");
-            System.out.println(stub.Erreur(100000000)); // On entre les parametres pour Methode Erreur
-            
+            // Attention les systemeout sont juste des teste pour voir que ca fonctionne bien !!!!!!!!
             /* APPELLE METHODE CreerPartie*/
-            InterfaceServCli stub2 = (InterfaceServCli) registry.lookup("CreerPartie");
-            System.out.println(stub2.CreerPartie("DOFUS",1)); // On entre les parametres pour Methode CreerPartie
+            System.out.println(proxy.CreerPartie("DOFUS",1)); // On entre les parametres pour Methode CreerPartie
             
             /* APPELLE METHODE se connecter*/
-            InterfaceServCli stub3 = (InterfaceServCli) registry.lookup("SeConnecter");
-            System.out.println(stub3.SeConnecter("Xelor")); // On entre les parametres pour Methode SeConnecter
+            System.out.println(proxy.SeConnecter("Xelor")); // On entre les parametres pour Methode SeConnecter
             
             /* APPELLE METHODE LanceDes*/
-            InterfaceServCli stub4 = (InterfaceServCli) registry.lookup("LanceDes");
-            System.out.println(stub4.LanceDes(5)); // On entre les parametres pour Methode SeConnecter
+            System.out.println(proxy.LanceDes(5)); // On entre les parametres pour Methode SeConnecter
             
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-
-
-
-
-
+            
+         
 
     }
 }   
