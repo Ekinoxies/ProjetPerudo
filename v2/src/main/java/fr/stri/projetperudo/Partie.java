@@ -24,13 +24,18 @@ public class Partie {
     private int desValeur;
     private int nbVdes;
     
+    private int Attente;
+    
+    private int valeur;
+    
     
     /*Constructeur*/
     
     public Partie(String nomPartie,int nbJoueur) 
     {
     this.nomPartie=nomPartie;
-    this.nbJoueur = nbJoueur;     
+    this.nbJoueur = nbJoueur;
+    
     }
     
     
@@ -70,6 +75,15 @@ public class Partie {
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
       
         }
+
+
+	public Integer lanceDes(int nbDes ){
+            // liste 
+		valeur = (int)(1+ 6*Math.random());
+                return valeur;
+		}
+
+}
     
     
     
