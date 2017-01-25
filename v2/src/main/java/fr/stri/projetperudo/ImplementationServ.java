@@ -46,7 +46,7 @@ import java.util.ArrayList;
         Partie a = new Partie(nomPartie, nbJoueurs);
         listePartie.add(a);  
         
-        return "Le joueurs nomJ ";
+        return "La Partie a bien était créer ";
     }
     
 public static void main(String[] args) throws Exception {
@@ -54,5 +54,30 @@ public static void main(String[] args) throws Exception {
                  ImplementationServ obj = new ImplementationServ("MonServeur"); 
 	 	 Naming.rebind("MonServeur", obj);
 	 	 System.out.println("RMI OK");
-} 
+                 
+          
+/*
+               
+                 
+                 
+                 ICI LE CODE SERVEUR  
+                       
+                 
+                       
+                 
+                 */
+
+
+
+
+
+
+
+
+
+
+
+    } 
+
+
 }   
