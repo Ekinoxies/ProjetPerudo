@@ -43,6 +43,11 @@ public class ConnexionJoueur extends javax.swing.JFrame {
         ValideConnexionJoueur = new javax.swing.JButton();
 
         jButton1.setText("Rejoindre partie");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Créer partie");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -183,13 +188,21 @@ public class ConnexionJoueur extends javax.swing.JFrame {
 
     private void ValideConnexionJoueurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValideConnexionJoueurActionPerformed
     String resultnomJoueur = NomJoueur.getText();
-    Joueurs validejoueur = new Joueurs();
     Partie connexionjoueur = new Partie();
-    
-    validejoueur.seConnecter(resultnomJoueur);
+        Joueurs validejoueur = new Joueurs(resultnomJoueur);
+
+    connexionjoueur.connexion(validejoueur);
     jFrameRejoindreCreerPartie.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_ValideConnexionJoueurActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     String resultnomJoueur2 = NomJoueur.getText(); 
+     Joueurs validejoueur = new Joueurs(resultnomJoueur2);
+      connexionjoueur.connexion(validejoueur);
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

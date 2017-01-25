@@ -21,10 +21,10 @@ public class Partie {
     
     /*Constructeur*/
     
-    public Partie(String nomPartie, int nbJoueur) 
+    public Partie() 
     {
-    this.nomPartie=nomPartie;
-    this.nbJoueur = nbJoueur;     
+    this.nomPartie="temp";
+    this.nbJoueur = 2;     
     }
     
     
@@ -55,4 +55,3 @@ public class Partie {
     }      
        
             
-}

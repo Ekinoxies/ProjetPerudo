@@ -14,7 +14,11 @@ import java.rmi.registry.Registry;
 public class Joueurs {
     public String nomJoueurs;
     private int nbDes;
-    public int ListeDes;
+
+    public Joueurs(String nomJoueurs) {
+        this.nomJoueurs = nomJoueurs;
+        this.nbDes = 5;
+    }
 
     public String getNomJoueurs() {
         return nomJoueurs;
@@ -41,5 +45,6 @@ public class Joueurs {
             e.printStackTrace();
         }
     }
+    
     
 }
