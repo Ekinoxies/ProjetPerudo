@@ -135,27 +135,13 @@ import java.util.ArrayList;
              val = 1;
          }
    return val;
-   }
-   
-   
-      
-   public int gagnant(int nb) 
-   {
-       int val = 0;
-         ArrayList listeJ = new ArrayList();  
-         listeJ = listePartie.get(nb).get();
-         
-         if (listeJ.size()==1)
-         {
-             val = 1;
-         }
-   return val;
-   }
-    
-    
-    
-    
+   }  
      
+   
+   
+   
+   
+   
      
 public static void main(String[] args) throws Exception {
 	 	 LocateRegistry.createRegistry(1099);
