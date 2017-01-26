@@ -47,10 +47,14 @@ public class ConnexionJoueur extends javax.swing.JFrame {
     }
     
 Joueurs envoijoueur;
-public void envoiJoueur(String j)
+public void envoiJoueur(String j) 
 {
-        Joueurs validejoueur = new Joueurs(j);
-        envoijoueur = validejoueur;
+        try {
+            Joueurs validejoueur = new Joueurs(j);
+            envoijoueur = validejoueur;
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 }
     /**
@@ -112,40 +116,38 @@ public void envoiJoueur(String j)
             jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
                 .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameRejoindreCreerPartieLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
                         .addComponent(nombreJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(nomPartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
+                        .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameRejoindreCreerPartieLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(nomPartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)))))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         jFrameRejoindreCreerPartieLayout.setVerticalGroup(
             jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(nomPartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(nombreJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)))
+                .addGap(81, 81, 81)
+                .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomPartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(nombreJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -206,7 +208,7 @@ public void envoiJoueur(String j)
         try {
             //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
             System.out.println(proxy.creerPartie(resultnomPartie,resultnombreJoueurs));
-            ProxyRMI();
+            //ProxyRMI();
             //JOptionPane.showMessageDialog(null, returncreerpartie);
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
@@ -230,7 +232,8 @@ public void envoiJoueur(String j)
     String resultnomJoueur = NomJoueur.getText();
     
     //Partie connexionjoueur = new Partie();
-    envoiJoueur(resultnomJoueur);    //connexionjoueur.connexion(validejoueur);
+    envoiJoueur(resultnomJoueur);
+        System.out.println(envoijoueur);    //connexionjoueur.connexion(validejoueur);
     jFrameRejoindreCreerPartie.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_ValideConnexionJoueurActionPerformed
@@ -240,11 +243,23 @@ public void envoiJoueur(String j)
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     String resultnomJoueur2 = NomJoueur.getText();
-     String resultNomPartie = (String) jComboBox1.getSelectedItem();
+     //String resultnomJoueur2 = NomJoueur.getText();
+     //String resultNomPartie = (String) jComboBox1.getSelectedItem();
+     
+     InterfaceServCli proxy = null;
+        try {
+            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         try {
-            rejoindrepartie.connexionAunePartie(envoijoueur, resultNomPartie);
+            proxy.connexionAunePartie(envoijoueur, "Chat");
+            
 // TODO add your handling code here:
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
@@ -262,21 +277,21 @@ public void envoiJoueur(String j)
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            ArrayList<Partie> recuplistePartie = proxy.getListePartie();
-        } catch (RemoteException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
         
         
         
         ArrayList listeP = new ArrayList();
         try {
-            listeP = recuplistePartie.get();
+            ArrayList<Partie> recuplistePartie = proxy.getListePartie();
+            listeP = recuplistePartie;
+            String nomPartie;
                      // TODO add your handling code here:
                             for(int i=0; i<listeP.size();i++)
                             {
-                                jComboBox1.addItem((String) listeP.get(i));                            }
+                                jComboBox1.addItem((String) proxy.getNomPartieRMI(i));
+                                System.out.println(proxy.getNomPartieRMI(i));
+                            }
 
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);

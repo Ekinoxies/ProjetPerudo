@@ -32,7 +32,7 @@ import java.util.ArrayList;
            
     
     /*Ajouter un joueur dans la listejoueur d'une partie*/
-    public String connexionAunePartie(Joueurs a, String nomP)
+    public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException
     {
          String tmp;
          String retour = "Joueur non ajouté";
@@ -65,7 +65,23 @@ import java.util.ArrayList;
     
     
     
-      
+      /*Methode suplementaire pour le rmi*/
+    
+        public String getNomPartieRMI(int nb) throws RemoteException{
+        
+            String nomPartie;
+            
+            nomPartie=listePartie.get(nb).getNomPartie();
+            
+            return nomPartie;
+        
+        
+        
+    }
+    
+    
+    
+    
     
     /////////////////////TEST////////////////
     /* MÃ©thode SeConnecter */
@@ -87,7 +103,7 @@ import java.util.ArrayList;
     
     
     /*Méthode get Liste partie*/
-     public ArrayList<Partie> getListePartie ( )
+     public ArrayList<Partie> getListePartie ( ) throws RemoteException
     {
         return listePartie;
     }

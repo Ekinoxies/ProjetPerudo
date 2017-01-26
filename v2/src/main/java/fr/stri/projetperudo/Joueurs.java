@@ -5,14 +5,16 @@
  */
 package fr.stri.projetperudo;
 
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 /**
  *
  * @author Quizz
  */
-public class Joueurs {
+public class Joueurs{
     public String nomJoueurs;
     private int nbDes;
     private ArrayList<int []> listeDes = new ArrayList<int []>();
@@ -36,7 +38,7 @@ public class Joueurs {
     
     
 
-    public Joueurs(String nomJoueurs) {
+    public Joueurs(String nomJoueurs) throws RemoteException{
         this.nomJoueurs = nomJoueurs;
         this.nbDes = 5;
     }
@@ -50,7 +52,7 @@ public class Joueurs {
         try {
          Registry registry = LocateRegistry.getRegistry(10000);
          InterfaceServCli stub1 = (InterfaceServCli) registry.lookup("CreerPartie");
-         System.out.println(stub1.CreerPartie(nomP,nbJ)); // On entre les parametres pour Methode CreerPartie
+         System.out.println(stub1.creerPartie(nomP,nbJ)); // On entre les parametres pour Methode CreerPartie
           } catch (Exception e) {
             e.printStackTrace();
         }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package fr.stri.projetperudo;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -47,7 +48,7 @@ public class Partie {
         
     }
      
-    public String getNomPartie() {
+    public String getNomPartie(){
         return nomPartie;
     }
 
