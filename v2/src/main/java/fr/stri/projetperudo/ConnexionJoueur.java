@@ -1,6 +1,9 @@
 package fr.stri.projetperudo;
 
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -201,8 +204,9 @@ public void envoiJoueur(String j)
              }
          };
         try {
-            String returncreerpartie = creerpartie.CreerPartie(resultnomPartie, resultnombreJoueurs);
-            JOptionPane.showMessageDialog(null, returncreerpartie);
+            String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
+            System.out.println(proxy.CreerPartie("DOFUS",1));
+            //JOptionPane.showMessageDialog(null, returncreerpartie);
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -344,6 +348,16 @@ InterfaceServCli rejoindrepartie = new InterfaceServCli() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ConnexionJoueur().setVisible(true);
+                try {
+                    InterfaceServCli proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+                } catch (NotBoundException ex) {
+                    Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
         });
     }
