@@ -242,7 +242,7 @@ public void envoiJoueur(String j)
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      String resultnomJoueur2 = NomJoueur.getText();
      String resultNomPartie = (String) jComboBox1.getSelectedItem();
-/*
+
         try {
             rejoindrepartie.connexionAunePartie(envoijoueur, resultNomPartie);
 // TODO add your handling code here:
@@ -252,10 +252,27 @@ public void envoiJoueur(String j)
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-   
+   InterfaceServCli proxy = null;
+        try {
+            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            ArrayList<Partie> recuplistePartie = proxy.getListePartie();
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
         ArrayList listeP = new ArrayList();
         try {
-            listeP = recuplistepartie.getListePartie();
+            listeP = recuplistePartie.get();
                      // TODO add your handling code here:
                             for(int i=0; i<listeP.size();i++)
                             {
@@ -265,7 +282,7 @@ public void envoiJoueur(String j)
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-       */ 
+       
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**

@@ -55,7 +55,7 @@ import java.util.ArrayList;
      
     
       /*Methode Creer partier*/
-    public String creerPartie(String nomPartie, int nbJoueurs) {
+    public String creerPartie(String nomPartie, Integer nbJoueurs)throws RemoteException {
         Partie a = new Partie(nomPartie, nbJoueurs);
         listePartie.add(a);  
         
@@ -78,10 +78,7 @@ import java.util.ArrayList;
         return "Vous avez fait : "+Des;
             }
     
-    /* Methode CreerPartie*/
-    public String CreerPartie(String nomPartie,Integer NbJoueur)throws RemoteException {
-         return "c'est bon partie crÃ©Ã©e"; 
-     }
+  
   /////////////////////TEST////////////////
     
     
