@@ -177,6 +177,9 @@ fin de la manche
 REsultat
 
 */
+
+
+
 int numP = 0; // variable du numero de partie pour la v1 on l'utilisera a 0 par defaut
                 // car on n'a qu'une partie
 
@@ -197,8 +200,9 @@ while(s.gagnant(numP) == 0)
              
              while (s.listePartie.get(numP).getFinTour()== 0) //tant que le tour du joueur n'est pas fini   
              {
-                 s.listePartie.get(numP).joueurSuivant();
+                /*Qui joue et  qui est le prochain    On ajoute les getdes nom joueur dans les methodes pile surcharge et menteur*/
              }
+              s.listePartie.get(numP).joueurSuivant();
          }
        
      
