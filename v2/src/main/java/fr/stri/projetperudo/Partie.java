@@ -47,24 +47,11 @@ public class Partie {
         return nbJoueur;
     }
      
-     
-    
-    
-    
-    
-    
-    
+                  
+      
     
        /*MethodeS*/
     
-    /*Ajouter un joueur dans la listejoueur*/
-    public String connexion (Joueurs a)
-    {
-        String nomJ;
-        listeJoueur.add(a);  
-        nomJ= a.getNomJoueurs();
-        return "Le joueurs est ajouté ";
-    }
 
    
     

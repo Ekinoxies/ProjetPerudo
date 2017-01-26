@@ -27,11 +27,38 @@ import java.util.ArrayList;
  
 } 
     
-    /* Methode CreerPartie*/
-    public String CreerPartie(String nomPartie,Integer NbJoueur)throws RemoteException {
-         return "c'est bon partie crÃ©Ã©e"; 
-     }
+   
      
+    
+    
+           
+    
+    /*Ajouter un joueur dans la listejoueur d'une partie*/
+    public String connexionAunePartie(Joueurs a, String nomP)
+    {
+        int nb;
+        nb =0;
+        
+        listePartie.get(nb)listeJoueur.add(a);  
+        
+        return "Le joueurs est ajouté ";
+    }
+     
+    
+      /*Methode Creer partier*/
+    public String creerPartie(String nomPartie, int nbJoueurs) {
+        Partie a = new Partie(nomPartie, nbJoueurs);
+        listePartie.add(a);  
+        
+        return "La Partie a bien était créer ";
+    }
+    
+    
+    
+    
+      
+    
+    /////////////////////TEST////////////////
     /* MÃ©thode SeConnecter */
     public String SeConnecter(String nomJoueur)throws RemoteException {
          return "ConnectÃ©, bienvenu : "+nomJoueur;
@@ -40,8 +67,18 @@ import java.util.ArrayList;
     /* MÃ©thode LanceDes */
     public String LanceDes(Integer Des)throws RemoteException{
         return "Vous avez fait : "+Des;
-    }
-     
+            }
+    
+    /* Methode CreerPartie*/
+    public String CreerPartie(String nomPartie,Integer NbJoueur)throws RemoteException {
+         return "c'est bon partie crÃ©Ã©e"; 
+     }
+  /////////////////////TEST////////////////
+    
+    
+    
+    
+    /*Methode propre au sénario*/
     
     
     /*Méthode get Liste partie*/
@@ -49,16 +86,7 @@ import java.util.ArrayList;
     {
         return listePartie;
     }
-     
-
-    /*Methode Creer partier*/
-    public String creerPartie(String nomPartie, int nbJoueurs) {
-        Partie a = new Partie(nomPartie, nbJoueurs);
-        listePartie.add(a);  
-        
-        return "La Partie a bien était créer ";
-    }
-    
+ 
      
     /*Methode pour sénario*/
     public void attPartie() throws InterruptedException
@@ -97,6 +125,22 @@ import java.util.ArrayList;
          }
    return val;
    }
+   
+   
+      
+   public int gagnant(int nb) 
+   {
+       int val = 0;
+         ArrayList listeJ = new ArrayList();  
+         listeJ = listePartie.get(nb).get();
+         
+         if (listeJ.size()==1)
+         {
+             val = 1;
+         }
+   return val;
+   }
+    
     
     
     
@@ -109,13 +153,10 @@ public static void main(String[] args) throws Exception {
 	 	 System.out.println("RMI OK");
                  
           
-/*                          
-                 
-                 ICI LE CODE SERVEUR  
-                       
-                              
-                 
-                 */
+/*                                         
+                 ICI LE CODE SERVEUR       
+                                             
+*/
 
 
 /*
@@ -143,16 +184,23 @@ fin de la manche
 REsultat
 
 */
+int numP = 0; // variable du numero de partie pour la v1 on l'utilisera a 0 par defaut
+                // car on n'a qu'une partie
 
 ImplementationServ s = new ImplementationServ();
 s.attPartie();
-s.attJoueur(0); // v1 du site on attend que la partie 1 soit compplete
 
-while(s.gagnant(0) == 0)
-{
+s.attJoueur(numP); // v1 du site on attend que la partie 1 soit compplete
 
-
-}
+while(s.gagnant(numP) == 0)
+    {
+     s.listePartie.get(numP).avantManche();
+     
+         /*LA MANCHE*/
+         
+     
+     
+    }
 
 /*LE GAGNANT EST :::: */
 
