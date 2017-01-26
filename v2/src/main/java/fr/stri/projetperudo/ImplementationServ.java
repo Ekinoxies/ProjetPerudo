@@ -189,17 +189,17 @@ while(s.gagnant(numP) == 0)
      
          /*LA MANCHE*/
          
-         while () //fin manche tant que la manche est pas fini
+   /*      while () //fin manche tant que la manche est pas fini
          {
              while () //tant que le tour du joueur n'est pas fini   
              {
                  joueurSuivant();
              }
          }
-         
+       
      
      
-    }
+    } */ 
 
 /*LE GAGNANT EST :::: */
 
