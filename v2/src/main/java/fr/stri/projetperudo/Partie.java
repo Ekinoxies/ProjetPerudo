@@ -46,11 +46,20 @@ public class Partie {
     public int getNbJoueur() {
         return nbJoueur;
     }
+
+    public void ajoutJoueur(Joueurs a) {
+       listeJoueur.add(a);
+        
+    }
      
-                  
+                 
       
     
        /*MethodeS*/
+
+    public String getNomPartie() {
+        return nomPartie;
+    }
     
 
    

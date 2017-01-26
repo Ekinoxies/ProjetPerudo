@@ -36,12 +36,23 @@ import java.util.ArrayList;
     /*Ajouter un joueur dans la listejoueur d'une partie*/
     public String connexionAunePartie(Joueurs a, String nomP)
     {
-        int nb;
-        nb =0;
-        
-        listePartie.get(nb)listeJoueur.add(a);  
-        
-        return "Le joueurs est ajouté ";
+         String tmp;
+         String retour = "Joueur non ajouté";
+             
+        for(int i = 0; i < listePartie.size(); i++)
+        {
+           
+            tmp = listePartie.get(i).getNomPartie();
+            
+            if (tmp == nomP)
+            {
+                   
+                    listePartie.get(i).ajoutJoueur(a);
+                    retour = "Le joueurs est ajouté ";
+            }
+         }
+                                
+        return retour;
     }
      
     
