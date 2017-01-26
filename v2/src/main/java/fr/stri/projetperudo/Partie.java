@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package fr.stri.projetperudo;
-
 import java.util.ArrayList;
 
 /**
@@ -18,17 +17,10 @@ public class Partie {
     private  int nbJoueur;
     private ArrayList<Joueurs> listeJoueur = new ArrayList<Joueurs>();
     private ArrayList<Manche> listeManche = new ArrayList<Manche>();
-    
-
-    
-    private String  NomDernieJoueur;
     private int desValeur;
     private int nbVdes;
-    
     private int finTour;
     private int finManche;
-    
-    
     private int valeur;
     
     
@@ -38,7 +30,6 @@ public class Partie {
     {
     this.nomPartie=nomPartie;
     this.nbJoueur = nbJoueur;
-    
     }
    
     
@@ -75,7 +66,8 @@ public class Partie {
     public void setFinTour(int finTour) {
         this.finTour = finTour;
     }
-             
+          
+       
     /*Test Avant de débuter une manche*/
     public String avantManche ()
     {
@@ -87,7 +79,6 @@ public class Partie {
            /*on déroula la liste joueur et on regarde le nombre de dé de chaque 
            personne et on vires les gents qui on pas des Des */
        }
-        
         return retour;
     }
    
@@ -111,25 +102,20 @@ public class Partie {
             val = (int) listeDes.get(i);
             if ( val == desValeur || val == 1)  //le 1 en perrudo est un joker 
             {
-               compter = compter +1;
-               
+               compter = compter +1;              
             }
         }
     }
-    
     if ( compter == nbVdes){
         int nb = j.getNbDes();
         nb = nb+1;
         j.setNbDes(nb);
     }
-    
     finTour =1;
     finManche = 1;
 }
 
-      
       /*Methode menteur*/
-    
       void menteur(Joueurs j) {
      /*Récupère la liste de DES de chaque joueur et regarde si 
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
@@ -163,8 +149,9 @@ public class Partie {
 }
    
         
- public void surcharge ( int valDes,int nbDes){
-        if ( valDes < 7 && valDes > 0 && desValeur <= valDes ){
+ public void surcharge ( Joueurs j, int valDes,int nbDes){
+       
+     if ( valDes < 7 && valDes > 0 && desValeur <= valDes ){
         desValeur = valDes;
         }
         
@@ -177,7 +164,7 @@ public class Partie {
 }
  
  
- public void lanceDes(int nbDes, Joueurs j){
+ public void lanceDes(Joueurs j){
             // liste 
                int nb = j.getNbDes();
                ArrayList listeDes = new ArrayList();
@@ -189,22 +176,4 @@ public class Partie {
                 j.setListeDes(listeDes);
                 
 		}
- 
- 
- 
-    public void joueurSuivant()
-   {
-
-
-   }
- 
- 
- 
 }
-    
-
-
-    
-          
-       
-            

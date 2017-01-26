@@ -152,40 +152,13 @@ public static void main(String[] args) throws Exception {
                                              
 */
 
-/*
-
-TANT QUE LISTE PARTIE = NULL ATTENDRE --> methode attPartie 
-
-TANT QUE NB JOUEUR < nb joueur qui soit y avoir
-attendre
-Fin tanque  --> attJoueur (int nb)
-    
-    TANT QUE La liste de joueur est superieur a 1 faire 
---> Y a t'il un gagnant gagnant() qui return 1 ou 0 
-
-MANCHE SENARIO DE LA PARTIE QUI BOUCLE !!
-    
-         Debut de manche --> codé avantManche
-         Quel joueur Joue
-            joueur lance des 
-             tant que attente de la class Parti = NUUL atendre METHODE GETATTENTE
- pile  et menteur on va dans fin de manche -->  joueur decide action --> on l'aisse l'interface agir
-Si non on continue la boucle (surcharge)
-         FIn de la boucle
-    fin du sénario
-fin de la manche 
-REsultat
-
-*/
-
-
-
 int numP = 0; // variable du numero de partie pour la v1 on l'utilisera a 0 par defaut
                 // car on n'a qu'une partie
+Joueurs j; //le joueur qui est en train de jouer
 
 ImplementationServ s = new ImplementationServ();
-s.attPartie();
 
+s.attPartie();
 s.attJoueur(numP); // v1 du site on attend que la partie 1 soit compplete
 
 while(s.gagnant(numP) == 0)
@@ -196,13 +169,22 @@ while(s.gagnant(numP) == 0)
                
          while ( s.listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;
          {
-             s.listePartie.get(numP).setFinTour(0); // Début d'un nouveau tour
-             
-             while (s.listePartie.get(numP).getFinTour()== 0) //tant que le tour du joueur n'est pas fini   
-             {
-                /*Qui joue et  qui est le prochain    On ajoute les getdes nom joueur dans les methodes pile surcharge et menteur*/
-             }
-              s.listePartie.get(numP).joueurSuivant();
+            
+             for (int i = 0; i < s.listePartie.get(numP).getListeJoueur().size();)   //TOUR DE TABLE 
+             {    
+                          /*TOUR D'un Joueur */
+             s.listePartie.get(numP).setFinTour(0); // Début d'un nouveau tour 
+             j = s.listePartie.get(numP).getListeJoueur().get(i); // on recupere le joueur qui doit jouer
+             s.listePartie.get(numP).lanceDes(j); //lancéé de dés
+              // c'est a ce joueur de jouer :
+              
+                            while (s.listePartie.get(numP).getFinTour()== 0) //tant que le tour du joueur n'est pas fini   
+                            {
+                              sleep(1000);
+                                /*Qui joue et  qui est le prochain    On ajoute les getdes nom joueur dans les methodes pile surcharge et menteurg*/
+                            }
+                 } 
+        
          }
        
      
