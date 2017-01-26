@@ -174,7 +174,37 @@ public void envoiJoueur(String j)
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          String resultnomPartie = nomPartie.getText();
          int resultnombreJoueurs = nombreJoueurs.getItemCount();
-        
+        InterfaceServCli creerpartie = new InterfaceServCli() {
+             @Override
+             public String CreerPartie(String nomPartie, Integer NbJoueur) throws RemoteException {
+                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             }
+
+             @Override
+             public String SeConnecter(String nomJoueur) throws RemoteException {
+                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             }
+
+             @Override
+             public String LanceDes(Integer Des) throws RemoteException {
+                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             }
+
+             @Override
+             public ArrayList<Partie> getListePartie() throws RemoteException {
+                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             }
+
+             @Override
+             public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException {
+                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             }
+         };
+        try {
+            creerpartie.CreerPartie(resultnomPartie, resultnombreJoueurs);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(null, "Partie créée");
         
         // TODO add your handling code here:
