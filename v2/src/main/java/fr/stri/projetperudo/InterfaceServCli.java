@@ -20,6 +20,7 @@ public interface InterfaceServCli extends java.rmi.Remote  {
     
    public ArrayList<Partie> getListePartie() throws java.rmi.RemoteException;
     
+   public String connexionAunePartie(Joueurs a, String nomP) throws java.rmi.RemoteException;
     
     // Ecrire les methodes ici pour consulter le client via le serveur :
      public interface ClientNotification extends Remote {
