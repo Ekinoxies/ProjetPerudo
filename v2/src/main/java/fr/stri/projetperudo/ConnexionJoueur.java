@@ -43,7 +43,6 @@ public class ConnexionJoueur extends javax.swing.JFrame {
         nomPartie = new javax.swing.JTextField();
         nombreJoueurs = new javax.swing.JComboBox<>();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         NomJoueur = new javax.swing.JTextField();
         ValideConnexionJoueur = new javax.swing.JButton();
@@ -82,13 +81,6 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             }
         });
 
-        jFormattedTextField1.setText("jFormattedTextField1");
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jFrameRejoindreCreerPartieLayout = new javax.swing.GroupLayout(jFrameRejoindreCreerPartie.getContentPane());
         jFrameRejoindreCreerPartie.getContentPane().setLayout(jFrameRejoindreCreerPartieLayout);
         jFrameRejoindreCreerPartieLayout.setHorizontalGroup(
@@ -96,15 +88,9 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
                 .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                        .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addComponent(jButton1)
-                                .addGap(24, 24, 24))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)))
+                        .addGap(73, 73, 73)
+                        .addComponent(jButton1)
+                        .addGap(24, 24, 24)
                         .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2)
                             .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
@@ -115,8 +101,8 @@ public class ConnexionJoueur extends javax.swing.JFrame {
                                         .addGap(10, 10, 10)
                                         .addComponent(nombreJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(129, 129, 129)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
         jFrameRejoindreCreerPartieLayout.setVerticalGroup(
@@ -124,12 +110,10 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             .addGroup(jFrameRejoindreCreerPartieLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(nomPartie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
-                .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(nombreJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jFrameRejoindreCreerPartieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -239,14 +223,13 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     };
+        ArrayList listeP = new ArrayList();
         try {
-            ArrayList<Partie> listePartie = recuplistepartie.getListePartie();
-            // TODO add your handling code here:
-            
-                            for(int i=0; i<listePartie.size();i++)
+            listeP = recuplistepartie.getListePartie();
+                     // TODO add your handling code here:
+                            for(int i=0; i<listeP.size();i++)
                             {
-                                //jComboBox1.addItem(listePartie.get(i));
-                            }
+                                jComboBox1.addItem((String) listeP.get(i));                            }
 
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
@@ -254,42 +237,6 @@ public class ConnexionJoueur extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        InterfaceServCli recuplistepartie = new InterfaceServCli() {
-        @Override
-        public String CreerPartie(String nomPartie, Integer NbJoueur) throws RemoteException {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public String SeConnecter(String nomJoueur) throws RemoteException {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public String LanceDes(Integer Des) throws RemoteException {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public ArrayList<Partie> getListePartie() throws RemoteException {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    };
-        try {
-            ArrayList<Partie> listePartie = recuplistepartie.getListePartie();
-            // TODO add your handling code here:
-                            for(int i=0; i<listePartie.size();i++)
-                            {
-                                jComboBox1.addItem(listePartie.get(i));
-                            }
-
-        } catch (RemoteException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,7 +279,6 @@ public class ConnexionJoueur extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFrame jFrameRejoindreCreerPartie;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField nomPartie;
