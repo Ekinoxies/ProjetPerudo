@@ -1,5 +1,3 @@
-
-
 /* ICI on va entrer les fonctions des mÃ©thodes, elles pourront etre appellÃ©es via le client si elles sont dans InterfaceServ*/
 package fr.stri.projetperudo;
 
@@ -88,8 +86,7 @@ import java.util.ArrayList;
     
     
     
-    
-    /*Methode propre au sénario*/
+        /*Methode propre au sénario*/
     
     
     /*Méthode get Liste partie*/
@@ -137,9 +134,7 @@ import java.util.ArrayList;
    return val;
    }  
      
-   
-   
-   
+     
    
    
      
@@ -154,7 +149,6 @@ public static void main(String[] args) throws Exception {
                  ICI LE CODE SERVEUR       
                                              
 */
-
 
 /*
 
@@ -194,6 +188,14 @@ while(s.gagnant(numP) == 0)
      s.listePartie.get(numP).avantManche();
      
          /*LA MANCHE*/
+         
+         while () //fin manche tant que la manche est pas fini
+         {
+             while () //tant que le tour du joueur n'est pas fini   
+             {
+                 joueurSuivant();
+             }
+         }
          
      
      

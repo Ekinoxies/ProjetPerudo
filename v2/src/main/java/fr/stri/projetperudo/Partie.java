@@ -25,7 +25,9 @@ public class Partie {
     private int desValeur;
     private int nbVdes;
     
-    private int Attente;
+    private int finTour;
+    private int finManche;
+    
     
     private int valeur;
     
@@ -39,6 +41,8 @@ public class Partie {
     
     }
    
+    
+    /*GET SET*/
      public ArrayList<Joueurs> getListeJoueur() {
         return listeJoueur;
     }
@@ -52,14 +56,27 @@ public class Partie {
         
     }
      
-                 
-      
-    
-       /*MethodeS*/
-
     public String getNomPartie() {
         return nomPartie;
     }
+
+    public int getFinManche() {
+        return finManche;
+    }
+
+    public int getFinTour() {
+        return finTour;
+    }
+
+    public void setFinManche(int finManche) {
+        this.finManche = finManche;
+    }
+
+    public void setFinTour(int finTour) {
+        this.finTour = finTour;
+    }
+    
+    
     
 
    
@@ -111,6 +128,9 @@ public class Partie {
         nb = nb+1;
         j.setNbDes(nb);
     }
+    
+    finTour =1;
+    finManche = 1;
 }
 
       
@@ -144,12 +164,26 @@ public class Partie {
         nb = nb-1;
         j.setNbDes(nb);
     }
+    finTour =1;
+    finManche = 1;
 }
-      
-      
-      
-
-	public void lanceDes(int nbDes, Joueurs j){
+   
+        
+ public void surcharge ( int valDes,int nbDes){
+        if ( valDes < 7 && valDes > 0 && desValeur <= valDes ){
+        desValeur = valDes;
+        }
+        
+        if ( nbDes < 30 && nbDes > 0 && nbVdes <= nbDes ){
+        nbVdes = nbDes;   
+        }
+        
+   finTour =1;
+ 
+}
+ 
+ 
+ public void lanceDes(int nbDes, Joueurs j){
             // liste 
                int nb = j.getNbDes();
                ArrayList listeDes = new ArrayList();
@@ -161,23 +195,6 @@ public class Partie {
                 j.setListeDes(listeDes);
                 
 		}
-  
-        
-        
- public void surcharge ( int valDes,int nbDes){
-        if ( valDes < 7 && valDes > 0 && desValeur <= valDes ){
-        desValeur = valDes;
-        }
-        
-        if ( nbDes < 30 && nbDes > 0 && nbVdes <= nbDes ){
-        nbVdes = nbDes;   
-        }
-        
-        
-}
- 
- 
- 
 }
     
    
