@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public interface InterfaceServCli extends java.rmi.Remote  {
     
-    public String CreerPartie(String nomPartie,Integer NbJoueur)throws java.rmi.RemoteException;
+    public String creerPartie(String nomPartie,Integer NbJoueur)throws java.rmi.RemoteException;
   
     public String SeConnecter(String nomJoueur)throws java.rmi.RemoteException;
     

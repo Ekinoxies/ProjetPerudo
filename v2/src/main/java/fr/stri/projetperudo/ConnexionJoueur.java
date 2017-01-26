@@ -31,6 +31,21 @@ public class ConnexionJoueur extends javax.swing.JFrame {
     public ConnexionJoueur() {
         initComponents();
     }
+    //InterfaceServCli proxy = new InterfaceServCli();
+    public static void ProxyRMI()
+    {
+        try {           
+            InterfaceServCli proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
 Joueurs envoijoueur;
 public void envoiJoueur(String j)
 {
@@ -176,36 +191,22 @@ public void envoiJoueur(String j)
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          String resultnomPartie = nomPartie.getText();
-         int resultnombreJoueurs = nombreJoueurs.getItemCount();
-        InterfaceServCli creerpartie = new InterfaceServCli() {
-             @Override
-             public String CreerPartie(String nomPartie, Integer NbJoueur) throws RemoteException {
-                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-             }
-
-             @Override
-             public String SeConnecter(String nomJoueur) throws RemoteException {
-                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-             }
-
-             @Override
-             public String LanceDes(Integer Des) throws RemoteException {
-                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-             }
-
-             @Override
-             public ArrayList<Partie> getListePartie() throws RemoteException {
-                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-             }
-
-             @Override
-             public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException {
-                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-             }
-         };
+         int resultnombreJoueurs = nombreJoueurs.getSelectedIndex();
+                    InterfaceServCli proxy = null;
         try {
-            String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
-            System.out.println(proxy.CreerPartie("DOFUS",1));
+            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
+            System.out.println(proxy.creerPartie(resultnomPartie,resultnombreJoueurs));
+            ProxyRMI();
             //JOptionPane.showMessageDialog(null, returncreerpartie);
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
@@ -241,32 +242,7 @@ public void envoiJoueur(String j)
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      String resultnomJoueur2 = NomJoueur.getText();
      String resultNomPartie = (String) jComboBox1.getSelectedItem();
-InterfaceServCli rejoindrepartie = new InterfaceServCli() {
-         @Override
-         public String CreerPartie(String nomPartie, Integer NbJoueur) throws RemoteException {
-             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-         }
-
-         @Override
-         public String SeConnecter(String nomJoueur) throws RemoteException {
-             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-         }
-
-         @Override
-         public String LanceDes(Integer Des) throws RemoteException {
-             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-         }
-
-         @Override
-         public ArrayList<Partie> getListePartie() throws RemoteException {
-             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-         }
-
-         @Override
-         public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException {
-             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-         }
-     };
+/*
         try {
             rejoindrepartie.connexionAunePartie(envoijoueur, resultNomPartie);
 // TODO add your handling code here:
@@ -276,32 +252,7 @@ InterfaceServCli rejoindrepartie = new InterfaceServCli() {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-    InterfaceServCli recuplistepartie = new InterfaceServCli() {
-        @Override
-        public String CreerPartie(String nomPartie, Integer NbJoueur) throws RemoteException {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public String SeConnecter(String nomJoueur) throws RemoteException {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public String LanceDes(Integer Des) throws RemoteException {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public ArrayList<Partie> getListePartie() throws RemoteException {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    };
+   
         ArrayList listeP = new ArrayList();
         try {
             listeP = recuplistepartie.getListePartie();
@@ -314,7 +265,7 @@ InterfaceServCli rejoindrepartie = new InterfaceServCli() {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+       */ 
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
@@ -348,15 +299,7 @@ InterfaceServCli rejoindrepartie = new InterfaceServCli() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ConnexionJoueur().setVisible(true);
-                try {
-                    InterfaceServCli proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
-                } catch (NotBoundException ex) {
-                    Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (RemoteException ex) {
-                    Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                ProxyRMI();               
 
             }
         });
