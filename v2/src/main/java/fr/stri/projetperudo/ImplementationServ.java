@@ -133,6 +133,8 @@ import java.util.ArrayList;
          }
    return val;
    }  
+   
+ 
      
      
    
@@ -182,24 +184,26 @@ ImplementationServ s = new ImplementationServ();
 s.attPartie();
 
 s.attJoueur(numP); // v1 du site on attend que la partie 1 soit compplete
-/*
+
 while(s.gagnant(numP) == 0)
     {
      s.listePartie.get(numP).avantManche();
-     
-         /*LA MANCHE*/ /*
-         
-         while () //fin manche tant que la manche est pas fini
+     s.listePartie.get(numP).setFinManche(0);
+         /*LA MANCHE*/ 
+               
+         while ( s.listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;
          {
-             while () //tant que le tour du joueur n'est pas fini   
+             s.listePartie.get(numP).setFinTour(0); // Début d'un nouveau tour
+             
+             while (s.listePartie.get(numP).getFinTour()== 0) //tant que le tour du joueur n'est pas fini   
              {
-                 joueurSuivant();
+                 s.listePartie.get(numP).joueurSuivant();
              }
          }
        
      
      
-    } */ 
+    } 
 
 /*LE GAGNANT EST :::: */
 

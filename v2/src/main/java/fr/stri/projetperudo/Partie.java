@@ -75,13 +75,7 @@ public class Partie {
     public void setFinTour(int finTour) {
         this.finTour = finTour;
     }
-    
-    
-    
-
-   
-    
-    
+             
     /*Test Avant de débuter une manche*/
     public String avantManche ()
     {
@@ -195,9 +189,20 @@ public class Partie {
                 j.setListeDes(listeDes);
                 
 		}
+ 
+ 
+ 
+    public void joueurSuivant()
+   {
+
+
+   }
+ 
+ 
+ 
 }
     
-   
+
 
     
           
