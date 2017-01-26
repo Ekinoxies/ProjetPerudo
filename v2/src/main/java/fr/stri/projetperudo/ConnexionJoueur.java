@@ -277,18 +277,17 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     };
-        
-        ArrayList listeP = new ArrayList();
         try {
-            listeP = recuplistepartie.getListePartie();
-            for(int i=0; i<listeP.size();i++)
+            ArrayList<Partie> listePartie = recuplistepartie.getListePartie();
+            // TODO add your handling code here:
+                            for(int i=0; i<listePartie.size();i++)
                             {
-                                jComboBox1.addItem((String) listeP.get(i));
+                                jComboBox1.addItem(listePartie.get(i));
                             }
+
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
