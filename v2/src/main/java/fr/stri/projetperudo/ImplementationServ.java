@@ -182,14 +182,14 @@ ImplementationServ s = new ImplementationServ();
 s.attPartie();
 
 s.attJoueur(numP); // v1 du site on attend que la partie 1 soit compplete
-
+/*
 while(s.gagnant(numP) == 0)
     {
      s.listePartie.get(numP).avantManche();
      
-         /*LA MANCHE*/
+         /*LA MANCHE*/ /*
          
-   /*      while () //fin manche tant que la manche est pas fini
+         while () //fin manche tant que la manche est pas fini
          {
              while () //tant que le tour du joueur n'est pas fini   
              {
@@ -208,4 +208,4 @@ while(s.gagnant(numP) == 0)
 
     
     } //crochet du main
-}   // crochet de la classe
+}    // crochet de la classe

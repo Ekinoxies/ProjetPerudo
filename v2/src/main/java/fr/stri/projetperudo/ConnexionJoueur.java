@@ -201,11 +201,12 @@ public void envoiJoueur(String j)
              }
          };
         try {
-            creerpartie.CreerPartie(resultnomPartie, resultnombreJoueurs);
+            String returncreerpartie = creerpartie.CreerPartie(resultnomPartie, resultnombreJoueurs);
+            JOptionPane.showMessageDialog(null, returncreerpartie);
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "Partie créée");
+        
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
