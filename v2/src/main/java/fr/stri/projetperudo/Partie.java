@@ -5,13 +5,14 @@
  */
 package fr.stri.projetperudo;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 /**
  *
  * @author jerome
  */
-public class Partie {
+public class Partie{
     
     /* Arguments */
     private String nomPartie;
@@ -150,7 +151,7 @@ public class Partie {
 }
    
         
- public void surcharge ( Joueurs j, int valDes,int nbDes){
+ public void surcharge ( Joueurs j, int valDes,int nbDes) {
        
      if ( valDes < 7 && valDes > 0 && desValeur <= valDes ){
         desValeur = valDes;
@@ -177,4 +178,5 @@ public class Partie {
                 j.setListeDes(listeDes);
                 
 		}
+ 
 }

@@ -334,8 +334,7 @@ public void envoiJoueur(String j)
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-        
-        
+              
         
         ArrayList listeP = new ArrayList();
         try {
@@ -352,8 +351,7 @@ public void envoiJoueur(String j)
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-       
+               
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

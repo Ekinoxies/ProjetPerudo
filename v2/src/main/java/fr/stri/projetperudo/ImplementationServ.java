@@ -1,6 +1,5 @@
 /* ICI on va entrer les fonctions des mÃ©thodes, elles pourront etre appellÃ©es via le client si elles sont dans InterfaceServ*/
 package fr.stri.projetperudo;
-
 /**
  *
  * @author florian b
@@ -13,7 +12,6 @@ import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 
 
-
  public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli{
     private String nom;
  
@@ -23,14 +21,7 @@ import java.util.ArrayList;
     public ImplementationServ() throws RemoteException {
     super();
  
-} 
-    
-   
-     
-    
-    
-           
-    
+}   
     /*Ajouter un joueur dans la listejoueur d'une partie*/
     @Override
     public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException
@@ -75,13 +66,65 @@ import java.util.ArrayList;
             nomPartie=listePartie.get(nb).getNomPartie();
             
             return nomPartie;
-        
-        
-        
     }
     
     
     
+   public void pilRMI(Joueurs j, String nomP) throws RemoteException {
+      
+      String tmp;            
+        for(int i = 0; i < listePartie.size(); i++)
+        {
+            tmp = listePartie.get(i).getNomPartie();
+            if (tmp == nomP)
+            {
+                  listePartie.get(i).pileMache(j); 
+            }
+            else
+            {
+                System.out.println("Le pile n'a etait effectué sur aucunne partie");
+            }
+       }      
+  }
+        
+  
+   
+  public void menteurRMI(Joueurs j, String nomP) throws RemoteException {
+      
+      String tmp;            
+        for(int i = 0; i < listePartie.size(); i++)
+        {
+            tmp = listePartie.get(i).getNomPartie();
+            if (tmp == nomP)
+            {
+                  listePartie.get(i).menteur(j); 
+            }
+            else
+            {
+                System.out.println("Le menteur n'a etait effectué sur aucunne partie");
+            }
+       }      
+  }
+  
+   public void surchargeRMI(Joueurs j, int valDes,int nbDes, String nomP) throws RemoteException {
+      
+      String tmp;            
+        for(int i = 0; i < listePartie.size(); i++)
+        {
+            tmp = listePartie.get(i).getNomPartie();
+            if (tmp == nomP)
+            {
+                  listePartie.get(i).surcharge(j, valDes, nbDes); 
+            }
+            else
+            {
+                System.out.println("La surcharge n'a etait effectué sur aucunne partie");
+            }
+       }      
+  }
+        
+        
+        
     
     
     /////////////////////TEST////////////////
@@ -146,9 +189,9 @@ import java.util.ArrayList;
              val = 1;
          }
    return val;
-   }  
+   }   
    
- 
+   
      
      
    
