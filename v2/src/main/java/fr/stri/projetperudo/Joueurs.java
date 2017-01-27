@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Quizz
  */
-public class Joueurs  implements Serializable {
+public class Joueurs implements Serializable {
     public String nomJoueurs;
     private int nbDes;
     private ArrayList<int []> listeDes = new ArrayList<int []>();

@@ -238,10 +238,10 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_BoutonMenteurActionPerformed
 
     private void jTextArea3InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextArea3InputMethodTextChanged
-    ConnexionJoueur recupnomj = new ConnexionJoueur();
+    /*ConnexionJoueur recupnomj = new ConnexionJoueur();
     Joueurs j;   
     j = recupnomj.getEnvoijoueur();
-        System.out.println(j.getListeDes());
+        System.out.println(j.getListeDes());*/
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextArea3InputMethodTextChanged
@@ -249,7 +249,7 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(Joueurs j, String nomP) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

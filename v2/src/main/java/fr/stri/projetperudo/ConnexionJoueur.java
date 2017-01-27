@@ -314,6 +314,7 @@ public void envoiJoueur(String j)
         try {
             retour = proxy.connexionAunePartie(envoijoueur, resultNomPartie);
             System.out.println(retour);
+            JoueurInterface.main(envoijoueur, resultNomPartie);
             
 // TODO add your handling code here:
         } catch (RemoteException ex) {
