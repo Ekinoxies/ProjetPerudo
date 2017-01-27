@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Quizz
  */
-public class Joueurs{
+public class Joueurs extends UnicastRemoteObject{
     public String nomJoueurs;
     private int nbDes;
     private ArrayList<int []> listeDes = new ArrayList<int []>();
@@ -47,7 +47,7 @@ public class Joueurs{
         return nomJoueurs;
     }
     
-    void creerPartie(String nomP, int nbJ)
+    void creerPartie(String nomP, int nbJ) throws RemoteException
     {
         try {
          Registry registry = LocateRegistry.getRegistry(10000);
