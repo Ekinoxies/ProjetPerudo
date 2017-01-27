@@ -5,6 +5,7 @@
  */
 package fr.stri.projetperudo;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Quizz
  */
-public class Joueurs extends UnicastRemoteObject{
+public class Joueurs  implements Serializable {
     public String nomJoueurs;
     private int nbDes;
     private ArrayList<int []> listeDes = new ArrayList<int []>();

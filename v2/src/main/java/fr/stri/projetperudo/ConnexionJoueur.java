@@ -48,9 +48,6 @@ public class ConnexionJoueur extends javax.swing.JFrame {
     
 Joueurs envoijoueur;
 
-    public Joueurs getEnvoijoueur() {
-        return envoijoueur;
-    }
 public void envoiJoueur(String j) 
 {
         try {
@@ -74,6 +71,7 @@ public void envoiJoueur(String j)
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         nomPartie = new javax.swing.JTextField();
         nombreJoueurs = new javax.swing.JComboBox<>();
@@ -97,6 +95,13 @@ public void envoiJoueur(String j)
             }
         });
 
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -107,6 +112,10 @@ public void envoiJoueur(String j)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(42, 42, 42))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +124,9 @@ public void envoiJoueur(String j)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(75, 75, 75))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(34, 34, 34))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -286,6 +297,8 @@ public void envoiJoueur(String j)
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      //String resultnomJoueur2 = NomJoueur.getText();
     String resultNomPartie = "Chat";//(String) jComboBox1.getSelectedItem();
+    String retour;
+
      
      InterfaceServCli proxy = null;
         try {
@@ -299,7 +312,8 @@ public void envoiJoueur(String j)
         }
 
         try {
-            proxy.connexionAunePartie(envoijoueur, resultNomPartie);
+            retour = proxy.connexionAunePartie(envoijoueur, resultNomPartie);
+            System.out.println(retour);
             
 // TODO add your handling code here:
         } catch (RemoteException ex) {
@@ -340,6 +354,10 @@ public void envoiJoueur(String j)
         
        
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+System.out.println(envoijoueur);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -383,6 +401,7 @@ public void envoiJoueur(String j)
     private javax.swing.JButton ValideConnexionJoueur;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFrame jFrameRejoindreCreerPartie;
     private javax.swing.JLabel jLabel1;

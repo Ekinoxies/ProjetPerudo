@@ -32,6 +32,7 @@ import java.util.ArrayList;
            
     
     /*Ajouter un joueur dans la listejoueur d'une partie*/
+    @Override
     public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException
     {
          String tmp;

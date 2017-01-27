@@ -21,7 +21,7 @@ public class Partie {
     private String listeJoueur; /*a modifier avec la class*/
     private String nomPartie;
     List listeJoueurs = new ArrayList();
-    listeJoueurs.add()
+    listeJoueurs.add();
     
      
     /*faire liste de joueur 1 à 8 */
