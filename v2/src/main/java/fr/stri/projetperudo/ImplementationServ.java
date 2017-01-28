@@ -27,7 +27,7 @@ import java.util.ArrayList;
     public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException
     {
          String tmp;
-         String retour = "Joueur non ajouté";
+         String retour = " ERREUR Joueur non ajouté";
              
         for(int i = 0; i < listePartie.size(); i++)
         {
@@ -174,6 +174,7 @@ import java.util.ArrayList;
         { 
             sleep(2000);
         }
+    
    }
    
    
