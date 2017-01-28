@@ -34,7 +34,7 @@ import java.util.ArrayList;
            
             tmp = listePartie.get(i).getNomPartie();
             
-            if (tmp == nomP)
+            if (tmp.compareToIgnoreCase(nomP)==0)
             {
                    
                     listePartie.get(i).ajoutJoueur(a);
