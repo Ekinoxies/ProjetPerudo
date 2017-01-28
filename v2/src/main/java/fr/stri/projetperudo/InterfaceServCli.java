@@ -16,8 +16,6 @@ public interface InterfaceServCli extends java.rmi.Remote  {
   
     public String SeConnecter(String nomJoueur)throws java.rmi.RemoteException;
     
-    public String LanceDes(Integer Des)throws java.rmi.RemoteException;
-    
    public ArrayList<Partie> getListePartie() throws java.rmi.RemoteException;
     
    public String connexionAunePartie(Joueurs a, String nomP) throws java.rmi.RemoteException;

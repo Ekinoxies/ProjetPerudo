@@ -24,6 +24,7 @@ import javax.swing.Timer;
 public class JoueurInterface extends javax.swing.JFrame {
     
     Joueurs j;
+    String nomP;
 
     
     
@@ -52,9 +53,10 @@ public class JoueurInterface extends javax.swing.JFrame {
     /**
      * Creates new form Joueur
      */
-    public JoueurInterface(Joueurs j) {
+    public JoueurInterface(Joueurs j,String nomP) {
         
         this.j=j;
+        this.nomP=nomP;
         initComponents();
         
         
@@ -170,6 +172,11 @@ public class JoueurInterface extends javax.swing.JFrame {
         jLabel3.setText("Message :");
 
         BoutonPile.setText("Pile");
+        BoutonPile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonPileActionPerformed(evt);
+            }
+        });
 
         BoutonMenteur.setText("Menteur");
         BoutonMenteur.addActionListener(new java.awt.event.ActionListener() {
@@ -282,6 +289,32 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
 
     private void BoutonMenteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonMenteurActionPerformed
         // TODO add your handling code here:
+        
+        
+        
+                 InterfaceServCli proxy = null;
+        try {
+            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
+            proxy.menteurRMI(j, nomP);
+            //ProxyRMI();
+            //JOptionPane.showMessageDialog(null, returncreerpartie);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }                   
+        
+  
+        
+        
     }//GEN-LAST:event_BoutonMenteurActionPerformed
 
     private void jTextAreaAffDesInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextAreaAffDesInputMethodTextChanged
@@ -292,6 +325,32 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextAreaAffDesInputMethodTextChanged
+
+    private void BoutonPileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonPileActionPerformed
+        // TODO add your handling code here:
+        
+        
+         InterfaceServCli proxy = null;
+        try {
+            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
+            proxy.pilRMI(j, nomP);
+            //ProxyRMI();
+            //JOptionPane.showMessageDialog(null, returncreerpartie);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }                   
+        
+    }//GEN-LAST:event_BoutonPileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,7 +383,7 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JoueurInterface(j).setVisible(true);
+                new JoueurInterface(j,nomP).setVisible(true);
             }
         });
     }

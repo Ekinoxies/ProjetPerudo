@@ -215,6 +215,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pile"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BoutonPileActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BoutonMenteur">
       <Properties>

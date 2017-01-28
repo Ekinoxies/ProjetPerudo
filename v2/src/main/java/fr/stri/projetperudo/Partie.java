@@ -169,6 +169,7 @@ public class Partie{
  public void lanceDes(Joueurs j){
             // liste 
                int nb = j.getNbDes();
+               System.out.println("Quel lancé de de des du Joueur : " + j.getNomJoueurs());
                ArrayList listeDes = new ArrayList();
                for (int i=0;i<=nb;i++)
                     {
@@ -178,5 +179,4 @@ public class Partie{
                 j.setListeDes(listeDes);
                 
 		}
- 
 }

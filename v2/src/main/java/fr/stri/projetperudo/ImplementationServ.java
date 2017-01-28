@@ -79,7 +79,7 @@ import java.util.ArrayList;
         for(int i = 0; i < listePartie.size(); i++)
         {
             tmp = listePartie.get(i).getNomPartie();
-            if (tmp == nomP)
+            if (tmp.compareToIgnoreCase(nomP)==0)
             {
                   listePartie.get(i).pileMache(j); 
                   System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Pile");
@@ -99,7 +99,7 @@ import java.util.ArrayList;
         for(int i = 0; i < listePartie.size(); i++)
         {
             tmp = listePartie.get(i).getNomPartie();
-            if (tmp == nomP)
+            if (tmp.compareToIgnoreCase(nomP)==0)
             {
                   listePartie.get(i).menteur(j);
                   System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Menteur");
@@ -138,12 +138,6 @@ import java.util.ArrayList;
     public String SeConnecter(String nomJoueur)throws RemoteException {
          return "ConnectÃ©, bienvenu : "+nomJoueur;
     }
-    
-    /* MÃ©thode LanceDes */
-    public String LanceDes(Integer Des)throws RemoteException{
-        return "Vous avez fait : "+Des;
-            }
-    
   
   /////////////////////TEST////////////////
     
@@ -248,7 +242,7 @@ while(s.gagnant(numP) == 0)
                             while (listePartie.get(numP).getFinTour()== 0) //tant que le tour du joueur n'est pas fini   
                             {
                               sleep(1000);
-                                /*Qui joue et  qui est le prochain    On ajoute les getdes nom joueur dans les methodes pile surcharge et menteurg*/
+                                
                             }
                  } 
         
