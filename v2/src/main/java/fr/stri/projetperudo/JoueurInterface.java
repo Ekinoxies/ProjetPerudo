@@ -1,11 +1,14 @@
 package fr.stri.projetperudo;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Timer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,11 +21,36 @@ import java.util.logging.Logger;
  * @author Quizz
  */
 public class JoueurInterface extends javax.swing.JFrame {
+    
+    
+
+    
+    
+    public void actualiserDes()
+    {
+         
+	  jTextAreaAffDes.setText("test");
+    }
+    
+    
+    
 
     /**
      * Creates new form Joueur
      */
     public JoueurInterface() {
+        
+               /*actualiserDes();
+        
+            //Déclaration du timer (pour actualisation toute les 1000 miliseconds)
+        Timer tMessage = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            actualiserDes();
+        }           
+        });
+        tMessage.start();*/
+        
         initComponents();
     }
 
@@ -52,7 +80,7 @@ public class JoueurInterface extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        jTextAreaAffDes = new javax.swing.JTextArea();
 
         jLabel4.setText("Numéro du dé");
 
@@ -145,29 +173,26 @@ public class JoueurInterface extends javax.swing.JFrame {
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jTextArea3.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        jTextAreaAffDes.setColumns(20);
+        jTextAreaAffDes.setRows(5);
+        jTextAreaAffDes.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTextArea3InputMethodTextChanged(evt);
+                jTextAreaAffDesInputMethodTextChanged(evt);
             }
         });
-        jScrollPane3.setViewportView(jTextArea3);
+        jScrollPane3.setViewportView(jTextAreaAffDes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(166, 166, 166)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jLabel3)))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
@@ -184,20 +209,21 @@ public class JoueurInterface extends javax.swing.JFrame {
                                 .addGap(174, 174, 174)
                                 .addComponent(BoutonMenteur)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
-                            .addComponent(jLabel1))
+                        .addComponent(jButton3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
@@ -237,14 +263,14 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_BoutonMenteurActionPerformed
 
-    private void jTextArea3InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextArea3InputMethodTextChanged
+    private void jTextAreaAffDesInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextAreaAffDesInputMethodTextChanged
     /*ConnexionJoueur recupnomj = new ConnexionJoueur();
     Joueurs j;   
     j = recupnomj.getEnvoijoueur();
         System.out.println(j.getListeDes());*/
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextArea3InputMethodTextChanged
+    }//GEN-LAST:event_jTextAreaAffDesInputMethodTextChanged
 
     /**
      * @param args the command line arguments
@@ -300,6 +326,6 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextAreaAffDes;
     // End of variables declaration//GEN-END:variables
 }
