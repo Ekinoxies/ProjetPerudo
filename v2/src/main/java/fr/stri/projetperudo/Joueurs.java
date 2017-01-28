@@ -28,6 +28,7 @@ public class Joueurs implements Serializable {
         this.nbDes = nbDes;
     }
 
+    
     public void setListeDes(ArrayList<int[]> listeDes) {
         this.listeDes = listeDes;
     }

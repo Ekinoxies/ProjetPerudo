@@ -1,5 +1,6 @@
 package fr.stri.projetperudo;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
@@ -22,14 +23,27 @@ import javax.swing.Timer;
  */
 public class JoueurInterface extends javax.swing.JFrame {
     
-    
+    Joueurs j;
 
     
     
-    public void actualiserDes()
+    public void actualiserDes(Joueurs j)
     {
          
-	  jTextAreaAffDes.setText("test");
+	  
+          
+           for (int i = 0; i < j.getListeDes().size();i++)
+            {
+	      
+                jTextAreaAffDes.append(String.valueOf(j.getListeDes().get(i)));
+	             
+	    }
+	       
+	       jTextAreaAffDes.append("////");
+	       
+                  
+                  
+                  
     }
     
     
@@ -38,20 +52,27 @@ public class JoueurInterface extends javax.swing.JFrame {
     /**
      * Creates new form Joueur
      */
-    public JoueurInterface() {
+    public JoueurInterface(Joueurs j) {
         
-               /*actualiserDes();
+        this.j=j;
+        initComponents();
+        
+        
+        
+            actualiserDes(j);
         
             //Déclaration du timer (pour actualisation toute les 1000 miliseconds)
         Timer tMessage = new Timer(1000, new ActionListener() {
-        @Override
+       
         public void actionPerformed(ActionEvent e) {
-            actualiserDes();
+            actualiserDes(j);
         }           
         });
-        tMessage.start();*/
+        tMessage.start();
         
-        initComponents();
+        
+        
+        
     }
 
     /**
@@ -303,7 +324,7 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JoueurInterface().setVisible(true);
+                new JoueurInterface(j).setVisible(true);
             }
         });
     }
