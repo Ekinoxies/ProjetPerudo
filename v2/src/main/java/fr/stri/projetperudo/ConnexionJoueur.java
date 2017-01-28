@@ -245,7 +245,14 @@ public void envoiJoueur(String j)
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          String resultnomPartie = nomPartie.getText();
+         
+         /* TEMPORAIRE
          int resultnombreJoueurs = nombreJoueurs.getSelectedIndex();
+         
+         */ int resultnombreJoueurs = 2;
+         
+         
+         
                     InterfaceServCli proxy = null;
         try {
             proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");

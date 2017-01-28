@@ -16,7 +16,7 @@ import java.util.ArrayList;
     private String nom;
  
        
-    private ArrayList<Partie> listePartie = new ArrayList<Partie>();
+    private static ArrayList<Partie> listePartie = new ArrayList<Partie>();
     
     public ImplementationServ() throws RemoteException {
     super();
@@ -38,6 +38,8 @@ import java.util.ArrayList;
             {
                    
                     listePartie.get(i).ajoutJoueur(a);
+                    System.out.println("Le Joueur" +a.getNomJoueurs()+ " est ajouté a la partie " + nomP );
+                    
                     retour = "Le joueurs est ajouté ";
             }
          }
@@ -50,6 +52,7 @@ import java.util.ArrayList;
     public String creerPartie(String nomPartie, Integer nbJoueurs)throws RemoteException {
         Partie a = new Partie(nomPartie, nbJoueurs);
         listePartie.add(a);  
+        System.out.println("La partie :" + nomPartie +" a etait créer avec un nombre de joueur de : " + nbJoueurs);
         
         return "La Partie a bien était créer ";
     }
@@ -79,6 +82,7 @@ import java.util.ArrayList;
             if (tmp == nomP)
             {
                   listePartie.get(i).pileMache(j); 
+                  System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Pile");
             }
             else
             {
@@ -97,7 +101,8 @@ import java.util.ArrayList;
             tmp = listePartie.get(i).getNomPartie();
             if (tmp == nomP)
             {
-                  listePartie.get(i).menteur(j); 
+                  listePartie.get(i).menteur(j);
+                  System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Menteur");
             }
             else
             {
@@ -115,6 +120,7 @@ import java.util.ArrayList;
             if (tmp == nomP)
             {
                   listePartie.get(i).surcharge(j, valDes, nbDes); 
+                  System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Surcharge de " +valDes + nbDes);
             }
             else
             {
@@ -159,6 +165,7 @@ import java.util.ArrayList;
         while (listePartie.isEmpty())    
         { 
             sleep(2000);
+            System.out.println("ATTENTE Partie");
         }
     }
     
@@ -173,6 +180,7 @@ import java.util.ArrayList;
     while (listeJ.size()<nbj)    
         { 
             sleep(2000);
+            System.out.println("ATTENTE JOUEUR");
         }
     
    }
@@ -221,22 +229,23 @@ s.attJoueur(numP); // v1 du site on attend que la partie 1 soit compplete
 
 while(s.gagnant(numP) == 0)
     {
-     s.listePartie.get(numP).avantManche();
-     s.listePartie.get(numP).setFinManche(0);
+     listePartie.get(numP).avantManche();
+     listePartie.get(numP).setFinManche(0);
          /*LA MANCHE*/ 
                
-         while ( s.listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;
+         while ( listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;
          {
             
-             for (int i = 0; i < s.listePartie.get(numP).getListeJoueur().size();)   //TOUR DE TABLE 
+             for (int i = 0; i < listePartie.get(numP).getListeJoueur().size();)   //TOUR DE TABLE 
              {    
                           /*TOUR D'un Joueur */
-             s.listePartie.get(numP).setFinTour(0); // Début d'un nouveau tour 
-             j = s.listePartie.get(numP).getListeJoueur().get(i); // on recupere le joueur qui doit jouer
-             s.listePartie.get(numP).lanceDes(j); //lancéé de dés
+             listePartie.get(numP).setFinTour(0); // Début d'un nouveau tour 
+             j = listePartie.get(numP).getListeJoueur().get(i); // on recupere le joueur qui doit jouer
+                 System.out.println("Au joueur :" +j.getNomJoueurs()+" de jouer");
+             listePartie.get(numP).lanceDes(j); //lancéé de dés
               // c'est a ce joueur de jouer :
               
-                            while (s.listePartie.get(numP).getFinTour()== 0) //tant que le tour du joueur n'est pas fini   
+                            while (listePartie.get(numP).getFinTour()== 0) //tant que le tour du joueur n'est pas fini   
                             {
                               sleep(1000);
                                 /*Qui joue et  qui est le prochain    On ajoute les getdes nom joueur dans les methodes pile surcharge et menteurg*/
