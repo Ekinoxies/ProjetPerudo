@@ -90,8 +90,8 @@ public class JoueurInterface extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         NumDeSurenchere = new javax.swing.JComboBox<>();
-        NombreSurenchere = new javax.swing.JTextField();
         ValideSurenchere = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
@@ -116,13 +116,14 @@ public class JoueurInterface extends javax.swing.JFrame {
             }
         });
 
-        NombreSurenchere.addActionListener(new java.awt.event.ActionListener() {
+        ValideSurenchere.setText("Validé");
+        ValideSurenchere.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreSurenchereActionPerformed(evt);
+                ValideSurenchereActionPerformed(evt);
             }
         });
 
-        ValideSurenchere.setText("Validé");
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -133,10 +134,10 @@ public class JoueurInterface extends javax.swing.JFrame {
                 .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(NumDeSurenchere, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NombreSurenchere, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(NumDeSurenchere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
             .addGroup(jFrame1Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
@@ -153,10 +154,10 @@ public class JoueurInterface extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(NombreSurenchere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addComponent(ValideSurenchere)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jTextArea1.setColumns(20);
@@ -272,7 +273,8 @@ public class JoueurInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-jFrame1.setVisible(true);        // TODO add your handling code here:
+jFrame1.setVisible(true); 
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
@@ -282,10 +284,6 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
     private void NumDeSurenchereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumDeSurenchereActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NumDeSurenchereActionPerformed
-
-    private void NombreSurenchereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreSurenchereActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreSurenchereActionPerformed
 
     private void BoutonMenteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonMenteurActionPerformed
         // TODO add your handling code here:
@@ -352,6 +350,34 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
         
     }//GEN-LAST:event_BoutonPileActionPerformed
 
+    private void ValideSurenchereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValideSurenchereActionPerformed
+        
+        Integer resultNumDes;
+         Integer resultNbDes;
+        Integer resultNumDes = NumDeSurenchere.getSelectedItem();
+        Integer resultNbDes = jSpinner1.getValue();
+        
+        InterfaceServCli proxy = null;
+        try {
+            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
+            proxy.surchargeRMI(j, resultNumDes, resultNbDes, nomP);
+            //ProxyRMI();
+            //JOptionPane.showMessageDialog(null, returncreerpartie);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }                  // TODO add your handling code here:
+    }//GEN-LAST:event_ValideSurenchereActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -391,7 +417,6 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoutonMenteur;
     private javax.swing.JButton BoutonPile;
-    private javax.swing.JTextField NombreSurenchere;
     private javax.swing.JComboBox<String> NumDeSurenchere;
     private javax.swing.JButton ValideSurenchere;
     private javax.swing.JButton jButton3;
@@ -404,6 +429,7 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextAreaAffDes;
