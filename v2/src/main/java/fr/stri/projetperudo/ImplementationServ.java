@@ -12,7 +12,7 @@ import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 
 
- public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli{
+ public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli {
     private String nom;
  
        
@@ -137,7 +137,7 @@ import java.util.ArrayList;
     }
   
   
-  public Joueurs actualiserDesRMI (Joueurs j, String nomP) throws RemoteException 
+  public Joueurs actualiserDesRMI (Joueurs j, String nomP)  throws RemoteException 
        {
        Joueurs returnj ;
        String tmp;
@@ -149,7 +149,8 @@ import java.util.ArrayList;
               for(int i = 0; i < listePartie.size(); i++)
         {
             tmp = listePartie.get(i).getNomPartie();
-            if (tmp.compareToIgnoreCase(nomP) ==0)
+            
+            if (tmp.compareToIgnoreCase(nomP) ==0 )
             {
                   for(int x = 0; x < listePartie.get(i).getListeJoueur().size() ; x++ )
                   {
@@ -162,8 +163,8 @@ import java.util.ArrayList;
 //                      // actualisation du nombre de des
 //                      returnj.setNbDes(listePartie.get(i).getListeJoueur().get(x).getNbDes();
                           
+                         
                           
-                          returnj = listePartie.get(i).getListeJoueur().get(x);
                        }
                   }
             }

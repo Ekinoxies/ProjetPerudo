@@ -52,15 +52,15 @@ public class JoueurInterface extends javax.swing.JFrame {
                 
         // AFFICHAGE des DES        
         
-        System.out.println("Vous avez : "+j.getNomJoueurs());
+        System.out.println("le Joueurs  " + j.getNomJoueurs() + "  a  :  " + j.getListeDes().size());
 
         
         
                    for (int i = 0; i < j.getListeDes().size();i++)
             {
-                jTextAreaAffDes.append(String.valueOf(j.getNomJoueurs()));
+                                
                 jTextAreaAffDes.append(String.valueOf(j.getListeDes().get(i)));
-	             
+	              System.out.println(String.valueOf(j.getListeDes().get(i)));
 	    }
 	       
 	       jTextAreaAffDes.append("////");              
