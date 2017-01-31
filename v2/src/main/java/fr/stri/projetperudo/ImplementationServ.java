@@ -111,7 +111,7 @@ import java.util.ArrayList;
        }      
   }
   
-   public void surchargeRMI(Joueurs j, int valDes,int nbDes, String nomP) throws RemoteException {
+  public void surchargeRMI(Joueurs j, int valDes,int nbDes, String nomP) throws RemoteException {
       
       String tmp;            
         for(int i = 0; i < listePartie.size(); i++)
@@ -129,17 +129,64 @@ import java.util.ArrayList;
        }      
   }
         
-        
-        
-    
-    
-    /////////////////////TEST////////////////
-    /* MÃ©thode SeConnecter */
-    public String SeConnecter(String nomJoueur)throws RemoteException {
-         return "ConnectÃ©, bienvenu : "+nomJoueur;
+  
+  
+   public ArrayList<Partie> getListePartie ( ) throws RemoteException
+    {
+        return listePartie;
     }
   
-  /////////////////////TEST////////////////
+  
+  public Joueurs actualiserDesRMI (Joueurs j, String nomP) throws RemoteException 
+       {
+       Joueurs returnj ;
+       String tmp;
+       returnj = j;
+       
+       
+       //On recherche la liste DES du joueurs 
+       
+              for(int i = 0; i < listePartie.size(); i++)
+        {
+            tmp = listePartie.get(i).getNomPartie();
+            if (tmp.compareToIgnoreCase(nomP) ==0)
+            {
+                  for(int x = 0; x < listePartie.get(i).getListeJoueur().size() ; x++ )
+                  {
+                      tmp= j.getNomJoueurs();
+                      if (tmp.compareToIgnoreCase(listePartie.get(i).getListeJoueur().get(x).getNomJoueurs() ) ==0)
+                      {
+//                              //actualisation de la liste de DES
+//                      returnj.setListeDes(listePartie.get(i).getListeJoueur().get(x).getListeDes());
+//                      
+//                      // actualisation du nombre de des
+//                      returnj.setNbDes(listePartie.get(i).getListeJoueur().get(x).getNbDes();
+                          
+                          
+                          returnj = listePartie.get(i).getListeJoueur().get(x);
+                       }
+                  }
+            }
+            else
+            {
+                System.out.println("ERREUR ACTUALISER DES");
+            }
+       }   
+       
+
+       return returnj;
+       
+       }
+        
+    
+    
+///////////////////////TEST////////////////
+///* MÃ©thode SeConnecter */
+//public String SeConnecter(String nomJoueur)throws RemoteException {
+//     return "ConnectÃ©, bienvenu : "+nomJoueur;
+//}
+//
+///////////////////////TEST////////////////
     
     
     
@@ -147,10 +194,9 @@ import java.util.ArrayList;
     
     
     /*Méthode get Liste partie*/
-     public ArrayList<Partie> getListePartie ( ) throws RemoteException
-    {
-        return listePartie;
-    }
+     
+
+
  
      
     /*Methode pour sénario*/

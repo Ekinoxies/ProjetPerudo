@@ -26,10 +26,32 @@ public class JoueurInterface extends javax.swing.JFrame {
     Joueurs j;
     String nomP;
 
-    
-    
-    public void actualiserDes(Joueurs j)
+    public void actualiserDes()
     {
+               
+        InterfaceServCli proxy = null;
+        try {
+            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
+            j = proxy.actualiserDesRMI(j,nomP);
+            //ProxyRMI();
+            //JOptionPane.showMessageDialog(null, returncreerpartie);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+                                    
+                
+        // AFFICHAGE des DES        
+        
         System.out.println("Vous avez : "+j.getNomJoueurs());
 
         
@@ -41,18 +63,16 @@ public class JoueurInterface extends javax.swing.JFrame {
 	             
 	    }
 	       
-	       jTextAreaAffDes.append("////");
-
-             
-	       
-                  
-                  
+	       jTextAreaAffDes.append("////");              
                   
     }
     
     
     
-
+    
+    
+    
+    
     /**
      * Creates new form Joueur
      */
@@ -62,21 +82,19 @@ public class JoueurInterface extends javax.swing.JFrame {
         this.nomP=nomP;
         initComponents();
         
-        
-        
-            actualiserDes(j);
+                
+            actualiserDes(); //on appel la methode car le compilateur ne l'a pas encore compilé
+       
         
             //Déclaration du timer (pour actualisation toute les 1000 miliseconds)
         Timer tMessage = new Timer(1000, new ActionListener() {
        
         public void actionPerformed(ActionEvent e) {
-            actualiserDes(j);
+          
+            actualiserDes();  
         }           
         });
-        tMessage.start();
-        
-        
-        
+        tMessage.start();                    
         
     }
 
@@ -291,9 +309,8 @@ jFrame1.setVisible(true);
     private void BoutonMenteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonMenteurActionPerformed
         // TODO add your handling code here:
         
-        
-        
-                 InterfaceServCli proxy = null;
+               
+        InterfaceServCli proxy = null;
         try {
             proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
         } catch (NotBoundException ex) {
@@ -312,9 +329,7 @@ jFrame1.setVisible(true);
         } catch (RemoteException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         }                   
-        
-  
-        
+                                                  
         
     }//GEN-LAST:event_BoutonMenteurActionPerformed
 
