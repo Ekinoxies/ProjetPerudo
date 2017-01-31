@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Joueurs implements Serializable {
     public String nomJoueurs;
-    private int nbDes;
+    public int nbDes;
     private ArrayList<int []> listeDes = new ArrayList<int []>();
 
     public int getNbDes() {

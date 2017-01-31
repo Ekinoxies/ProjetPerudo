@@ -30,17 +30,20 @@ public class JoueurInterface extends javax.swing.JFrame {
     
     public void actualiserDes(Joueurs j)
     {
-         
-	  
-          
-           for (int i = 0; i < j.getListeDes().size();i++)
+        System.out.println("Vous avez : "+j.getNomJoueurs());
+
+        
+        
+                   for (int i = 0; i < j.getListeDes().size();i++)
             {
-	      
+                jTextAreaAffDes.append(String.valueOf(j.getNomJoueurs()));
                 jTextAreaAffDes.append(String.valueOf(j.getListeDes().get(i)));
 	             
 	    }
 	       
 	       jTextAreaAffDes.append("////");
+
+             
 	       
                   
                   
@@ -352,10 +355,9 @@ jFrame1.setVisible(true);
 
     private void ValideSurenchereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValideSurenchereActionPerformed
         
-        Integer resultNumDes;
-         Integer resultNbDes;
-        Integer resultNumDes = NumDeSurenchere.getSelectedItem();
-        Integer resultNbDes = jSpinner1.getValue();
+
+        Integer resultNumDes = (Integer) NumDeSurenchere.getSelectedItem();
+        Integer resultNbDes = (Integer) jSpinner1.getValue();
         
         InterfaceServCli proxy = null;
         try {

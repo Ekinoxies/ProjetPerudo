@@ -169,12 +169,14 @@ public class Partie{
  public void lanceDes(Joueurs j){
             // liste 
                int nb = j.getNbDes();
-               System.out.println("Quel lancé de de des du Joueur : " + j.getNomJoueurs());
+               System.out.println("Quel lancé de des du Joueur : " + j.getNomJoueurs());
+               System.out.println("Vous avez : " + nb+" nombre de dès");
                ArrayList listeDes = new ArrayList();
                for (int i=0;i<=nb;i++)
                     {
                     valeur = (int)(1+ 6*Math.random());  
                     listeDes.add(valeur);
+                    
                     }
                 j.setListeDes(listeDes);
                 

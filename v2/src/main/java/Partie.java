@@ -36,7 +36,7 @@ public class Partie {
         return true;
     }
     
-    void debutManche(int numeroManche,List listeJoueurs)7
+    void debutManche(int numeroManche,List listeJoueurs)
             {
                 
             }
