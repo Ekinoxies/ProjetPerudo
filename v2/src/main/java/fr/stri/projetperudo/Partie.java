@@ -171,6 +171,7 @@ public class Partie{
  public void lanceDes(Joueurs j){
             // liste 
                int nb = j.getNbDes();
+               String tmp2;
                System.out.println("Quel lancé de des du Joueur : " + j.getNomJoueurs());
                System.out.println("Vous avez : " + nb+" nombre de dès");
                ArrayList listeDes = new ArrayList();
@@ -181,7 +182,27 @@ public class Partie{
                     listeDes.add(valeur);
                     
                     }
-                j.setListeDes(listeDes);
+               
+               
+               
+               
+               for(int i = 0; i < listeJoueur.size() ; i++ )
+                  {
+                      tmp2= listeJoueur.get(i).getNomJoueurs();
+                      if (tmp2.compareToIgnoreCase(listeJoueur.get(i).getNomJoueurs() ) ==0)
+                      {
+                          
+                         
+                        listeJoueur.get(i).setListeDes(listeDes);
+                                               
+                       }
+                  }
+               
+               
+               
+          
+                       
+                
                 System.out.println("DANS LANCER DES" + listeDes.toString());
                 
                 

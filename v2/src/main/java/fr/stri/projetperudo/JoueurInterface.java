@@ -368,8 +368,8 @@ jFrame1.setVisible(true);
     private void ValideSurenchereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValideSurenchereActionPerformed
         
 
-        Integer resultNumDes = (Integer) NumDeSurenchere.getSelectedItem();
-        Integer resultNbDes = (Integer) jSpinner1.getValue();
+        int resultNumDes = (int) NumDeSurenchere.getSelectedItem();
+        int resultNbDes = (int) jSpinner1.getValue();
         
         InterfaceServCli proxy = null;
         try {
