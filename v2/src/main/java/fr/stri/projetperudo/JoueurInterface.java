@@ -119,7 +119,7 @@ public class JoueurInterface extends javax.swing.JFrame {
         BoutonMenteur = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        AffichageMessage = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaAffDes = new javax.swing.JTextArea();
 
@@ -216,9 +216,9 @@ public class JoueurInterface extends javax.swing.JFrame {
             }
         });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        AffichageMessage.setColumns(20);
+        AffichageMessage.setRows(5);
+        jScrollPane2.setViewportView(AffichageMessage);
 
         jTextAreaAffDes.setColumns(20);
         jTextAreaAffDes.setRows(5);
@@ -368,7 +368,7 @@ jFrame1.setVisible(true);
     private void ValideSurenchereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValideSurenchereActionPerformed
         
 
-        int resultNumDes = (int) NumDeSurenchere.getSelectedItem();
+        int resultNumDes = (int)NumDeSurenchere.getSelectedItem();
         int resultNbDes = (int) jSpinner1.getValue();
         
         InterfaceServCli proxy = null;
@@ -429,6 +429,7 @@ jFrame1.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea AffichageMessage;
     private javax.swing.JButton BoutonMenteur;
     private javax.swing.JButton BoutonPile;
     private javax.swing.JComboBox<String> NumDeSurenchere;
@@ -445,7 +446,6 @@ jFrame1.setVisible(true);
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextAreaAffDes;
     // End of variables declaration//GEN-END:variables
 }
