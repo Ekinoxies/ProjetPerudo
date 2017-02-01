@@ -59,15 +59,8 @@ public class JoueurInterface extends javax.swing.JFrame {
         System.out.println("le Joueurs  " + j.getNomJoueurs() + "  a  :  " + j.getListeDes().size());
 
         
-        
-                   for (int i = 0; i < j.getListeDes().size();i++)
-            {
-                                
-                jTextAreaAffDes.append(String.valueOf(j.getListeDes().get(i)));
-	              System.out.println(String.valueOf(j.getListeDes().get(i)));
-	    }
-	       
-	       jTextAreaAffDes.append("////");              
+                      	       
+	       jTextAreaAffDes.append(j.getListeDes().toString());              
                   
     }
     

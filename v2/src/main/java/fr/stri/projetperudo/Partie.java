@@ -184,5 +184,8 @@ public class Partie{
                 j.setListeDes(listeDes);
                 System.out.println("DANS LANCER DES" + listeDes.toString());
                 
+                
 		}
+ 
+ 
 }

@@ -106,7 +106,7 @@ import java.util.ArrayList;
             }
             else
             {
-                System.out.println("Le menteur n'a etait effectué sur aucunne partie");
+                System.out.println("Le menteur n'a etait effectué sur aucune partie");
             }
        }      
   }
@@ -124,7 +124,7 @@ import java.util.ArrayList;
             }
             else
             {
-                System.out.println("La surcharge n'a etait effectué sur aucunne partie");
+                System.out.println("La surcharge n'a etait effectué sur aucune partie");
             }
        }      
   }
@@ -169,6 +169,10 @@ import java.util.ArrayList;
                 System.out.println("ERREUR ACTUALISER DES");
             }
        }   
+              
+               System.out.println("j'envoi grace au rmi Un nbDES de " + 
+              listePartie.get(numP).getListeJoueur().get(numJ).getNbDes() );
+               
        return listePartie.get(numP).getListeJoueur().get(numJ).getNbDes() ;
        
        }
@@ -178,7 +182,7 @@ import java.util.ArrayList;
    public ArrayList<int[]> actualiserListeDesRMI (Joueurs j, String nomP)  throws RemoteException 
        {
       
-       String tmp;
+       String tmp, tmp2;
        int numP,numJ;
        numP = 0;
        numJ = 0;
@@ -189,12 +193,12 @@ import java.util.ArrayList;
         {
             tmp = listePartie.get(i).getNomPartie();
             
-            if (tmp.compareToIgnoreCase(nomP) ==0 )
+            if (tmp.compareToIgnoreCase(nomP) ==0 ) //si non de partie trouvé
             {
                   for(int x = 0; x < listePartie.get(i).getListeJoueur().size() ; x++ )
                   {
-                      tmp= j.getNomJoueurs();
-                      if (tmp.compareToIgnoreCase(listePartie.get(i).getListeJoueur().get(x).getNomJoueurs() ) ==0)
+                      tmp2= j.getNomJoueurs();
+                      if (tmp2.compareToIgnoreCase(listePartie.get(i).getListeJoueur().get(x).getNomJoueurs() ) ==0)
                       {
                           
                          numP = i;
@@ -209,7 +213,9 @@ import java.util.ArrayList;
             }
        }   
        
-              System.out.println(listePartie.get(numP).getListeJoueur().get(numJ).getListeDes().size());
+              System.out.println("j'envoi grace au rmi les DES" + 
+              listePartie.get(numP).getListeJoueur().get(numJ).getListeDes().toString() );
+              
 
        return listePartie.get(numP).getListeJoueur().get(numJ).getListeDes() ;
        
