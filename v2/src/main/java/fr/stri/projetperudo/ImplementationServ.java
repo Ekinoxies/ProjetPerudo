@@ -137,13 +137,13 @@ import java.util.ArrayList;
     }
   
   
-  public Joueurs actualiserDesRMI (Joueurs j, String nomP)  throws RemoteException 
+  public int actualiserNbDesRMI (Joueurs j, String nomP)  throws RemoteException 
        {
-       Joueurs returnj ;
        String tmp;
-       returnj = j;
-       
-       
+       int numP,numJ;
+       numP = 0;
+       numJ = 0;
+              
        //On recherche la liste DES du joueurs 
        
               for(int i = 0; i < listePartie.size(); i++)
@@ -157,14 +157,49 @@ import java.util.ArrayList;
                       tmp= j.getNomJoueurs();
                       if (tmp.compareToIgnoreCase(listePartie.get(i).getListeJoueur().get(x).getNomJoueurs() ) ==0)
                       {
-//                              //actualisation de la liste de DES
-//                      returnj.setListeDes(listePartie.get(i).getListeJoueur().get(x).getListeDes());
-//                      
-//                      // actualisation du nombre de des
-//                      returnj.setNbDes(listePartie.get(i).getListeJoueur().get(x).getNbDes();
                           
-                         
+                         numP = i;
+                         numJ = x;
+                                               
+                       }
+                  }
+            }
+            else
+            {
+                System.out.println("ERREUR ACTUALISER DES");
+            }
+       }   
+       return listePartie.get(numP).getListeJoueur().get(numJ).getNbDes() ;
+       
+       }
+  
+  
+  
+   public ArrayList<int[]> actualiserListeDesRMI (Joueurs j, String nomP)  throws RemoteException 
+       {
+      
+       String tmp;
+       int numP,numJ;
+       numP = 0;
+       numJ = 0;
+              
+       //On recherche la liste DES du joueurs 
+       
+              for(int i = 0; i < listePartie.size(); i++)
+        {
+            tmp = listePartie.get(i).getNomPartie();
+            
+            if (tmp.compareToIgnoreCase(nomP) ==0 )
+            {
+                  for(int x = 0; x < listePartie.get(i).getListeJoueur().size() ; x++ )
+                  {
+                      tmp= j.getNomJoueurs();
+                      if (tmp.compareToIgnoreCase(listePartie.get(i).getListeJoueur().get(x).getNomJoueurs() ) ==0)
+                      {
                           
+                         numP = i;
+                         numJ = x;
+                                               
                        }
                   }
             }
@@ -174,21 +209,12 @@ import java.util.ArrayList;
             }
        }   
        
+              System.out.println(listePartie.get(numP).getListeJoueur().get(numJ).getListeDes().size());
 
-       return returnj;
+       return listePartie.get(numP).getListeJoueur().get(numJ).getListeDes() ;
        
        }
-        
-    
-    
-///////////////////////TEST////////////////
-///* MÃ©thode SeConnecter */
-//public String SeConnecter(String nomJoueur)throws RemoteException {
-//     return "ConnectÃ©, bienvenu : "+nomJoueur;
-//}
-//
-///////////////////////TEST////////////////
-    
+   
     
     
         /*Methode propre au sénario*/

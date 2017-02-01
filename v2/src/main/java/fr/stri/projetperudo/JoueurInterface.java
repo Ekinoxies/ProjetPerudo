@@ -42,7 +42,11 @@ public class JoueurInterface extends javax.swing.JFrame {
 
         try {
             //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
-            j = proxy.actualiserDesRMI(j,nomP);
+            j.setNbDes(proxy.actualiserNbDesRMI(j, nomP));
+            
+           j.setListeDes(proxy.actualiserListeDesRMI(j, nomP));
+           
+           
             //ProxyRMI();
             //JOptionPane.showMessageDialog(null, returncreerpartie);
         } catch (RemoteException ex) {

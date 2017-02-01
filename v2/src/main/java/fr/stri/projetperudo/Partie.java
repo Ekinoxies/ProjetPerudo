@@ -99,6 +99,8 @@ public class Partie{
      
         listeDes = listeJoueur.get(i).getListeDes(); // on recup la liste de des d'un joueur
      
+        
+        
         for(int x = 0; x < listeDes.size(); x++)
         {
             val = (int) listeDes.get(i);
@@ -172,6 +174,7 @@ public class Partie{
                System.out.println("Quel lancé de des du Joueur : " + j.getNomJoueurs());
                System.out.println("Vous avez : " + nb+" nombre de dès");
                ArrayList listeDes = new ArrayList();
+              
                for (int i=0;i<=nb;i++)
                     {
                     valeur = (int)(1+ 6*Math.random());  
@@ -179,6 +182,7 @@ public class Partie{
                     
                     }
                 j.setListeDes(listeDes);
+                System.out.println("DANS LANCER DES" + listeDes.toString());
                 
 		}
 }
