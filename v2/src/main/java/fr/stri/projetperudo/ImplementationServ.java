@@ -106,7 +106,7 @@ import java.util.ArrayList;
             }
             else
             {
-                System.out.println("Le menteur n'a etait effectué sur aucunne partie");
+                System.out.println("Le menteur n'a etait effectué sur aucune partie");
             }
        }      
   }
@@ -124,7 +124,7 @@ import java.util.ArrayList;
             }
             else
             {
-                System.out.println("La surcharge n'a etait effectué sur aucunne partie");
+                System.out.println("La surcharge n'a etait effectué sur aucune partie");
             }
        }      
   }
