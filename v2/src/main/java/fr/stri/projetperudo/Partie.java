@@ -18,7 +18,7 @@ public class Partie{
     private String nomPartie;
     private  int nbJoueur;
     private ArrayList<Joueurs> listeJoueur = new ArrayList<Joueurs>();
-    private ArrayList<Manche> listeManche = new ArrayList<Manche>();
+    
     private int desValeur;
     private int nbVdes;
     private int finTour;
