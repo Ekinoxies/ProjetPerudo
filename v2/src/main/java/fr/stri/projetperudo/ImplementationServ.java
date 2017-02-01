@@ -49,7 +49,7 @@ import java.util.ArrayList;
      
     
       /*Methode Creer partier*/
-    public String creerPartie(String nomPartie, Integer nbJoueurs)throws RemoteException {
+   public String creerPartie(String nomPartie, Integer nbJoueurs)throws RemoteException {
         Partie a = new Partie(nomPartie, nbJoueurs);
         listePartie.add(a);  
         System.out.println("La partie :" + nomPartie +" a etait créer avec un nombre de joueur de : " + nbJoueurs);
@@ -59,10 +59,9 @@ import java.util.ArrayList;
     
     
     
+          /*Methode suplementaire pour le rmi*/
     
-      /*Methode suplementaire pour le rmi*/
-    
-        public String getNomPartieRMI(int nb) throws RemoteException{
+   public String getNomPartieRMI(int nb) throws RemoteException{
         
             String nomPartie;
             
@@ -70,8 +69,7 @@ import java.util.ArrayList;
             
             return nomPartie;
     }
-    
-    
+     
     
    public void pilRMI(Joueurs j, String nomP) throws RemoteException {
       
@@ -91,8 +89,7 @@ import java.util.ArrayList;
        }      
   }
         
-  
-   
+    
   public void menteurRMI(Joueurs j, String nomP) throws RemoteException {
       
       String tmp;            
@@ -129,15 +126,14 @@ import java.util.ArrayList;
        }      
   }
         
-  
-  
+    
    public ArrayList<Partie> getListePartie ( ) throws RemoteException
     {
         return listePartie;
     }
   
   
-  public int actualiserNbDesRMI (Joueurs j, String nomP)  throws RemoteException 
+    public int actualiserNbDesRMI (Joueurs j, String nomP)  throws RemoteException 
        {
        String tmp;
        int numP,numJ;
@@ -170,8 +166,7 @@ import java.util.ArrayList;
             }
        }   
               
-//               System.out.println("j'envoi grace au rmi Un nbDES de " + 
-//              listePartie.get(numP).getListeJoueur().get(numJ).getNbDes() );
+
                
        return listePartie.get(numP).getListeJoueur().get(numJ).getNbDes() ;
        
@@ -213,27 +208,15 @@ import java.util.ArrayList;
             }
        }   
        
-//              System.out.println("j'envoi grace au rmi les DES" + 
-//              listePartie.get(numP).getListeJoueur().get(numJ).getListeDes().toString() );
-              
+
 
        return listePartie.get(numP).getListeJoueur().get(numJ).getListeDes() ;
        
        }
    
-    
-    
-        /*Methode propre au sénario*/
-    
-    
-    /*Méthode get Liste partie*/
-     
-
-
- 
      
     /*Methode pour sénario*/
-    public void attPartie() throws InterruptedException
+   public void attPartie() throws InterruptedException
     {
         while (listePartie.isEmpty())    
         { 
@@ -259,7 +242,6 @@ import java.util.ArrayList;
    }
    
    
-   
    public int gagnant(int nb) 
    {
        int val = 0;
@@ -272,11 +254,10 @@ import java.util.ArrayList;
          }
    return val;
    }   
-   
-   
-     
-     
-   
+       
+  ////
+   /// MAIN
+  ////
    
      
 public static void main(String[] args) throws Exception {
