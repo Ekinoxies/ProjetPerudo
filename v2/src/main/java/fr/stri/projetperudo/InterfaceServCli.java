@@ -31,10 +31,9 @@ public interface InterfaceServCli extends java.rmi.Remote  {
   public int actualiserNbDesRMI (Joueurs j, String nomP) throws java.rmi.RemoteException;
    
      // Ecrire les methodes ici pour consulter le client via le serveur :
-        public interface ClientNotification extends Remote {
-	 	 public void notification(double valeur, double mini) throws RemoteException;
-    }
-}
- 
+   public void enregistrerNotification(Joueurs j, ClientNotification b,String nomP)throws java.rmi.RemoteException;
+			 
+
+    
 
 

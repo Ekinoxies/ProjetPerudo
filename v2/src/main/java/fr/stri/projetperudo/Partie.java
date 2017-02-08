@@ -7,6 +7,8 @@ package fr.stri.projetperudo;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,6 +26,7 @@ public class Partie{
     private int finTour;
     private int finManche;
     private int valeur;
+    private ClientNotification notif;
     
     
     /*Constructeur*/
@@ -50,6 +53,11 @@ public class Partie{
     }
      
     public String getNomPartie(){
+        try {
+            notif.notification2(nomPartie);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Partie.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return nomPartie;
     }
 

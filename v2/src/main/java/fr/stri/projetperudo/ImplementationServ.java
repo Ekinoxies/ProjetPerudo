@@ -10,18 +10,32 @@ import java.rmi.server.UnicastRemoteObject;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
  public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli {
     private String nom;
+    
+    HashMap<String, Joueurs> ju;
+    HashMap<String, Partie> pa;
+   
  
        
     private static ArrayList<Partie> listePartie = new ArrayList<Partie>();
     
     public ImplementationServ() throws RemoteException {
     super();
- 
 }   
+    
+    
+    public void enregistrerNotification(Joueurs j, ClientNotification b,String nomP)throws RemoteException {
+	 	 Joueurs joueurouf = ju.get(j.getNomJoueurs());
+                 System.out.println("Votre Nombre de Joueur "+joueurouf);
+                 Partie Partieouf = pa.get(nomP);
+                 System.out.println("Votre Nombre de Joueur "+Partieouf);
+}
+
+    
     /*Ajouter un joueur dans la listejoueur d'une partie*/
     @Override
     public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException
@@ -254,6 +268,11 @@ import java.util.ArrayList;
          }
    return val;
    }   
+   
+   
+   public void notification()throws RemoteException {
+	 	 
+ }
        
   ////
    /// MAIN

@@ -5,9 +5,11 @@
  */
 package fr.stri.projetperudo;
 
-import fr.stri.projetperudo.InterfaceServCli.ClientNotification;
+import fr.stri.projetperudo.ClientNotification;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
 
 /**
  *
@@ -24,10 +26,12 @@ public ClientImplementation(String id) throws RemoteException {
 
 
 
-public void notification(double valeur, double mini)
- throws RemoteException {
-	 	 System.out.println("Votre compte "+id+" est inferieur au mini : "+
- mini+" solde : "+valeur);
-}
+public void notification1(String valeur)throws RemoteException {
+	 	 System.out.println("Votre compte "+valeur+" est inferieur au mini : ");
+ }
+
+public void notification2(String valeur)throws RemoteException {
+	 	 System.out.println("Votre compte "+valeur+" est inferieur au mini : ");
+ }
 }
 

@@ -11,6 +11,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Quizz
@@ -19,7 +21,9 @@ public class Joueurs implements Serializable {
     public String nomJoueurs;
     public int nbDes;
     private ArrayList listeDes = new ArrayList<int []>();
+    private ClientNotification notif;
 
+   
     public int getNbDes() {
         return nbDes;
     }
@@ -42,6 +46,11 @@ public class Joueurs implements Serializable {
     }
 
     public String getNomJoueurs() {
+        try {
+            notif.notification1(nomJoueurs);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Joueurs.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return nomJoueurs;
     }
     

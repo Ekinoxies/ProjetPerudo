@@ -1,7 +1,7 @@
 package fr.stri.projetperudo;
 
 
-import Version2.InterfaceServ;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
