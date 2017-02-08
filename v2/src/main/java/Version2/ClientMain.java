@@ -20,9 +20,9 @@ import java.util.Vector;
 public class ClientMain {
 	
 	
-	private static Vector NOTIF = new Vector();
+	private static Vector NOTIF = new Vector(); 
 	public ArrayList<String> pseudo = new ArrayList<>();
-	public static ArrayList<String> Joueurjeton = new ArrayList<>();
+	public static ArrayList<String> Joueurjeton = new ArrayList<>(); 
 	String Joueur;
 	
 	
@@ -48,7 +48,7 @@ public static ClientMain getInstance(){
 
 
 
-// RMI classique
+// RMI classique pour serveur
 public InterfaceServ connectServer() {
 try
 	{
@@ -68,10 +68,12 @@ try
 
 
 
-// Exemple de methode 
+// Le client appel le serveur pour recuperer son pseudo pour L'initialisation
 public ArrayList<String> getPseudo(InterfaceServ proxy) throws RemoteException {
     pseudo=proxy.getJoueur();
     return pseudo;
+    
+   
 }
 
 
@@ -89,8 +91,9 @@ public String saisieJoueur(InterfaceServ proxy, ArrayList<String> NomDuJoueur) t
 
 
 // La grosse methode pour initialiser un Joueur
-public void CreationJoueur(InterfaceServ rmi, String j) throws RemoteException{
-    rmi.CreerJoueur(j);
+public void CreationJoueur(InterfaceServ proxy, String j) throws RemoteException{
+    proxy.CreerJoueur(j); // fait appel a la création du joueur sur le serveur
+         
 }
 
 

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 * @author Administrator
 */
 public class ServeurMain extends UnicastRemoteObject implements InterfaceServ{
-	ArrayList<String> pseudo= new ArrayList<>();
+	ArrayList<String> pseudo= new ArrayList<>(); 
 	ArrayList<Utilisateur> users= new ArrayList<>();
 	ArrayList<Joueur> joueurs= new ArrayList<>();
 	
