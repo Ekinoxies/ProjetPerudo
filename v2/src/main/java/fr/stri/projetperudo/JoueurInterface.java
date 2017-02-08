@@ -1,12 +1,15 @@
 package fr.stri.projetperudo;
 
 
+import Version2.InterfaceServ;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
@@ -26,32 +29,48 @@ public class JoueurInterface extends javax.swing.JFrame {
     Joueurs j;
     String nomP;
 
+   
+    
+    
+   // RMI classique pour serveur
+public InterfaceServCli connectServer() {
+try
+	{
+	Registry reg= LocateRegistry.getRegistry("localhost",1099);
+	InterfaceServCli proxy= (InterfaceServCli) reg.lookup("MonServeur");
+	System.out.println("On est bien connecté au Serveur ! Merci RMI !");
+	return proxy;
+	}
+	catch(Exception e)
+	{
+		System.out.println(e);
+		return null;
+	}
+}
+    
+    
+    
+    
     public void actualiserDes()
     {
                
         InterfaceServCli proxy = null;
-        try {
-            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RemoteException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
 
+            proxy = connectServer();
         try {
-            //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
             j.setNbDes(proxy.actualiserNbDesRMI(j, nomP));
-            
-           j.setListeDes(proxy.actualiserListeDesRMI(j, nomP));
-           
-           
-            //ProxyRMI();
-            //JOptionPane.showMessageDialog(null, returncreerpartie);
         } catch (RemoteException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+            Logger.getLogger(JoueurInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            j.setListeDes(proxy.actualiserListeDesRMI(j, nomP));
+        } catch (RemoteException ex) {
+            Logger.getLogger(JoueurInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+           
+   
                                     
                 
         // AFFICHAGE des DES        
