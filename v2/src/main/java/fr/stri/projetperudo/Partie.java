@@ -60,6 +60,10 @@ public class Partie{
         }
         return nomPartie;
     }
+    
+       public void setNotification(ClientNotification notif) {
+	 	 this.notif = notif;
+}
 
     public int getFinManche() {
         return finManche;

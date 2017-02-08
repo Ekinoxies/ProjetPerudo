@@ -33,7 +33,7 @@ public interface InterfaceServCli extends java.rmi.Remote  {
      // Ecrire les methodes ici pour consulter le client via le serveur :
    public void enregistrerNotification(Joueurs j, ClientNotification b,String nomP)throws java.rmi.RemoteException;
 			 
-
+}
     
 
 

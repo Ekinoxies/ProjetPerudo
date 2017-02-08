@@ -45,6 +45,8 @@ public class Joueurs implements Serializable {
         this.nbDes = 5;
     }
 
+        
+   
     public String getNomJoueurs() {
         try {
             notif.notification1(nomJoueurs);
@@ -53,6 +55,11 @@ public class Joueurs implements Serializable {
         }
         return nomJoueurs;
     }
+    
+    public void setNotification(ClientNotification notif) {
+	 	 this.notif = notif;
+                 
+}
     
        
 }

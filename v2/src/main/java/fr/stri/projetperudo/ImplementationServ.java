@@ -30,8 +30,11 @@ import java.util.HashMap;
     
     public void enregistrerNotification(Joueurs j, ClientNotification b,String nomP)throws RemoteException {
 	 	 Joueurs joueurouf = ju.get(j.getNomJoueurs());
+                 joueurouf.setNotification(b);
                  System.out.println("Votre Nombre de Joueur "+joueurouf);
+                 
                  Partie Partieouf = pa.get(nomP);
+                 Partieouf.setNotification(b);
                  System.out.println("Votre Nombre de Joueur "+Partieouf);
 }
 
@@ -57,6 +60,7 @@ import java.util.HashMap;
                     retour = "Le joueurs est ajouté ";
             }
          }
+        
                                 
         return retour;
     }
