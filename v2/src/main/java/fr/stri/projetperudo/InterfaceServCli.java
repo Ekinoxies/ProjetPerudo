@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public interface InterfaceServCli extends java.rmi.Remote  {
     
-    public String creerPartie(String nomPartie,Integer NbJoueur)throws java.rmi.RemoteException;
+   public String creerPartie(String nomPartie,Integer NbJoueur)throws java.rmi.RemoteException;
      
    public ArrayList<Partie> getListePartie() throws java.rmi.RemoteException;
     
@@ -28,12 +28,13 @@ public interface InterfaceServCli extends java.rmi.Remote  {
   
   public ArrayList<int[]> actualiserListeDesRMI (Joueurs j, String nomP)  throws java.rmi.RemoteException;
 
-public int actualiserNbDesRMI (Joueurs j, String nomP) throws java.rmi.RemoteException;
-        
-    // Ecrire les methodes ici pour consulter le client via le serveur :
-     public interface ClientNotification extends Remote {
-	 	 public void getNomJoueurs() throws RemoteException;
+  public int actualiserNbDesRMI (Joueurs j, String nomP) throws java.rmi.RemoteException;
+   
+     // Ecrire les methodes ici pour consulter le client via le serveur :
+        public interface ClientNotification extends Remote {
+	 	 public void notification(double valeur, double mini) throws RemoteException;
+    }
 }
-}
+ 
 
 
