@@ -121,7 +121,7 @@ public class Partie{
 
       /*Methode menteur*/
       void menteur(Joueurs j) {
-     /*Récupère la liste de DES de chaque joueur et regarde si 
+    /*Récupère la liste de DES de chaque joueur et regarde si 
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
      ArrayList listeDes = new ArrayList();
       int val;

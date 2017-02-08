@@ -27,19 +27,16 @@ public class Joueurs implements Serializable {
     public void setNbDes(int nbDes) {
         this.nbDes = nbDes;
     }
-
     
     public void setListeDes(ArrayList<int[]> listeDes) {
         this.listeDes = listeDes;
     }
     
-    
-    public ArrayList<int[]> getListeDes() {
+        public ArrayList<int[]> getListeDes() {
         return listeDes;
     }
     
-    
-    public Joueurs(String nomJoueurs) throws RemoteException{
+        public Joueurs(String nomJoueurs) throws RemoteException{
         this.nomJoueurs = nomJoueurs;
         this.nbDes = 5;
     }
@@ -48,6 +45,5 @@ public class Joueurs implements Serializable {
         return nomJoueurs;
     }
     
-   
-    
+       
 }
