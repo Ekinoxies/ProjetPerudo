@@ -1,7 +1,5 @@
 package fr.stri.projetperudo;
 
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
@@ -56,7 +54,6 @@ try
                
         InterfaceServCli proxy = null;
         
-
             proxy = connectServer();
         try {
             j.setNbDes(proxy.actualiserNbDesRMI(j, nomP));
@@ -68,14 +65,10 @@ try
         } catch (RemoteException ex) {
             Logger.getLogger(JoueurInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-           
-           
-   
-                                    
+                                                         
                 
         // AFFICHAGE des DES        
-        
-        System.out.println("le Joueurs  " + j.getNomJoueurs() + "  a  :  " + j.getListeDes().size());
+          System.out.println("le Joueurs  " + j.getNomJoueurs() + "  a  :  " + j.getListeDes().size());
 
         
                       	       
@@ -359,28 +352,18 @@ jFrame1.setVisible(true);
     }//GEN-LAST:event_jTextAreaAffDesInputMethodTextChanged
 
     private void BoutonPileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonPileActionPerformed
-        // TODO add your handling code here:
+       
         
-        
-         InterfaceServCli proxy = null;
         try {
-            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+            // TODO add your handling code here:
+            InterfaceServCli proxy = null;
+            proxy = connectServer();
+            proxy.pilRMI(j, nomP);
         } catch (RemoteException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JoueurInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        try {
-            //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
-            proxy.pilRMI(j, nomP);
-            //ProxyRMI();
-            //JOptionPane.showMessageDialog(null, returncreerpartie);
-        } catch (RemoteException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        }                   
+         
         
     }//GEN-LAST:event_BoutonPileActionPerformed
 
