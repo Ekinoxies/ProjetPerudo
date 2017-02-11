@@ -26,18 +26,13 @@ import java.util.HashMap;
     public ImplementationServ() throws RemoteException {
     super();
 }   
-    
-    
-    public void enregistrerNotification(Joueurs j, ClientNotification b,String nomP)throws RemoteException {
-	 	 Joueurs joueurouf = ju.get(j.getNomJoueurs());
-                 joueurouf.setNotification(b);
-                 System.out.println("Votre Nombre de Joueur "+joueurouf);
-                 
-                 Partie Partieouf = pa.get(nomP);
-                 Partieouf.setNotification(b);
-                 System.out.println("Votre Nombre de Joueur "+Partieouf);
-}
 
+  Joueurs a;  
+    public void enregistrerNotification(ClientNotification b,String j)throws RemoteException { 	 
+                a.setNotification(b, j);
+                
+}
+ 
     
     /*Ajouter un joueur dans la listejoueur d'une partie*/
     @Override
@@ -308,6 +303,7 @@ while(s.gagnant(numP) == 0)
     {
      listePartie.get(numP).avantManche();
      listePartie.get(numP).setFinManche(0);
+     
          /*LA MANCHE*/ 
                
          while (listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;

@@ -13,7 +13,7 @@ import java.rmi.RemoteException;
  * @author florian b
  */
 public interface ClientNotification extends Remote {
-	 	 public void notification1(String valeur) throws RemoteException;
+	 	 public void notification1(double valeur) throws RemoteException;
                  public void notification2(String valeur) throws RemoteException;
                  
     }

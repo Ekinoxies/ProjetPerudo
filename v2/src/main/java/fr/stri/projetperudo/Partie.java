@@ -26,7 +26,7 @@ public class Partie{
     private int finTour;
     private int finManche;
     private int valeur;
-    private ClientNotification notif;
+ 
     
     
     /*Constructeur*/
@@ -53,17 +53,9 @@ public class Partie{
     }
      
     public String getNomPartie(){
-        try {
-            notif.notification2(nomPartie);
-        } catch (RemoteException ex) {
-            Logger.getLogger(Partie.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return nomPartie;
     }
     
-       public void setNotification(ClientNotification notif) {
-	 	 this.notif = notif;
-}
 
     public int getFinManche() {
         return finManche;

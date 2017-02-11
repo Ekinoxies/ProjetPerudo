@@ -22,7 +22,10 @@ public class Joueurs implements Serializable {
     public int nbDes;
     private ArrayList listeDes = new ArrayList<int []>();
     private ClientNotification notif;
+    private String j;
+    
 
+   
    
     public int getNbDes() {
         return nbDes;
@@ -36,10 +39,15 @@ public class Joueurs implements Serializable {
         this.listeDes = listeDes;
     }
     
-        public ArrayList<int[]> getListeDes() {
+      
+    
+    
+    public ArrayList<int[]> getListeDes() {
+        
+            notif.notification1(listeDes);
+ 
         return listeDes;
     }
-    
         public Joueurs(String nomJoueurs) throws RemoteException{
         this.nomJoueurs = nomJoueurs;
         this.nbDes = 5;
@@ -48,16 +56,16 @@ public class Joueurs implements Serializable {
         
    
     public String getNomJoueurs() {
-        try {
-            notif.notification1(nomJoueurs);
-        } catch (RemoteException ex) {
-            Logger.getLogger(Joueurs.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return nomJoueurs;
     }
     
-    public void setNotification(ClientNotification notif) {
-	 	 this.notif = notif;
+    
+    private String notifJoueur;
+
+    public void setNotification(ClientNotification notif, String j) {
+	 	this.notif = notif;
+                notifJoueur = j;
+                 
                  
 }
     

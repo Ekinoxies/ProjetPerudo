@@ -26,12 +26,10 @@ public ClientImplementation(String id) throws RemoteException {
 
 
 
-public void notification1(String valeur)throws RemoteException {
+public void notification1(double valeur)throws RemoteException {
 	 	 System.out.println("Votre compte "+valeur+" est inferieur au mini : ");
  }
 
-public void notification2(String valeur)throws RemoteException {
-	 	 System.out.println("Votre compte "+valeur+" est inferieur au mini : ");
- }
+
 }
 
