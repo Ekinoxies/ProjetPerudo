@@ -55,9 +55,10 @@ try
         
             proxy = connectServer();
          ArrayList listeDes = new ArrayList();
-            /*TEST*/  listeDes.add(1);
+            /*TEST*/  
           /*recupertaion des listes des*/
-          
+          ClientNotification desNotif = ClientNotification(j.getNomJoueurs());
+          proxy.actualiserListeDesRMI(j,desNotif,nomP);
           
                 
         // AFFICHAGE des DES        
@@ -449,4 +450,8 @@ jFrame1.setVisible(true);
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextAreaAffDes;
     // End of variables declaration//GEN-END:variables
+
+    private ClientNotification ClientNotification(String nomJoueurs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

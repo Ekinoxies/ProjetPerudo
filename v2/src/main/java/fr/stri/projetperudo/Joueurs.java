@@ -44,7 +44,7 @@ public class Joueurs implements Serializable {
     
     public ArrayList<int[]> getListeDes() {
         
-            notif.notification1(listeDes);
+           
  
         return listeDes;
     }
@@ -52,7 +52,6 @@ public class Joueurs implements Serializable {
         this.nomJoueurs = nomJoueurs;
         this.nbDes = 5;
     }
-
         
    
     public String getNomJoueurs() {

@@ -11,6 +11,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.HashMap;
+private ClientNotification notif;
+
 
 
  public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli {
@@ -27,12 +29,6 @@ import java.util.HashMap;
     super();
 }   
 
-  Joueurs a;  
-    public void enregistrerNotification(ClientNotification b,String j)throws RemoteException { 	 
-                a.setNotification(b, j);
-                
-}
- 
     
     /*Ajouter un joueur dans la listejoueur d'une partie*/
     @Override
@@ -80,7 +76,7 @@ import java.util.HashMap;
             
             nomPartie=listePartie.get(nb).getNomPartie();
             
-            return nomPartie;
+            return nomPartie;  // retourne  a nimporte quel client directement 
     }
      
     
@@ -146,13 +142,13 @@ import java.util.HashMap;
     }
   
   
-    public int actualiserNbDesRMI (Joueurs j, String nomP)  throws RemoteException 
+    public int actualiserNbDesRMI (Joueurs j,ClientImplementation b, String nomP)  throws RemoteException 
        {
        String tmp;
        int numP,numJ;
        numP = 0;
        numJ = 0;
-              
+        
        //On recherche la liste DES du joueurs 
        
               for(int i = 0; i < listePartie.size(); i++)
@@ -166,10 +162,8 @@ import java.util.HashMap;
                       tmp= j.getNomJoueurs();
                       if (tmp.compareToIgnoreCase(listePartie.get(i).getListeJoueur().get(x).getNomJoueurs() ) ==0)
                       {
-                          
                          numP = i;
                          numJ = x;
-                                               
                        }
                   }
             }
@@ -180,14 +174,15 @@ import java.util.HashMap;
        }   
               
 
-               
+            b.notificationNbDes(listePartie.get(numP).getListeJoueur().get(numJ).getNbDes());
+            
        return listePartie.get(numP).getListeJoueur().get(numJ).getNbDes() ;
        
        }
   
   
   
-   public ArrayList<int[]> actualiserListeDesRMI (Joueurs j, String nomP)  throws RemoteException 
+   public ArrayList<int[]> actualiserListeDesRMI (Joueurs j,ClientImplementation b, String nomP)  throws RemoteException 
        {
       
        String tmp, tmp2;
@@ -221,7 +216,7 @@ import java.util.HashMap;
             }
        }   
        
-
+      b.notificationDes(listePartie.get(numP).getListeJoueur().get(numJ).getListeDes());
 
        return listePartie.get(numP).getListeJoueur().get(numJ).getListeDes() ;
        
