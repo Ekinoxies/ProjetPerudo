@@ -1,7 +1,5 @@
 package fr.stri.projetperudo;
 
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
@@ -10,6 +8,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
@@ -29,8 +28,6 @@ public class JoueurInterface extends javax.swing.JFrame {
     Joueurs j;
     String nomP;
 
-   
-    
     
    // RMI classique pour serveur
 public InterfaceServCli connectServer() {
@@ -56,35 +53,39 @@ try
                
         InterfaceServCli proxy = null;
         
-
             proxy = connectServer();
-        try {
-            j.setNbDes(proxy.actualiserNbDesRMI(j, nomP));
-        } catch (RemoteException ex) {
-            Logger.getLogger(JoueurInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            j.setListeDes(proxy.actualiserListeDesRMI(j, nomP));
-        } catch (RemoteException ex) {
-            Logger.getLogger(JoueurInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           
-           
-   
-                                    
+         ArrayList listeDes = new ArrayList();
+            /*TEST*/  
+          /*recupertaion des listes des*/
+          ClientNotification desNotif = ClientNotification(j.getNomJoueurs());
+          try {
+			proxy.actualiserListeDesRMI(j,desNotif,nomP);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+          
                 
         // AFFICHAGE des DES        
-        
-        System.out.println("le Joueurs  " + j.getNomJoueurs() + "  a  :  " + j.getListeDes().size());
-
-        
-                      	       
-	       jTextAreaAffDes.append(j.getListeDes().toString());              
-                  
+                
+               jTextAreaAffDes.setText("");
+	       jTextAreaAffDes.append(listeDes.toString());              
+               
     }
     
     
-    
+    public void actualiserText()
+    {
+         InterfaceServCli proxy = null;
+         proxy = connectServer();
+         String affichage;
+         
+         /*Test*/ affichage ="ceci est un test walla";
+            /*recupertaion de l'affichage*/
+        
+            AffichageMessage.append(affichage);
+            AffichageMessage.append("\n");
+    }
     
     
     
@@ -107,7 +108,8 @@ try
        
         public void actionPerformed(ActionEvent e) {
           
-            actualiserDes();  
+            actualiserDes();
+            actualiserText();
         }           
         });
         tMessage.start();                    
@@ -256,18 +258,14 @@ try
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(166, 166, 166)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addComponent(jLabel3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(411, 411, 411))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(79, 79, 79)
@@ -276,7 +274,11 @@ try
                                 .addComponent(BoutonMenteur)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 231, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane2)))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
@@ -285,19 +287,22 @@ try
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel3)
+                        .addGap(96, 96, 96))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel2)
-                                .addGap(109, 109, 109)
-                                .addComponent(jLabel3))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(96, 96, 96)))
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BoutonPile)
@@ -359,28 +364,18 @@ jFrame1.setVisible(true);
     }//GEN-LAST:event_jTextAreaAffDesInputMethodTextChanged
 
     private void BoutonPileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonPileActionPerformed
-        // TODO add your handling code here:
+       
         
-        
-         InterfaceServCli proxy = null;
         try {
-            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+            // TODO add your handling code here:
+            InterfaceServCli proxy = null;
+            proxy = connectServer();
+            proxy.pilRMI(j, nomP);
         } catch (RemoteException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JoueurInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        try {
-            //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
-            proxy.pilRMI(j, nomP);
-            //ProxyRMI();
-            //JOptionPane.showMessageDialog(null, returncreerpartie);
-        } catch (RemoteException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        }                   
+         
         
     }//GEN-LAST:event_BoutonPileActionPerformed
 
@@ -390,31 +385,24 @@ jFrame1.setVisible(true);
         int resultNumDes = (int)NumDeSurenchere.getSelectedItem();
         int resultNbDes = (int) jSpinner1.getValue();
         
-        InterfaceServCli proxy = null;
-        try {
-            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RemoteException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            //String returncreerpartie = creerpartie.proxy.CreerPartie(resultnomPartie, resultnombreJoueurs);
+        
+       try {
+            // TODO add your handling code here:
+            InterfaceServCli proxy = null;
+            proxy = connectServer();
             proxy.surchargeRMI(j, resultNumDes, resultNbDes, nomP);
-            //ProxyRMI();
-            //JOptionPane.showMessageDialog(null, returncreerpartie);
         } catch (RemoteException ex) {
-            Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
-        }                  // TODO add your handling code here:
+            Logger.getLogger(JoueurInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+        
     }//GEN-LAST:event_ValideSurenchereActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(Joueurs j, String nomP) {
+    public static void main(final Joueurs j, final String nomP) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -467,4 +455,8 @@ jFrame1.setVisible(true);
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextAreaAffDes;
     // End of variables declaration//GEN-END:variables
+
+    private ClientNotification ClientNotification(String nomJoueurs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

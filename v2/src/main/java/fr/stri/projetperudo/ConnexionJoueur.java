@@ -36,6 +36,7 @@ public class ConnexionJoueur extends javax.swing.JFrame {
     {
         try {           
             InterfaceServCli proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+            
         } catch (NotBoundException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {
@@ -44,6 +45,7 @@ public class ConnexionJoueur extends javax.swing.JFrame {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        
     }
     
 Joueurs envoijoueur;
@@ -323,6 +325,7 @@ public void envoiJoueur(String j)
         }
 
         try {
+        
             retour = proxy.connexionAunePartie(envoijoueur, resultNomPartie);
             System.out.println(retour);
             JoueurInterface.main(envoijoueur, resultNomPartie);

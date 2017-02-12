@@ -13,8 +13,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
+
+
  public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli {
     private String nom;
+    private ClientNotification notif;
     
     HashMap<String, Joueurs> ju;
     HashMap<String, Partie> pa;
@@ -26,17 +29,6 @@ import java.util.HashMap;
     public ImplementationServ() throws RemoteException {
     super();
 }   
-    
-    
-    public void enregistrerNotification(Joueurs j, ClientNotification b,String nomP)throws RemoteException {
-	 	 Joueurs joueurouf = ju.get(j.getNomJoueurs());
-                 joueurouf.setNotification(b);
-                 System.out.println("Votre Nombre de Joueur "+joueurouf);
-                 
-                 Partie Partieouf = pa.get(nomP);
-                 Partieouf.setNotification(b);
-                 System.out.println("Votre Nombre de Joueur "+Partieouf);
-}
 
     
     /*Ajouter un joueur dans la listejoueur d'une partie*/
@@ -85,7 +77,7 @@ import java.util.HashMap;
             
             nomPartie=listePartie.get(nb).getNomPartie();
             
-            return nomPartie;
+            return nomPartie;  // retourne  a nimporte quel client directement 
     }
      
     
@@ -151,13 +143,13 @@ import java.util.HashMap;
     }
   
   
-    public int actualiserNbDesRMI (Joueurs j, String nomP)  throws RemoteException 
+    public int actualiserNbDesRMI (Joueurs j,ClientImplementation b, String nomP)  throws RemoteException 
        {
        String tmp;
        int numP,numJ;
        numP = 0;
        numJ = 0;
-              
+        
        //On recherche la liste DES du joueurs 
        
               for(int i = 0; i < listePartie.size(); i++)
@@ -171,10 +163,8 @@ import java.util.HashMap;
                       tmp= j.getNomJoueurs();
                       if (tmp.compareToIgnoreCase(listePartie.get(i).getListeJoueur().get(x).getNomJoueurs() ) ==0)
                       {
-                          
                          numP = i;
                          numJ = x;
-                                               
                        }
                   }
             }
@@ -185,14 +175,15 @@ import java.util.HashMap;
        }   
               
 
-               
+            b.notificationNbDes(listePartie.get(numP).getListeJoueur().get(numJ).getNbDes());
+            
        return listePartie.get(numP).getListeJoueur().get(numJ).getNbDes() ;
        
        }
   
   
   
-   public ArrayList<int[]> actualiserListeDesRMI (Joueurs j, String nomP)  throws RemoteException 
+   public ArrayList<int[]> actualiserListeDesRMI (Joueurs j,ClientImplementation b, String nomP)  throws RemoteException 
        {
       
        String tmp, tmp2;
@@ -226,7 +217,7 @@ import java.util.HashMap;
             }
        }   
        
-
+      b.notificationDes(listePartie.get(numP).getListeJoueur().get(numJ).getListeDes());
 
        return listePartie.get(numP).getListeJoueur().get(numJ).getListeDes() ;
        
@@ -308,6 +299,7 @@ while(s.gagnant(numP) == 0)
     {
      listePartie.get(numP).avantManche();
      listePartie.get(numP).setFinManche(0);
+     
          /*LA MANCHE*/ 
                
          while (listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;
@@ -344,4 +336,18 @@ while(s.gagnant(numP) == 0)
 
     
     } //crochet du main
+
+
+@Override
+public void actualiserListeDesRMI(Joueurs j, ClientNotification desNotif, String nomP) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public int actualiserNbDesRMI(Joueurs j, ClientNotification desNotif, String nomP) throws RemoteException {
+	// TODO Auto-generated method stub
+	return 0;
+}
 }    // crochet de la classe

@@ -9,6 +9,7 @@ import fr.stri.projetperudo.ClientNotification;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -25,13 +26,14 @@ public ClientImplementation(String id) throws RemoteException {
 
 
 
+   public void notificationNbDes(int nbDes) throws RemoteException{
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-public void notification1(String valeur)throws RemoteException {
-	 	 System.out.println("Votre compte "+valeur+" est inferieur au mini : ");
- }
+   public void notificationDes(ArrayList listeDes) throws RemoteException{
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-public void notification2(String valeur)throws RemoteException {
-	 	 System.out.println("Votre compte "+valeur+" est inferieur au mini : ");
- }
+
 }
 

@@ -25,14 +25,14 @@ public interface InterfaceServCli extends java.rmi.Remote  {
   public void menteurRMI(Joueurs j, String nomP) throws java.rmi.RemoteException;
   
   public void surchargeRMI(Joueurs j, int valDes,int nbDes, String nomP) throws java.rmi.RemoteException;
+    
   
-  public ArrayList<int[]> actualiserListeDesRMI (Joueurs j, String nomP)  throws java.rmi.RemoteException;
-
-  public int actualiserNbDesRMI (Joueurs j, String nomP) throws java.rmi.RemoteException;
    
      // Ecrire les methodes ici pour consulter le client via le serveur :
-   public void enregistrerNotification(Joueurs j, ClientNotification b,String nomP)throws java.rmi.RemoteException;
-			 
+   
+
+    public void actualiserListeDesRMI(Joueurs j, ClientNotification desNotif, String nomP) throws java.rmi.RemoteException;
+    public int actualiserNbDesRMI (Joueurs j,ClientNotification desNotif, String nomP) throws java.rmi.RemoteException;		 
 }
     
 
