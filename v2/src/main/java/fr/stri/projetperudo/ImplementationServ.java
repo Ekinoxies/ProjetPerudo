@@ -67,8 +67,7 @@ import java.util.HashMap;
         return "La Partie a bien était créer ";
     }
     
-    
-    
+        
           /*Methode suplementaire pour le rmi*/
     
    public String getNomPartieRMI(int nb) throws RemoteException{
@@ -183,7 +182,7 @@ import java.util.HashMap;
   
   
   
-   public ArrayList<int[]> actualiserListeDesRMI (Joueurs j,ClientImplementation b, String nomP)  throws RemoteException 
+   public ArrayList actualiserListeDesRMI (Joueurs j,ClientImplementation b, String nomP)  throws RemoteException 
        {
       
        String tmp, tmp2;

@@ -48,7 +48,7 @@ try
     
     
     
-    public void actualiserDes()
+    public void actualiserDes() throws RemoteException
     {
                
         InterfaceServCli proxy = null;
@@ -57,13 +57,9 @@ try
          ArrayList listeDes = new ArrayList();
             /*TEST*/  
           /*recupertaion des listes des*/
-          ClientNotification desNotif = ClientNotification(j.getNomJoueurs());
-          try {
-			proxy.actualiserListeDesRMI(j,desNotif,nomP);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+          ClientImplementation desNotif = new ClientImplementation(j.getNomJoueurs());
+	  proxy.actualiserListeDesRMI(j,desNotif,nomP);
+		      System.out.println(listeDes.toString());  
           
                 
         // AFFICHAGE des DES        
@@ -93,7 +89,7 @@ try
     /**
      * Creates new form Joueur
      */
-    public JoueurInterface(Joueurs j,String nomP) {
+    public JoueurInterface(Joueurs j,String nomP) throws RemoteException {
         
         this.j=j;
         this.nomP=nomP;
@@ -108,7 +104,11 @@ try
        
         public void actionPerformed(ActionEvent e) {
           
-            actualiserDes();
+            try {
+                actualiserDes();
+            } catch (RemoteException ex) {
+                Logger.getLogger(JoueurInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }
             actualiserText();
         }           
         });
@@ -430,7 +430,11 @@ jFrame1.setVisible(true);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JoueurInterface(j,nomP).setVisible(true);
+                try {
+                    new JoueurInterface(j,nomP).setVisible(true);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(JoueurInterface.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -456,7 +460,7 @@ jFrame1.setVisible(true);
     private javax.swing.JTextArea jTextAreaAffDes;
     // End of variables declaration//GEN-END:variables
 
-    private ClientNotification ClientNotification(String nomJoueurs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+
+    
 }
