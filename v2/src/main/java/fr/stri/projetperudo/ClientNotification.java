@@ -7,14 +7,13 @@ package fr.stri.projetperudo;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 /**
  *
  * @author florian b
  */
 public interface ClientNotification extends Remote {
-	 	 public void notificationDes(ArrayList listeDes) throws RemoteException;
-                 public void notificationNbDes(int nbDes) throws RemoteException;
+	 	 public void notification1(String valeur) throws RemoteException;
+                 public void notification2(String valeur) throws RemoteException;
                  
     }
