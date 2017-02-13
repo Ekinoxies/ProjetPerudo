@@ -71,6 +71,7 @@ import static java.lang.Thread.sleep;
     @Override
 	public int enregistrerClient(Client c) throws RemoteException {
 		int idJoueur = joueurCourant;
+                lesClients.put(joueurCourant, c);
 		
 		
 		// passer au joueur suivant
