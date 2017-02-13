@@ -44,8 +44,47 @@ import static java.lang.Thread.sleep;
     public ServeurImpl() throws RemoteException {
     super();
 }   
-
     
+    private int joueurCourant = 0;
+    
+    private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();
+    private static final int maxJoueur = 2;
+    
+    @Override
+	public boolean transmettreAnnonce(int idJoueur) throws RemoteException {
+		if (idJoueur == joueurCourant) {
+			// prendre en compte l'annonce
+			
+			// passer au joueur suivant
+			joueurCourant++;
+                                        if (joueurCourant ==maxJoueur)
+                                            joueurCourant = 0;
+                                        
+                            
+			// le prévenir
+			lesClients.get(joueurCourant).alerte("C'est à toi de jouer");
+			return true;
+		} else
+			return false;
+	}
+        
+    @Override
+	public int enregistrerClient(Client c) throws RemoteException {
+		int idJoueur = joueurCourant;
+		
+		
+		// passer au joueur suivant
+		joueurCourant++;
+		if (joueurCourant == maxJoueur) {
+			joueurCourant = 0;
+			// le prévenir
+			lesClients.get(joueurCourant).alerte("C'est à toi de jouer");
+		}
+			
+		return idJoueur;
+		
+	}     
+        
     /*Ajouter un joueur dans la listejoueur d'une partie*/
     @Override
     public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException
@@ -93,6 +132,9 @@ import static java.lang.Thread.sleep;
             
             return nomPartie;  // retourne  a nimporte quel client directement 
     }
+   
+
+
      
     
    public void pilRMI(Joueurs j, String nomP) throws RemoteException {
@@ -151,7 +193,7 @@ import static java.lang.Thread.sleep;
   }
         
     
-   public ArrayList<Partie> getListePartie ( ) throws RemoteException
+   public ArrayList<Partie> getListePartie () throws RemoteException
     {
         return listePartie;
     }
@@ -352,11 +394,6 @@ while(s.gagnant(numP) == 0)
     } //crochet du main
 
 
-@Override
-public void actualiserListeDesRMI(Joueurs j, Client desNotif, String nomP) {
-	// TODO Auto-generated method stub
-	
-}
 
 
 @Override
@@ -364,4 +401,11 @@ public int actualiserNbDesRMI(Joueurs j, Client desNotif, String nomP) throws Re
 	// TODO Auto-generated method stub
 	return 0;
 }
+
+    @Override
+    public ArrayList actualiserListeDesRMI(Joueurs j, Client desNotif, String nomP) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 }    // crochet de la classe

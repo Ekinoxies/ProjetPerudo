@@ -67,6 +67,10 @@ public class Joueurs implements Serializable {
                  
                  
 }
+
+    void alerte(String cest_à_toi_de_jouer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
        
 }
