@@ -21,7 +21,7 @@ public class Joueurs implements Serializable {
     public String nomJoueurs;
     public int nbDes;
     private ArrayList listeDes = new ArrayList<int []>();
-    private ClientNotification notif;
+    private Client notif;
     private String j;
     
 
@@ -61,7 +61,7 @@ public class Joueurs implements Serializable {
     
     private String notifJoueur;
 
-    public void setNotification(ClientNotification notif, String j) {
+    public void setNotification(Client notif, String j) {
 	 	this.notif = notif;
                 notifJoueur = j;
                  
