@@ -11,13 +11,28 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.HashMap;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;
 
 
 
 
- public class ImplementationServ extends UnicastRemoteObject implements InterfaceServCli {
+ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     private String nom;
-    private ClientNotification notif;
+    private Client notif;
     
     HashMap<String, Joueurs> ju;
     HashMap<String, Partie> pa;
@@ -26,7 +41,7 @@ import java.util.HashMap;
        
     private static ArrayList<Partie> listePartie = new ArrayList<Partie>();
     
-    public ImplementationServ() throws RemoteException {
+    public ServeurImpl() throws RemoteException {
     super();
 }   
 
@@ -142,7 +157,7 @@ import java.util.HashMap;
     }
   
   
-    public int actualiserNbDesRMI (Joueurs j,ClientImplementation b, String nomP)  throws RemoteException 
+    public int actualiserNbDesRMI (Joueurs j,ClientImpl b, String nomP)  throws RemoteException 
        {
        String tmp;
        int numP,numJ;
@@ -182,7 +197,7 @@ import java.util.HashMap;
   
   
   
-   public ArrayList actualiserListeDesRMI (Joueurs j,ClientImplementation b, String nomP)  throws RemoteException 
+   public ArrayList actualiserListeDesRMI (Joueurs j,ClientImpl b, String nomP)  throws RemoteException 
        {
       
        String tmp, tmp2;
@@ -276,7 +291,7 @@ import java.util.HashMap;
 public static void main(String[] args) throws Exception {
 	 	 LocateRegistry.createRegistry(1099);
                  
-	 	 Naming.rebind("MonServeur", new ImplementationServ());
+	 	 Naming.rebind("MonServeur", new ServeurImpl());
 	 	 System.out.println("RMI OK");
                  
           
@@ -289,7 +304,7 @@ int numP = 0; // variable du numero de partie pour la v1 on l'utilisera a 0 par 
                 // car on n'a qu'une partie
 Joueurs j; //le joueur qui est en train de jouer
 
-ImplementationServ s = new ImplementationServ();
+ServeurImpl s = new ServeurImpl();
 
 s.attPartie();
 s.attJoueur(numP); // v1 du site on attend que la partie 1 soit compplete
@@ -338,14 +353,14 @@ while(s.gagnant(numP) == 0)
 
 
 @Override
-public void actualiserListeDesRMI(Joueurs j, ClientNotification desNotif, String nomP) {
+public void actualiserListeDesRMI(Joueurs j, Client desNotif, String nomP) {
 	// TODO Auto-generated method stub
 	
 }
 
 
 @Override
-public int actualiserNbDesRMI(Joueurs j, ClientNotification desNotif, String nomP) throws RemoteException {
+public int actualiserNbDesRMI(Joueurs j, Client desNotif, String nomP) throws RemoteException {
 	// TODO Auto-generated method stub
 	return 0;
 }

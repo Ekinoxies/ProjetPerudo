@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
-public interface InterfaceServCli extends java.rmi.Remote  {
+public interface Serveur extends java.rmi.Remote  {
     
    public String creerPartie(String nomPartie,Integer NbJoueur)throws java.rmi.RemoteException;
      
@@ -31,8 +31,8 @@ public interface InterfaceServCli extends java.rmi.Remote  {
      // Ecrire les methodes ici pour consulter le client via le serveur :
    
 
-    public void actualiserListeDesRMI(Joueurs j, ClientNotification desNotif, String nomP) throws java.rmi.RemoteException;
-    public int actualiserNbDesRMI (Joueurs j,ClientNotification desNotif, String nomP) throws java.rmi.RemoteException;		 
+    public void actualiserListeDesRMI(Joueurs j, Client desNotif, String nomP) throws java.rmi.RemoteException;
+    public int actualiserNbDesRMI (Joueurs j,Client desNotif, String nomP) throws java.rmi.RemoteException;		 
 }
     
 

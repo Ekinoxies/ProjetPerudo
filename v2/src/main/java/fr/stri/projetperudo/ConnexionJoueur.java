@@ -31,11 +31,11 @@ public class ConnexionJoueur extends javax.swing.JFrame {
     public ConnexionJoueur() {
         initComponents();
     }
-    //InterfaceServCli proxy = new InterfaceServCli();
+    //InterfaceServCli proxy = new Serveur();
     public static void ProxyRMI()
     {
         try {           
-            InterfaceServCli proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+            Serveur proxy = (Serveur) Naming.lookup("rmi://localhost:1099/MonServeur");
             
         } catch (NotBoundException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
@@ -259,9 +259,9 @@ public void envoiJoueur(String j)
          
          
          
-                    InterfaceServCli proxy = null;
+                    Serveur proxy = null;
         try {
-            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+            proxy = (Serveur) Naming.lookup("rmi://localhost:1099/MonServeur");
         } catch (NotBoundException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {
@@ -313,9 +313,9 @@ public void envoiJoueur(String j)
     String retour;
 
      
-     InterfaceServCli proxy = null;
+     Serveur proxy = null;
         try {
-            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+            proxy = (Serveur) Naming.lookup("rmi://localhost:1099/MonServeur");
         } catch (NotBoundException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {
@@ -337,9 +337,9 @@ public void envoiJoueur(String j)
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-   InterfaceServCli proxy = null;
+   Serveur proxy = null;
         try {
-            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+            proxy = (Serveur) Naming.lookup("rmi://localhost:1099/MonServeur");
         } catch (NotBoundException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {

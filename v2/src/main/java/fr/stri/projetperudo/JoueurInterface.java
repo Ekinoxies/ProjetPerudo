@@ -30,11 +30,11 @@ public class JoueurInterface extends javax.swing.JFrame {
 
     
    // RMI classique pour serveur
-public InterfaceServCli connectServer() {
+public Serveur connectServer() {
 try
 	{
 	Registry reg= LocateRegistry.getRegistry("localhost",1099);
-	InterfaceServCli proxy= (InterfaceServCli) reg.lookup("MonServeur");
+	Serveur proxy= (Serveur) reg.lookup("MonServeur");
 	System.out.println("On est bien connecté au Serveur ! Merci RMI !");
 	return proxy;
 	}
@@ -51,13 +51,13 @@ try
     public void actualiserDes() throws RemoteException
     {
                
-        InterfaceServCli proxy = null;
+        Serveur proxy = null;
         
             proxy = connectServer();
          ArrayList listeDes = new ArrayList();
             /*TEST*/  
           /*recupertaion des listes des*/
-          ClientImplementation desNotif = new ClientImplementation(j.getNomJoueurs());
+          ClientImpl desNotif = new ClientImpl(j.getNomJoueurs());
 	  proxy.actualiserListeDesRMI(j,desNotif,nomP);
 		      System.out.println(listeDes.toString());  
           
@@ -72,7 +72,7 @@ try
     
     public void actualiserText()
     {
-         InterfaceServCli proxy = null;
+         Serveur proxy = null;
          proxy = connectServer();
          String affichage;
          
@@ -331,9 +331,9 @@ jFrame1.setVisible(true);
         // TODO add your handling code here:
         
                
-        InterfaceServCli proxy = null;
+        Serveur proxy = null;
         try {
-            proxy = (InterfaceServCli) Naming.lookup("rmi://localhost:1099/MonServeur");
+            proxy = (Serveur) Naming.lookup("rmi://localhost:1099/MonServeur");
         } catch (NotBoundException ex) {
             Logger.getLogger(ConnexionJoueur.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {
@@ -368,7 +368,7 @@ jFrame1.setVisible(true);
         
         try {
             // TODO add your handling code here:
-            InterfaceServCli proxy = null;
+            Serveur proxy = null;
             proxy = connectServer();
             proxy.pilRMI(j, nomP);
         } catch (RemoteException ex) {
@@ -388,7 +388,7 @@ jFrame1.setVisible(true);
         
        try {
             // TODO add your handling code here:
-            InterfaceServCli proxy = null;
+            Serveur proxy = null;
             proxy = connectServer();
             proxy.surchargeRMI(j, resultNumDes, resultNbDes, nomP);
         } catch (RemoteException ex) {

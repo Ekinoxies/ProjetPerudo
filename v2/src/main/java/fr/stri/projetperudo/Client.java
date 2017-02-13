@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author florian b
  */
-public interface ClientNotification extends Remote {
+public interface Client extends Remote {
 	 	 public void notificationDes(ArrayList listeDes) throws RemoteException;
                  public void notificationNbDes(int nbDes) throws RemoteException;
                  

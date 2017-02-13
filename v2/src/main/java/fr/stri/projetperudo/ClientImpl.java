@@ -5,21 +5,21 @@
  */
 package fr.stri.projetperudo;
 
-import fr.stri.projetperudo.ClientNotification;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+import fr.stri.projetperudo.Client;
 
 /**
  *
  * @author florian b
  */
-public class ClientImplementation  extends UnicastRemoteObject implements ClientNotification  {
+public class ClientImpl  extends UnicastRemoteObject implements Client  {
    
 private String id;
-public ClientImplementation(String id) throws RemoteException {
+public ClientImpl(String id) throws RemoteException {
 	 	 super() ;
 	 	 this.id = id;
 }
