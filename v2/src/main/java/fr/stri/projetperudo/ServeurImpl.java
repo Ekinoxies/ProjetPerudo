@@ -194,7 +194,7 @@ import java.util.HashMap;
         for(int i = 0; i < listePartie.size(); i++)
         {
             tmp = listePartie.get(i).getNomPartie();
-            if (tmp == nomP)
+            if (tmp.compareToIgnoreCase(nomP)==0)
             {
                   listePartie.get(i).surcharge(j, valDes, nbDes); 
                   System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Surcharge de " +valDes + nbDes);
