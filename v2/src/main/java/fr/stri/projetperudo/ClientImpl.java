@@ -23,6 +23,11 @@ import java.util.logging.Logger;
  * @author florian b
  */
 public class ClientImpl  extends UnicastRemoteObject implements Client  {
+ 
+    static Boolean amoidejouer;
+    static int miseFace; //la face du dés misé
+    static int miseNb; // le nombre de face du dé misé annoncé
+  
    
 
 protected ClientImpl() throws RemoteException {
@@ -46,20 +51,54 @@ public void alerte(String s) throws RemoteException {
 		System.out.println(s);
 	}
    
-   
+@Override
+public void aMoiDeJouerReponse(boolean bo) throws RemoteException {
+	if (bo ==true)
+        {amoidejouer =true;}
+  
+      System.out.println(amoidejouer);
+	}
+
+
+
         public String choixP(){
             Scanner sc = new Scanner(System.in);
             System.out.println("Entrez nom Partie");
             String NomPartie = sc.nextLine();
             return NomPartie;
         }
-                
- 
+             
+     
+        
+        public int choixAction ()
+                {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Entrez l'action a réaliser");
+                    System.out.println("1 pour pile");
+                    System.out.println("2 pour menteur");
+                    System.out.println("3 pour Surcharge");
+                    int action = sc.nextInt();
+                    return action;
+                }
+        
         public int nbJoueur(){
             Scanner sc = new Scanner(System.in);
             System.out.println("Entrez le nombre de Joueur");
             int NbJoueur= sc.nextInt();
             return NbJoueur;
+        }
+        
+        public void surcharge()
+        {
+            
+               
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Quelle face choisi tu ?");
+                    miseFace = sc.nextInt();
+                    System.out.println("Quelle nombre de dés de la face : " + miseFace);
+                    miseNb = sc.nextInt();
+        
+            
         }
         
    
@@ -100,14 +139,55 @@ public void alerte(String s) throws RemoteException {
           System.out.println(proxy.connexionAunePartie(envoijoueur, NomPartieRE));
        
           
- // le grand test    
-     int idJoueur = proxy.enregistrerClient(c);
+ // l'Enregistrement 
+int idJoueur = proxy.enregistrerClient(c);
 System.out.println(idJoueur);
-			if (!proxy.transmettreAnnonce(idJoueur))
-				System.out.println("Ce n'est pas à toi de jouer");
-			else
+
+
+boolean fin = false; // initialisation fin de partie
+
+while (fin != true)
+    {
+       amoidejouer = false;// par defaut ce n'est pas a moi de jouer
+       
+        proxy.aMoiDeJouer(idJoueur,envoijoueur,NomPartieRE); // je demande au serveur si je doit jouer
+        
+                    if (amoidejouer) // c'est a moi de jouer ?
+                        {
+                            // On joue
 				System.out.println("Annonce bien prise en compte");
-      
+                                System.out.println("/////////////////");
+                                // vos des sont
+                               
+                               int choix = c.choixAction(); 
+                               switch (choix)
+                               {
+                                    case 1: //PILE
+                                    {
+                                    proxy.pilRMI(envoijoueur, NomPartieRE);
+                                    System.out.println("Tu as dit pil quel courage");
+                                    }
+                                    case 2: //MENTEUR
+                                    {
+                                    proxy.menteurRMI(envoijoueur, NomPartieRE);
+                                    System.out.println("Menteur ... ok on va voir");
+                                    }
+                                    
+                                    case 3: //Surcharge
+                                    {
+                                          c.surcharge();
+                                          proxy.surchargeRMI(envoijoueur, miseFace, miseNb,NomPartieRE);
+                                    }   
+                                }
+                         }
+                                
+                    else
+                        {
+				// on fait rien c'est pas notre tour                                               
+                        }
+         
+                                
+    }                                          
        
    }
    }

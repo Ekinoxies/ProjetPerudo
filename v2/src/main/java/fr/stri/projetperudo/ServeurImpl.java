@@ -11,34 +11,17 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.HashMap;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
-import static java.lang.Thread.sleep;
 
 
 
 
- public class ServeurImpl extends UnicastRemoteObject implements Serveur {
+    public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     private String nom;
     private Client notif;
     
     HashMap<String, Joueurs> ju;
     HashMap<String, Partie> pa;
-   
- 
-       
+     
     private static ArrayList<Partie> listePartie = new ArrayList<Partie>();
     
     public ServeurImpl() throws RemoteException {
@@ -50,19 +33,47 @@ import static java.lang.Thread.sleep;
     private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();
     private static final int maxJoueur = 2;
     
+    
+    
+    @Override
+    public boolean aMoiDeJouer (int idJoueur, Joueurs j, String nomP) throws RemoteException
+    {
+    boolean PartiEncour = listePartie.get(0).getPartieEncours(); 
+        
+        if ((idJoueur == joueurCourant) && (PartiEncour == true))  
+//je suis le joueur concerné et la partie est lancé prendre en compte l'annonce
+                  {
+                        lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
+                    
+                                        
+			return true;
+                            }
+    
+		else
+                    {return false;}
+    }
+    
+
+    
+    
+    
     @Override
 	public boolean transmettreAnnonce(int idJoueur) throws RemoteException {
-		if (idJoueur == joueurCourant) {
+		if (idJoueur == joueurCourant ) {
 			// prendre en compte l'annonce
 			
 			// passer au joueur suivant
 			joueurCourant++;
-                                        if (joueurCourant ==maxJoueur)
-                                            joueurCourant = 0;
+                          if (joueurCourant ==maxJoueur)
+                             {
+                                joueurCourant = 0;
                                         
                             
-			// le prévenir
-			lesClients.get(joueurCourant).alerte("C'est à toi de jouer");
+			// le prévenir qu'il doit jouer
+			
+                        lesClients.get(joueurCourant).alerte("//C'est à toi de jouer//");
+                    
+                                        }
 			return true;
 		} else
 			return false;
@@ -79,7 +90,14 @@ import static java.lang.Thread.sleep;
 		if (joueurCourant == maxJoueur) {
 			joueurCourant = 0;
 			// le prévenir
-			lesClients.get(joueurCourant).alerte("C'est à toi de jouer");
+		       
+			lesClients.get(joueurCourant).alerte("////////////////////////");
+                        lesClients.get(joueurCourant).alerte("//C'est à toi de jouer//");
+                        lesClients.get(joueurCourant).alerte("////////////////////////");
+                        lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
+                        
+                   
+                        
 		}
 			
 		return idJoueur;
@@ -102,7 +120,7 @@ import static java.lang.Thread.sleep;
             {
                    
                     listePartie.get(i).ajoutJoueur(a);
-                    System.out.println("Le Joueur" +a.getNomJoueurs()+ " est ajouté a la partie " + nomP );
+                    System.out.println("Le Joueur " +a.getNomJoueurs()+ " est ajouté a la partie " + nomP );
                     
                     retour = "Le joueurs est ajouté ";
             }
@@ -122,10 +140,9 @@ import static java.lang.Thread.sleep;
         return "La Partie a bien était créer ";
     }
     
-        
-          /*Methode suplementaire pour le rmi*/
+               /*Methode suplementaire pour le rmi*/
     
-   public String getNomPartieRMI(int nb) throws RemoteException{
+  public String getNomPartieRMI(int nb) throws RemoteException{
         
             String nomPartie;
             
@@ -133,12 +150,8 @@ import static java.lang.Thread.sleep;
             
             return nomPartie;  // retourne  a nimporte quel client directement 
     }
-   
-
-
-     
-    
-   public void pilRMI(Joueurs j, String nomP) throws RemoteException {
+       
+  public void pilRMI(Joueurs j, String nomP) throws RemoteException {
       
       String tmp;            
         for(int i = 0; i < listePartie.size(); i++)
@@ -239,8 +252,7 @@ import static java.lang.Thread.sleep;
        }
   
   
-  
-   public ArrayList actualiserListeDesRMI (Joueurs j,ClientImpl b, String nomP)  throws RemoteException 
+     public ArrayList actualiserListeDesRMI (Joueurs j,ClientImpl b, String nomP)  throws RemoteException 
        {
       
        String tmp, tmp2;
@@ -261,10 +273,9 @@ import static java.lang.Thread.sleep;
                       tmp2= j.getNomJoueurs();
                       if (tmp2.compareToIgnoreCase(listePartie.get(i).getListeJoueur().get(x).getNomJoueurs() ) ==0)
                       {
-                          
                          numP = i;
                          numJ = x;
-                                               
+                                       
                        }
                   }
             }
@@ -296,7 +307,7 @@ import static java.lang.Thread.sleep;
        ArrayList listeJ = new ArrayList();
        int nbj = listePartie.get(nb).getNbJoueur();
        
-      listeJ = listePartie.get(nb).getListeJoueur();
+       listeJ = listePartie.get(nb).getListeJoueur();
        
  
     while (listeJ.size()<nbj)    
@@ -304,6 +315,7 @@ import static java.lang.Thread.sleep;
             sleep(2000);
             System.out.println("ATTENTE JOUEUR");
         }
+   listePartie.get(nb).setPartieEncours(true); //on déclare la partie en cours 
     
    }
    
@@ -322,9 +334,7 @@ import static java.lang.Thread.sleep;
    }   
    
    
-   public void notification()throws RemoteException {
-	 	 
- }
+ 
        
   ////
    /// MAIN

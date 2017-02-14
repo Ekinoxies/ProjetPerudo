@@ -26,15 +26,22 @@ public interface Serveur extends java.rmi.Remote  {
   
   public void surchargeRMI(Joueurs j, int valDes,int nbDes, String nomP) throws java.rmi.RemoteException;
   
+  
+    public ArrayList actualiserListeDesRMI(Joueurs j, Client desNotif, String nomP) throws java.rmi.RemoteException;
+    public int actualiserNbDesRMI (Joueurs j,Client desNotif, String nomP) throws java.rmi.RemoteException;	
+  
+  
     
+    
+    
+  /////////////////***///////////////////////////////////////
   boolean transmettreAnnonce(int idJoueur) throws RemoteException;
   int enregistrerClient(Client c) throws RemoteException;
-   
-     // Ecrire les methodes ici pour consulter le client via le serveur :
+  boolean aMoiDeJouer (int idJoueur, Joueurs j, String nomP) throws RemoteException;
+     
    
 
-    public ArrayList actualiserListeDesRMI(Joueurs j, Client desNotif, String nomP) throws java.rmi.RemoteException;
-    public int actualiserNbDesRMI (Joueurs j,Client desNotif, String nomP) throws java.rmi.RemoteException;		 
+   	 
 }
     
 

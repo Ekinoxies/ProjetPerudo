@@ -26,6 +26,7 @@ public class Partie{
     private int finTour;
     private int finManche;
     private int valeur;
+    private boolean partieEncours;
  
     
     
@@ -35,12 +36,22 @@ public class Partie{
     {
     this.nomPartie=nomPartie;
     this.nbJoueur = nbJoueur;
+    this.partieEncours = false;
     }
    
     
     /*GET SET*/
      public ArrayList<Joueurs> getListeJoueur() {
         return listeJoueur;
+    }
+
+    public void setPartieEncours(boolean partieEncours) {
+        this.partieEncours = partieEncours;
+    }
+    
+    public boolean getPartieEncours()
+    {
+    return partieEncours;
     }
 
     public int getNbJoueur() {

@@ -17,6 +17,6 @@ public interface Client extends Remote {
 	 	 public void notificationDes(ArrayList listeDes) throws RemoteException;
                  public void notificationNbDes(int nbDes) throws RemoteException;
                  void alerte(String s) throws RemoteException;
-                 
+                void aMoiDeJouerReponse (boolean bo) throws RemoteException;
 
     }
