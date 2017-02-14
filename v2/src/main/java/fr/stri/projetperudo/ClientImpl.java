@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class ClientImpl  extends UnicastRemoteObject implements Client  {
  
-    static Boolean amoidejouer;
+    static Boolean amoidejouer; // BOOlean qui renvoi vrai quand c'est a notre joueur de jouer 
     static int miseFace; //la face du dés misé
     static int miseNb; // le nombre de face du dé misé annoncé
   
