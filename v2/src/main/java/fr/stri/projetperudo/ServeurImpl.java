@@ -371,11 +371,10 @@ while(s.gagnant(numP) == 0)
              listePartie.get(numP).lanceDes(j); //lancéé de dés
              }
              
+             int i = 0;
          while (listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;
          {
-
-             for (int i = 0; i < listePartie.get(numP).getListeJoueur().size(); i++)   //TOUR DE TABLE 
-             {    
+                            
                           /*TOUR D'un Joueur */
              listePartie.get(numP).setFinTour(0); // Début d'un nouveau tour 
                 
@@ -392,7 +391,17 @@ while(s.gagnant(numP) == 0)
                              sleep(5000);
                              System.out.println("A TOI DE JOUER :" + j.getNomJoueurs());
                             }
-                 } 
+                 
+            // changer de joueur 
+            if(i == listePartie.get(numP).getListeJoueur().size())
+            {  
+                i=0;
+            }
+            else 
+            {
+                 i = i+1;
+            }
+            
         }
        
          
