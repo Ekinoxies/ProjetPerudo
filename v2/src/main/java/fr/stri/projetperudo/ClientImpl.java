@@ -157,6 +157,7 @@ while (fin != true)
                             // On joue
 				System.out.println("Annonce bien prise en compte");
                                 System.out.println("/////////////////");
+                                
                                 // vos des sont
                                
                                int choix = c.choixAction(); 
@@ -166,18 +167,23 @@ while (fin != true)
                                     {
                                     proxy.pilRMI(envoijoueur, NomPartieRE);
                                     System.out.println("Tu as dit pil quel courage");
+                                    break;
                                     }
                                     case 2: //MENTEUR
                                     {
                                     proxy.menteurRMI(envoijoueur, NomPartieRE);
                                     System.out.println("Menteur ... ok on va voir");
+                                    break;
                                     }
                                     
                                     case 3: //Surcharge
                                     {
                                           c.surcharge();
                                           proxy.surchargeRMI(envoijoueur, miseFace, miseNb,NomPartieRE);
-                                    }   
+                                          break;
+                                    }
+                                    default:
+                                          System.out.println("Erreur Saisie"); 
                                 }
                                
                           System.out.println( proxy.transmettreAnnonce(idJoueur));     

@@ -28,7 +28,7 @@ import java.util.HashMap;
     super();
 }   
     
-    private int joueurCourant = 0;
+     int joueurCourant = 0;
     
     private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();
     private static final int maxJoueur = 2;
@@ -149,7 +149,7 @@ import java.util.HashMap;
        
   public void pilRMI(Joueurs j, String nomP) throws RemoteException {
       
-      String tmp;            
+      String tmp; 
         for(int i = 0; i < listePartie.size(); i++)
         {
             tmp = listePartie.get(i).getNomPartie();
@@ -364,12 +364,17 @@ while(s.gagnant(numP) == 0)
      listePartie.get(numP).setFinManche(0);
      
          /*LA MANCHE*/ 
-               
+             System.out.println("Début d'une nouvelle Manche");
+             for (int i = 0; i < listePartie.get(numP).getListeJoueur().size(); i++)   //TOUR DE TABLE 
+             { 
+             j = listePartie.get(numP).getListeJoueur().get(i);
+             listePartie.get(numP).lanceDes(j); //lancéé de dés
+             }
+             
          while (listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;
          {
-              System.out.println("Début d'une nouvelle Manche");
-              
-             for (int i = 0; i < listePartie.get(numP).getListeJoueur().size();)   //TOUR DE TABLE 
+
+             for (int i = 0; i < listePartie.get(numP).getListeJoueur().size(); i++)   //TOUR DE TABLE 
              {    
                           /*TOUR D'un Joueur */
              listePartie.get(numP).setFinTour(0); // Début d'un nouveau tour 
@@ -377,12 +382,13 @@ while(s.gagnant(numP) == 0)
              j = listePartie.get(numP).getListeJoueur().get(i); // on recupere le joueur qui doit jouer
              
              System.out.println("Au joueur :" +j.getNomJoueurs()+" de joueur");
-             listePartie.get(numP).lanceDes(j); //lancéé de dés
+             
               // c'est a ce joueur de jouer :
               
                             
                             while (listePartie.get(numP).getFinTour()== 0) //tant que le tour du joueur n'est pas fini   
                             {
+                             System.out.println(listePartie.get(numP).getFinTour());
                              sleep(5000);
                              System.out.println("A TOI DE JOUER :" + j.getNomJoueurs());
                             }

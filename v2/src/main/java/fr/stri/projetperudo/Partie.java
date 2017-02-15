@@ -21,8 +21,8 @@ public class Partie{
     private  int nbJoueur;
     private ArrayList<Joueurs> listeJoueur = new ArrayList<Joueurs>();
     
-    private int desValeur;
-    private int nbVdes;
+    static int desValeur;
+    static int nbVdes;
     private int finTour;
     private int finManche;
     private int valeur;
@@ -108,19 +108,21 @@ public class Partie{
      ArrayList listeDes = new ArrayList();
       int val;
       int compter = 0;
-     
+          
      for(int i = 0; i < listeJoueur.size(); i++)
     {
      
         listeDes = listeJoueur.get(i).getListeDes(); // on recup la liste de des d'un joueur
      
-        
+   
         
         for(int x = 0; x < listeDes.size(); x++)
         {
+     
             val = (int) listeDes.get(i);
             if ( val == desValeur || val == 1)  //le 1 en perrudo est un joker 
             {
+                
                compter = compter +1;              
             }
         }
@@ -177,7 +179,6 @@ public class Partie{
         if ( nbDes < 30 && nbDes > 0 && nbVdes <= nbDes ){
         nbVdes = nbDes;   
         }
-        
    finTour =1;
  
 }
