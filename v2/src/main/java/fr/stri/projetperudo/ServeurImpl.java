@@ -364,7 +364,11 @@ while(s.gagnant(numP) == 0)
      listePartie.get(numP).setFinManche(0);
      
          /*LA MANCHE*/ 
+             System.out.println("//////////////////////////////");
              System.out.println("Début d'une nouvelle Manche");
+             System.out.println("//////////////////////////////");
+             System.out.println("");
+             System.out.println("");
              for (int i = 0; i < listePartie.get(numP).getListeJoueur().size(); i++)   //TOUR DE TABLE 
              { 
              j = listePartie.get(numP).getListeJoueur().get(i);
@@ -389,7 +393,7 @@ while(s.gagnant(numP) == 0)
                             {
                              System.out.println(listePartie.get(numP).getFinTour());
                              sleep(5000);
-                             System.out.println("A TOI DE JOUER :" + j.getNomJoueurs());
+                            // System.out.println("A TOI DE JOUER :" + j.getNomJoueurs());
                             }
                  
             // changer de joueur 
