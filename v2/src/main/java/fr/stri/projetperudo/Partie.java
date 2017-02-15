@@ -102,7 +102,7 @@ public class Partie{
     
     /*Methode pile manche*/
     
-      int pileMache(Joueurs j) {
+      boolean pileMache(Joueurs j) {
      /*Récupère la liste de DES de chaque joueur et regarde si 
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
      ArrayList listeDes = new ArrayList();
@@ -127,17 +127,16 @@ public class Partie{
             }
         }
     }
-        int nb;
+        boolean nb;
     if ( compter == nbVdes)
     {
-         nb = j.getNbDes();
-        nb = nb+1;
+        // + true
+        nb = true;
       //  j.setNbDes(nb);
     }
     else
     {
-        nb = j.getNbDes();
-        nb = nb-1;
+        nb =false;
         //j.setNbDes(nb);
     }
     
@@ -147,7 +146,7 @@ public class Partie{
 }
 
       /*Methode menteur*/
-      void menteur(Joueurs j) {
+      boolean menteur(Joueurs j) {
     /*Récupère la liste de DES de chaque joueur et regarde si 
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
      ArrayList listeDes = new ArrayList();
@@ -169,14 +168,24 @@ public class Partie{
             }
         }
     }
-    
-    if ( compter != nbVdes){
-        int nb = j.getNbDes();
-        nb = nb-1;
-        j.setNbDes(nb);
+    boolean nb;
+    if ( compter != nbVdes)
+    {
+        nb = false;
+        //-1 false
+      //  j.setNbDes(nb);
     }
+    else
+    {
+       nb = true;
+      //  j.setNbDes(nb);
+    
+    }
+   
     finTour =1;
     finManche = 1;
+    
+    return nb;
 }
    
         

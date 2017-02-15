@@ -149,14 +149,15 @@ import java.util.HashMap;
        
   public void pilRMI(Joueurs j, String nomP) throws RemoteException {
       
-      String tmp; 
+ String tmp; 
       String tmp2;
+      int nb =0;
         for(int i = 0; i < listePartie.size(); i++)
         {
             tmp = listePartie.get(i).getNomPartie();
             if (tmp.compareToIgnoreCase(nomP)==0)
             {
-                int nbDes = listePartie.get(i).pileMache(j); 
+                boolean nbDes = listePartie.get(i).pileMache(j); 
                 // on ajoute les des pour cela on va rechercher le bon joueur
                 
                 for(int x = 0; x < listePartie.get(i).getListeJoueur().size(); x++)
@@ -165,9 +166,24 @@ import java.util.HashMap;
                       
                     if (tmp2.compareToIgnoreCase(j.getNomJoueurs())==0)
                        {
-                           
-                           listePartie.get(i).getListeJoueur().get(x).setNbDes(nbDes);
-                       }   
+                           if (nbDes)
+                           {
+                               nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
+                               nb=nb+1;
+                               listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
+                           }
+                           else
+                           {
+                               nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
+                               nb=nb-1;
+                               listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
+                           }
+                       }
+                    else
+                    {
+                        
+                    
+                    }
                 
                 
                 
@@ -183,24 +199,61 @@ import java.util.HashMap;
             {
                 System.out.println("Le pile n'a etait effectué sur aucunne partie");
             }
-       }      
+       }         
   }
         
     
   public void menteurRMI(Joueurs j, String nomP) throws RemoteException {
       
-      String tmp;            
+      String tmp; 
+      String tmp2;
+      int nb =0;
         for(int i = 0; i < listePartie.size(); i++)
         {
             tmp = listePartie.get(i).getNomPartie();
             if (tmp.compareToIgnoreCase(nomP)==0)
             {
-                  listePartie.get(i).menteur(j);
-                  System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Menteur");
+                boolean nbDes = listePartie.get(i).menteur(j); 
+                // on ajoute les des pour cela on va rechercher le bon joueur
+                
+                for(int x = 0; x < listePartie.get(i).getListeJoueur().size(); x++)
+                {
+                    tmp2 = listePartie.get(i).getListeJoueur().get(x).getNomJoueurs();
+                      
+                    if (tmp2.compareToIgnoreCase(j.getNomJoueurs())==0)
+                       {
+                           if (nbDes)
+                           {
+                               nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
+                               nb=nb+1;
+                               listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
+                           }
+                           else
+                           {
+                               nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
+                               nb=nb-1;
+                               listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
+                           }
+                       }
+                    else
+                    {
+                        
+                    
+                    }
+                
+                
+                
+                }
+                
+                
+                
+                
+                
+                System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Menteur");
             }
             else
             {
-                System.out.println("Le menteur n'a etait effectué sur aucune partie");
+                System.out.println("Le menteur n'a etait effectué sur aucunne partie");
             }
        }      
   }
