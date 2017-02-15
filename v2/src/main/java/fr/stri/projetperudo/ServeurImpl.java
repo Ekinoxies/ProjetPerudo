@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-
-
     public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     private String nom;
     private Client notif;
@@ -51,9 +49,7 @@ import java.util.HashMap;
     
 		else
                     {return false;}
-    }
-    
-
+    }  
     
     public void envoiMessage (String aEnvoyer, Joueurs j, String nomP) throws RemoteException
     {
@@ -423,14 +419,10 @@ import java.util.HashMap;
          }
    return val;
    }   
-   
-   
- 
-       
+            
   ////
    /// MAIN
-  ////
-   
+  //// 
      
 public static void main(String[] args) throws Exception {
 	 	 LocateRegistry.createRegistry(1099);

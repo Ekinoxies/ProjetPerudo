@@ -56,9 +56,7 @@ public void alerte(String s) throws RemoteException {
 @Override
 public void aMoiDeJouerReponse(boolean bo) throws RemoteException {
 	if (bo ==true)
-        {amoidejouer =true;}
-  
-      System.out.println(amoidejouer);
+        {amoidejouer =true;}       
 	}
 
 
