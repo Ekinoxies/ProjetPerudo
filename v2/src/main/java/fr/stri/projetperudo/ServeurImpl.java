@@ -150,13 +150,34 @@ import java.util.HashMap;
   public void pilRMI(Joueurs j, String nomP) throws RemoteException {
       
       String tmp; 
+      String tmp2;
         for(int i = 0; i < listePartie.size(); i++)
         {
             tmp = listePartie.get(i).getNomPartie();
             if (tmp.compareToIgnoreCase(nomP)==0)
             {
-                  listePartie.get(i).pileMache(j); 
-                  System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Pile");
+                int nbDes = listePartie.get(i).pileMache(j); 
+                // on ajoute les des pour cela on va rechercher le bon joueur
+                
+                for(int x = 0; x < listePartie.get(i).getListeJoueur().size(); x++)
+                {
+                    tmp2 = listePartie.get(i).getListeJoueur().get(x).getNomJoueurs();
+                      
+                    if (tmp2.compareToIgnoreCase(j.getNomJoueurs())==0)
+                       {
+                           
+                           listePartie.get(i).getListeJoueur().get(x).setNbDes(nbDes);
+                       }   
+                
+                
+                
+                }
+                
+                
+                
+                
+                
+                System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Pile");
             }
             else
             {

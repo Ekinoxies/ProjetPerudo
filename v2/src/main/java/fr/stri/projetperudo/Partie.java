@@ -102,7 +102,7 @@ public class Partie{
     
     /*Methode pile manche*/
     
-      void pileMache(Joueurs j) {
+      int pileMache(Joueurs j) {
      /*Récupère la liste de DES de chaque joueur et regarde si 
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
      ArrayList listeDes = new ArrayList();
@@ -127,13 +127,23 @@ public class Partie{
             }
         }
     }
-    if ( compter == nbVdes){
-        int nb = j.getNbDes();
+        int nb;
+    if ( compter == nbVdes)
+    {
+         nb = j.getNbDes();
         nb = nb+1;
-        j.setNbDes(nb);
+      //  j.setNbDes(nb);
     }
+    else
+    {
+        nb = j.getNbDes();
+        nb = nb-1;
+        //j.setNbDes(nb);
+    }
+    
     finTour =1;
     finManche = 1;
+    return nb;
 }
 
       /*Methode menteur*/
