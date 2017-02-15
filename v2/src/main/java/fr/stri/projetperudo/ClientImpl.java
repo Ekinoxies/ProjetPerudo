@@ -50,7 +50,9 @@ protected ClientImpl() throws RemoteException {
 public void alerte(String s) throws RemoteException {
 		System.out.println(s);
 	}
-   
+
+
+
 @Override
 public void aMoiDeJouerReponse(boolean bo) throws RemoteException {
 	if (bo ==true)

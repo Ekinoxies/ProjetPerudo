@@ -55,7 +55,28 @@ import java.util.HashMap;
     
 
     
-    
+    public void envoiMessage (String aEnvoyer, Joueurs j, String nomP) throws RemoteException
+    {
+           for(int i = 0; i < listePartie.size(); i++)
+        {
+             String tmp = listePartie.get(i).getNomPartie();
+            if (tmp.compareToIgnoreCase(nomP)==0)
+            {
+                               
+                for(int x = 0; x < listePartie.get(i).getListeJoueur().size(); x++)
+                {
+                    String tmp2 = listePartie.get(i).getListeJoueur().get(x).getNomJoueurs();
+                      
+                    if (tmp2.compareToIgnoreCase(j.getNomJoueurs())==0)
+                       {
+                          lesClients.get(x).alerte(aEnvoyer);
+                       }
+                   
+
+                }
+            }
+        }
+    }
     
     @Override
 	public boolean transmettreAnnonce(int idJoueur) throws RemoteException {
@@ -460,6 +481,8 @@ while(s.gagnant(numP) == 0)
              
              System.out.println("Au joueur :" +j.getNomJoueurs()+" de joueur");
              
+             
+             
               // c'est a ce joueur de jouer :
               
                             
@@ -471,7 +494,7 @@ while(s.gagnant(numP) == 0)
                             }
                  
             // changer de joueur 
-            if(i == listePartie.get(numP).getListeJoueur().size())
+            if(i == listePartie.get(numP).getListeJoueur().size() -1)
             {  
                 i=0;
             }

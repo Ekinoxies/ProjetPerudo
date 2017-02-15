@@ -211,7 +211,7 @@ public class Partie{
                System.out.println("Vous avez : " + nb+" nombre de dès");
                ArrayList listeDes = new ArrayList();
               
-               for (int i=0;i<=nb;i++)
+               for (int i=0;i<=nb-1;i++)
                     {
                     valeur = (int)(1+ 6*Math.random());  
                     listeDes.add(valeur);
