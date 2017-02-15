@@ -68,10 +68,6 @@ import java.util.HashMap;
                              {
                                 joueurCourant = 0;
                                         
-                            
-			// le prévenir qu'il doit jouer
-			
-                        lesClients.get(joueurCourant).alerte("//C'est à toi de jouer//");
                     
                                         }
 			return true;

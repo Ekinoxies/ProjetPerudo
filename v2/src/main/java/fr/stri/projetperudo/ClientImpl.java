@@ -179,12 +179,16 @@ while (fin != true)
                                           proxy.surchargeRMI(envoijoueur, miseFace, miseNb,NomPartieRE);
                                     }   
                                 }
+                               
+                          System.out.println( proxy.transmettreAnnonce(idJoueur));     
                          }
                                 
                     else
                         {
 				// on fait rien c'est pas notre tour                                               
                         }
+                    
+                    
          
                                 
     }                                          
