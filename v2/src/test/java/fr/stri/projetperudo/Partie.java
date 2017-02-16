@@ -89,7 +89,7 @@ public class Partie{
     public String avantManche ()
     {
     String retour;
-    retour = "La Manche peut commencer";
+    retour = "La manche peut commencer";
       
     for(int i = 0; i <nbJoueur; i++)
        {
@@ -207,8 +207,8 @@ public class Partie{
             // liste 
                int nb = j.getNbDes();
                String tmp2;
-               System.out.println("Quel lancé de des du Joueur : " + j.getNomJoueurs());
-               System.out.println("Vous avez : " + nb+" nombre de dès");
+               System.out.println("Quel lancé de dés du joueur : " + j.getNomJoueurs());
+               System.out.println("Vous avez : " + nb+" nombre de dés");
                ArrayList listeDes = new ArrayList();
               
                for (int i=0;i<=nb-1;i++)

@@ -75,17 +75,17 @@ public void aMoiDeJouerReponse(boolean bo) throws RemoteException {
         public int choixAction ()
                 {
                     Scanner sc = new Scanner(System.in);
-                    System.out.println("Entrez l'action a réaliser");
+                    System.out.println("Entrez l'action à réaliser");
                     System.out.println("1 pour pile");
                     System.out.println("2 pour menteur");
-                    System.out.println("3 pour Surcharge");
+                    System.out.println("3 pour surcharge");
                     int action = sc.nextInt();
                     return action;
                 }
         
         public int nbJoueur(){
             Scanner sc = new Scanner(System.in);
-            System.out.println("Entrez le nombre de Joueur");
+            System.out.println("Entrez le nombre de joueurs");
             int NbJoueur= sc.nextInt();
             return NbJoueur;
         }
@@ -95,9 +95,9 @@ public void aMoiDeJouerReponse(boolean bo) throws RemoteException {
             
                
                     Scanner sc = new Scanner(System.in);
-                    System.out.println("Quelle face choisi tu ?");
+                    System.out.println("Quelle face choisies-tu ?");
                     miseFace = sc.nextInt();
-                    System.out.println("Quelle nombre de dés de la face : " + miseFace);
+                    System.out.println("Quel nombre de dés de la face : " + miseFace);
                     miseNb = sc.nextInt();
         
             
@@ -110,13 +110,13 @@ public void aMoiDeJouerReponse(boolean bo) throws RemoteException {
        Scanner sc = new Scanner(System.in);
        int nbJ = 0;
        // Récuperation du Joueur
-       System.out.println("Entrez nom Joueur");
+       System.out.println("Entrez nom joueur");
        String NomJoueur = sc.nextLine();
        Joueurs validejoueur = new Joueurs(NomJoueur);
        Joueurs envoijoueur;
        envoijoueur = validejoueur;
        
-       System.out.println("Voulez vous Créer une partie ? si oui tapez oui sinon tapez non");
+       System.out.println("Voulez-vous créer une partie ? Si oui tapez oui sinon tapez non");
        String RepPartie = sc.nextLine();
        
        switch (RepPartie) {
@@ -168,7 +168,7 @@ while (fin != true)
                                     case 1: //PILE
                                     {
                                     proxy.pilRMI(envoijoueur, NomPartieRE);
-                                    System.out.println("Tu as dit pil quel courage");
+                                    System.out.println("Tu as dit pile, quel courage !");
                                     break;
                                     }
                                     case 2: //MENTEUR

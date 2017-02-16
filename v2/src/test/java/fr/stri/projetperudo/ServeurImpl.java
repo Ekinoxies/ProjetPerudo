@@ -126,7 +126,7 @@ import java.util.HashMap;
     public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException
     {
          String tmp;
-         String retour = " ERREUR Joueur non ajouté";
+         String retour = " ERREUR : joueur non ajouté";
              
         for(int i = 0; i < listePartie.size(); i++)
         {
@@ -137,9 +137,9 @@ import java.util.HashMap;
             {
                    
                     listePartie.get(i).ajoutJoueur(a);
-                    System.out.println("Le Joueur " +a.getNomJoueurs()+ " est ajouté a la partie " + nomP );
+                    System.out.println("Le joueur " +a.getNomJoueurs()+ " est ajouté a la partie " + nomP );
                     
-                    retour = "Le joueurs est ajouté ";
+                    retour = "Le joueur est ajouté ";
             }
          }
         
@@ -152,9 +152,9 @@ import java.util.HashMap;
    public String creerPartie(String nomPartie, Integer nbJoueurs)throws RemoteException {
         Partie a = new Partie(nomPartie, nbJoueurs);
         listePartie.add(a);  
-        System.out.println("La partie :" + nomPartie +" a etait créer avec un nombre de joueur de : " + nbJoueurs);
+        System.out.println("La partie :" + nomPartie +"à été créée avec un nombre de joueur de : " + nbJoueurs);
         
-        return "La Partie a bien était créer ";
+        return "La partie a bien été créée ";
     }
     
                /*Methode suplementaire pour le rmi*/
@@ -214,11 +214,11 @@ import java.util.HashMap;
                 
                 
                 
-                System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Pile");
+                System.out.println("Le joueur " +j.getNomJoueurs() +" annonce pile");
             }
             else
             {
-                System.out.println("Le pile n'a etait effectué sur aucunne partie");
+                System.out.println("Le pile a été effectué sur aucune partie");
             }
        }         
   }
@@ -270,11 +270,11 @@ import java.util.HashMap;
                 
                 
                 
-                System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Menteur");
+                System.out.println("Le joueur " +j.getNomJoueurs() +" annonce menteur");
             }
             else
             {
-                System.out.println("Le menteur n'a etait effectué sur aucunne partie");
+                System.out.println("Le menteur n'a été effectué sur aucunne partie");
             }
        }      
   }
@@ -288,11 +288,11 @@ import java.util.HashMap;
             if (tmp.compareToIgnoreCase(nomP)==0)
             {
                   listePartie.get(i).surcharge(j, valDes, nbDes); 
-                  System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Surcharge de " +valDes + nbDes);
+                  System.out.println("Le joueur " +j.getNomJoueurs() +" annonce surcharge de " +valDes + nbDes);
             }
             else
             {
-                System.out.println("La surcharge n'a etait effectué sur aucune partie");
+                System.out.println("La surcharge n'a été effectué sur aucune partie");
             }
        }      
   }
@@ -389,7 +389,7 @@ import java.util.HashMap;
         while (listePartie.isEmpty())    
         { 
             sleep(2000);
-            System.out.println("ATTENTE Partie");
+            System.out.println("ATTENTE PARTIE");
         }
     }
     
@@ -479,7 +479,7 @@ while(s.gagnant(numP) == 0)
                 
              j = listePartie.get(numP).getListeJoueur().get(i); // on recupere le joueur qui doit jouer
              
-             System.out.println("Au joueur :" +j.getNomJoueurs()+" de joueur");
+             System.out.println("Au joueur :" +j.getNomJoueurs()+" de jouer");
              
              
              
