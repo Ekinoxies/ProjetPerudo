@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 package fr.stri.projetperudo;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,7 +14,7 @@ public class Partie{
     
     /* Arguments */
     private String nomPartie;
-    private  int nbJoueur;
+    private int nbJoueur;
     private ArrayList<Joueurs> listeJoueur = new ArrayList<Joueurs>();
     
     static int desValeur;
@@ -28,18 +24,15 @@ public class Partie{
     private int valeur;
     private boolean partieEncours;
  
-    
-    
+        
     /*Constructeur*/
-    
     public Partie(String nomPartie,int nbJoueur) 
     {
     this.nomPartie=nomPartie;
     this.nbJoueur = nbJoueur;
     this.partieEncours = false;
     }
-   
-    
+       
     /*GET SET*/
      public ArrayList<Joueurs> getListeJoueur() {
         return listeJoueur;
@@ -66,7 +59,6 @@ public class Partie{
     public String getNomPartie(){
         return nomPartie;
     }
-    
 
     public int getFinManche() {
         return finManche;
@@ -85,6 +77,9 @@ public class Partie{
     }
           
        
+    
+    
+    
     /*Test Avant de débuter une manche*/
     public String avantManche ()
     {
@@ -101,7 +96,6 @@ public class Partie{
    
     
     /*Methode pile manche*/
-    
       boolean pileMache(Joueurs j) {
      /*Récupère la liste de DES de chaque joueur et regarde si 
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
@@ -187,9 +181,9 @@ public class Partie{
     
     return nb;
 }
-   
-        
- public void surcharge ( Joueurs j, int valDes,int nbDes) {
+           
+    public void surcharge ( Joueurs j, int valDes,int nbDes) 
+    {
        
      if ( valDes < 7 && valDes > 0 && desValeur <= valDes ){
         desValeur = valDes;
@@ -199,8 +193,7 @@ public class Partie{
         nbVdes = nbDes;   
         }
    finTour =1;
- 
-}
+ }
  
  
  public void lanceDes(Joueurs j){
@@ -218,30 +211,18 @@ public class Partie{
                     
                     }
                
-               
-               
-               
                for(int i = 0; i < listeJoueur.size() ; i++ )
                   {
                       tmp2= listeJoueur.get(i).getNomJoueurs();
                       if (tmp2.compareToIgnoreCase(listeJoueur.get(i).getNomJoueurs() ) ==0)
                       {
-                          
-                         
-                        listeJoueur.get(i).setListeDes(listeDes);
-                                               
+                        listeJoueur.get(i).setListeDes(listeDes);                      
                        }
                   }
-               
-               
-               
-          
-                       
+      
+                System.out.println("DANS LANCER DES" + listeDes.toString());       
                 
-                System.out.println("DANS LANCER DES" + listeDes.toString());
-                
-                
-		}
+    }
  
  
-}
+} // crochet fin de class

@@ -12,25 +12,22 @@ import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
-    public class ServeurImpl extends UnicastRemoteObject implements Serveur {
+public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     private String nom;
     private Client notif;
-    
     HashMap<String, Joueurs> ju;
-    HashMap<String, Partie> pa;
-     
+    HashMap<String, Partie> pa;     
     private static ArrayList<Partie> listePartie = new ArrayList<Partie>();
-    
-    public ServeurImpl() throws RemoteException {
-    super();
-}   
-    
-     int joueurCourant = 0;
-    
+    int joueurCourant = 0;
     private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();
     private static final int maxJoueur = 2;
-    
+
+
+    /*Constructeur*/
+    public ServeurImpl() throws RemoteException 
+    {
+        super();
+    }   
     
     
     @Override
@@ -153,7 +150,9 @@ import java.util.HashMap;
         return "La Partie a bien était créer ";
     }
     
-               /*Methode suplementaire pour le rmi*/
+              
+   
+   /*Methode suplementaire pour le rmi*/
     
   public String getNomPartieRMI(int nb) throws RemoteException{
         
@@ -509,16 +508,14 @@ while(s.gagnant(numP) == 0)
     } //crochet du main
 
 
-
-
 @Override
 public int actualiserNbDesRMI(Joueurs j, Client desNotif, String nomP) throws RemoteException {
 	// TODO Auto-generated method stub
 	return 0;
 }
 
-    @Override
-    public ArrayList actualiserListeDesRMI(Joueurs j, Client desNotif, String nomP) throws RemoteException {
+@Override
+public ArrayList actualiserListeDesRMI(Joueurs j, Client desNotif, String nomP) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

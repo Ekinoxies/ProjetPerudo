@@ -183,7 +183,7 @@ while (fin != true)
                                           System.out.println("Erreur Saisie"); 
                                 }
                                
-                          System.out.println( proxy.transmettreAnnonce(idJoueur));     
+                          System.out.println( proxy.transmettreAnnonce(idJoueur));  // On change de joueur   
                          }
                                 
                     else
@@ -191,11 +191,11 @@ while (fin != true)
 				// on fait rien c'est pas notre tour                                               
                         }
                     
-                    
-         
-                                
-    }                                          
+               
+                                        
+    }     // Crochet du While                                     
        
-   }
-   }
+   }// Crochet du main 
+   
+ } // Corchet de la class
 
