@@ -28,8 +28,6 @@ public class ClientImpl  extends UnicastRemoteObject implements Client  {
     static int miseFace; //la face du dés misé
     static int miseNb; // le nombre de face du dé misé annoncé
   
-   
-
 protected ClientImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -51,8 +49,6 @@ public void alerte(String s) throws RemoteException {
 		System.out.println(s);
 	}
 
-
-
 @Override
 public void aMoiDeJouerReponse(boolean bo) throws RemoteException {
 	if (bo ==true)
@@ -61,48 +57,49 @@ public void aMoiDeJouerReponse(boolean bo) throws RemoteException {
 
 
 
-        public String choixP(){
+public String choixP(){
             Scanner sc = new Scanner(System.in);
             System.out.println("Entrez nom Partie");
             String NomPartie = sc.nextLine();
             return NomPartie;
-        }
-             
-     
-        
-        public int choixAction ()
-                {
+ }       
+            
+public int choixAction ()
+  {
                     Scanner sc = new Scanner(System.in);
-                    System.out.println("Entrez l'action a réaliser");
+                    System.out.println("Entrez l'action à réaliser");
                     System.out.println("1 pour pile");
                     System.out.println("2 pour menteur");
-                    System.out.println("3 pour Surcharge");
+                    System.out.println("3 pour surcharge");
                     int action = sc.nextInt();
                     return action;
-                }
+  }
         
-        public int nbJoueur(){
+public int nbJoueur()
+{
             Scanner sc = new Scanner(System.in);
-            System.out.println("Entrez le nombre de Joueur");
+            System.out.println("Entrez le nombre de joueurs");
             int NbJoueur= sc.nextInt();
             return NbJoueur;
-        }
+}
         
-        public void surcharge()
+public void surcharge()
         {
-            
-               
                     Scanner sc = new Scanner(System.in);
-                    System.out.println("Quelle face choisi tu ?");
+                    System.out.println("Quelle face choisis-tu ?");
                     miseFace = sc.nextInt();
                     System.out.println("Quelle nombre de dés de la face : " + miseFace);
-                    miseNb = sc.nextInt();
-        
-            
+                    miseNb = sc.nextInt();        
         }
         
    
-   public static void main(String[] args) throws NotBoundException, RemoteException, MalformedURLException {
+
+///////////////////////////////////////////////////////////////////////////
+////////////////////MAIN /////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+   public static void main(String[] args) throws NotBoundException, RemoteException, MalformedURLException 
+   {
        ClientImpl c = new ClientImpl();
        Serveur proxy = (Serveur) Naming.lookup("rmi://localhost:1099/MonServeur");
        Scanner sc = new Scanner(System.in);
@@ -114,7 +111,7 @@ public void aMoiDeJouerReponse(boolean bo) throws RemoteException {
        Joueurs envoijoueur;
        envoijoueur = validejoueur;
        
-       System.out.println("Voulez vous Créer une partie ? si oui tapez oui sinon tapez non");
+       System.out.println("Voulez-vous créer une partie ? Si oui tapez oui sinon tapez non");
        String RepPartie = sc.nextLine();
        
        switch (RepPartie) {
@@ -166,7 +163,7 @@ while (fin != true)
                                     case 1: //PILE
                                     {
                                     proxy.pilRMI(envoijoueur, NomPartieRE);
-                                    System.out.println("Tu as dit pil quel courage");
+                                    System.out.println("Tu as dit pile, quel courage !");
                                     break;
                                     }
                                     case 2: //MENTEUR
