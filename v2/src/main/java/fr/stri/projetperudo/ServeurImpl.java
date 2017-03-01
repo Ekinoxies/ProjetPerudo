@@ -11,18 +11,23 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Vector;
 
 public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     private String nom;
     private Client notif;
     HashMap<String, Joueurs> ju;
-    HashMap<String, Partie> pa;     
-    private static ArrayList<Partie> listePartie = new ArrayList<Partie>();
+    HashMap<String, Partie> pa;  
+   
+   public static ArrayList<Partie> listePartie = new ArrayList<Partie>();
     int joueurCourant = 0;
     private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();
     private static final int maxJoueur = 2;
-
-
+    int numP =0;
+    
+    public static ArrayList<SenarioThread> listeThread = new ArrayList<SenarioThread>();
+    
+    
     /*Constructeur*/
     public ServeurImpl() throws RemoteException 
     {
@@ -147,6 +152,8 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         listePartie.add(a);  
         System.out.println("La partie :" + nomPartie +" a etait créer avec un nombre de joueur de : " + nbJoueurs);
         
+        listeThread.add(new SenarioThread(listePartie.size()-1)); // Création du thread
+         
         return "La Partie a bien était créer ";
     }
     
@@ -434,78 +441,18 @@ public static void main(String[] args) throws Exception {
                  ICI LE CODE SERVEUR       
                                              
 */
-
-int numP = 0; // variable du numero de partie pour la v1 on l'utilisera a 0 par defaut
-                // car on n'a qu'une partie
-Joueurs j; //le joueur qui est en train de jouer
-
-ServeurImpl s = new ServeurImpl();
-
-s.attPartie();
-s.attJoueur(numP); // v1 du site on attend que la partie 1 soit compplete
-
-while(s.gagnant(numP) == 0)
+int a = 1;
+while(true)  
+{
+    if (a == listeThread.size())
     {
-     listePartie.get(numP).avantManche();
-     listePartie.get(numP).setFinManche(0);
-     
-         /*LA MANCHE*/ 
-             System.out.println("//////////////////////////////");
-             System.out.println("Début d'une nouvelle Manche");
-             System.out.println("//////////////////////////////");
-             System.out.println("");
-             System.out.println("");
-             for (int i = 0; i < listePartie.get(numP).getListeJoueur().size(); i++)   //TOUR DE TABLE 
-             { 
-             j = listePartie.get(numP).getListeJoueur().get(i);
-             listePartie.get(numP).lanceDes(j); //lancéé de dés
-             }
-             
-             int i = 0;
-         while (listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;
-         {
-                            
-                          /*TOUR D'un Joueur */
-             listePartie.get(numP).setFinTour(0); // Début d'un nouveau tour 
-                
-             j = listePartie.get(numP).getListeJoueur().get(i); // on recupere le joueur qui doit jouer
-             
-             System.out.println("Au joueur :" +j.getNomJoueurs()+" de joueur");
-             
-             
-             
-              // c'est a ce joueur de jouer :
-              
-                            
-                            while (listePartie.get(numP).getFinTour()== 0) //tant que le tour du joueur n'est pas fini   
-                            {
-                             System.out.println(listePartie.get(numP).getFinTour());
-                             sleep(5000);
-                            // System.out.println("A TOI DE JOUER :" + j.getNomJoueurs());
-                            }
-                 
-            // changer de joueur 
-            if(i == listePartie.get(numP).getListeJoueur().size() -1)
-            {  
-                i=0;
-            }
-            else 
-            {
-                 i = i+1;
-            }
-            
-        }
-       
-         
-    } 
-
-/*LE GAGNANT EST :::: */
+        listeThread.get(a).start();
+        a++;
+    }
+}
 
 
-
-
-    
-    } //crochet du main
+} //crochet du main
 
 
 @Override
