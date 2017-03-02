@@ -161,6 +161,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
    
    /*Methode suplementaire pour le rmi*/
     
+    @Override
   public String getNomPartieRMI(int nb) throws RemoteException{
         
             String nomPartie;
@@ -170,6 +171,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
             return nomPartie;  // retourne  a nimporte quel client directement 
     }
        
+    @Override
   public void pilRMI(Joueurs j, String nomP) throws RemoteException {
       
  String tmp; 
@@ -226,6 +228,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
   }
         
     
+    @Override
   public void menteurRMI(Joueurs j, String nomP) throws RemoteException {
       
       String tmp; 
@@ -281,6 +284,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
        }      
   }
   
+    @Override
   public void surchargeRMI(Joueurs j, int valDes,int nbDes, String nomP) throws RemoteException {
       
       String tmp;            
@@ -300,6 +304,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
   }
         
     
+    @Override
    public ArrayList<Partie> getListePartie () throws RemoteException
     {
         return listePartie;
@@ -441,15 +446,38 @@ public static void main(String[] args) throws Exception {
                  ICI LE CODE SERVEUR       
                                              
 */
+
+ ServeurImpl s = new ServeurImpl ();
+s.attPartie();
+
 int a = 1;
-while(true)  
+while(listePartie.size() != 0)  
 {
-    if (a == listeThread.size())
+    
+    
+    
+    for (int i=0;i<=listeThread.size()-1;i++)    
     {
-        listeThread.get(a).start();
-        a++;
+         if (listeThread.get(i).isAlive())
+         {
+             System.out.println("La partie "+listePartie.get(i).getNomPartie()+" est en cours" );
+         }
+    else
+         {
+            listeThread.get(i).run();
+         }
     }
+    
+    
+    
+//    if (a == listeThread.size())
+//    {
+//        listeThread.get(a).start();
+//        listeThread.get(a).isAlive()
+//        a++;
+//    }
 }
+    System.out.println("TOUTES LES PARTIES DONT FINIS");
 
 
 } //crochet du main

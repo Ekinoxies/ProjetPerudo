@@ -105,25 +105,31 @@ public void surcharge()
        Scanner sc = new Scanner(System.in);
        int nbJ = 0;
        // Récuperation du Joueur
-       System.out.println("Entrez nom Joueur");
+       System.out.println("Qu'elle est votre nom ?");
        String NomJoueur = sc.nextLine();
        Joueurs validejoueur = new Joueurs(NomJoueur);
        Joueurs envoijoueur;
        envoijoueur = validejoueur;
-       
-       System.out.println("Voulez-vous créer une partie ? Si oui tapez oui sinon tapez non");
+       System.out.println("");
+       System.out.println("");
+       System.out.println("/////////////////////////////");
+       System.out.println("BIENVENU AU JEU DU PERUDO " + envoijoueur.getNomJoueurs());
+        System.out.println("/////////////////////////////");
+        System.out.println("");
+       System.out.println("TAPER 1 pour créer une partie");
+       System.out.println("TAPER 2 pour rejoindre une partie");
        String RepPartie = sc.nextLine();
        
        switch (RepPartie) {
-       case "oui": 
+       case "1": 
         String partie = c.choixP();
         nbJ =c.nbJoueur();
             
             System.out.println(proxy.creerPartie(partie,nbJ));
        break;
        
-       case "non": 
-          System.out.println("Vous allez devoir rejoindre une partie"); 
+       case "2": 
+          System.out.println("Vous allez rejoindre une partie"); 
        break;
         
         default:

@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package fr.stri.projetperudo;
-
 import static java.lang.Thread.sleep;
-import fr.stri.projetperudo.ServeurImpl;
 import static fr.stri.projetperudo.ServeurImpl.listePartie;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
@@ -17,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class SenarioThread extends Thread {
 
-    private int numP;
+    private final int numP;
     
     //DEBUT DU THREAD
 
@@ -28,7 +26,8 @@ public class SenarioThread extends Thread {
   Joueurs j; //le joueur qui est en train de jouer
     
 
-public void run () {
+    @Override
+    public void run () {
     try {
         ServeurImpl s = new ServeurImpl ();
         
