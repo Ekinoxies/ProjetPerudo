@@ -27,6 +27,8 @@ public class ClientImpl  extends UnicastRemoteObject implements Client  {
     static Boolean amoidejouer; // BOOlean qui renvoi vrai quand c'est a notre joueur de jouer 
     static int miseFace; //la face du dés misé
     static int miseNb; // le nombre de face du dé misé annoncé
+    static int nbDes;
+    ArrayList listeDes;
   
 protected ClientImpl() throws RemoteException {
 		super();
@@ -36,12 +38,13 @@ protected ClientImpl() throws RemoteException {
 @Override
    public void notificationNbDes(int nbDes) throws RemoteException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+   }
 
 @Override
    public void notificationDes(ArrayList listeDes) throws RemoteException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         
+      System.out.println(listeDes.toString()) ; 
    }
 
 @Override

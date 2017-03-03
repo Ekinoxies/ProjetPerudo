@@ -108,8 +108,10 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 		       
 			lesClients.get(joueurCourant).alerte("////////////////////////");
                         lesClients.get(joueurCourant).alerte("//C'est à toi de jouer//");
-                        lesClients.get(joueurCourant).alerte("////////////////////////");
+                                             
+                        
                         lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
+                        
                         
                    
                         
@@ -218,7 +220,8 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                 
                 
                 
-                System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Pile");
+                //System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Pile");
+                envoiMessage("PILE VALIDE", j, nomP);
             }
             else
             {
@@ -275,7 +278,8 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                 
                 
                 
-                System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Menteur");
+                //String mess = "Le joueur " +j.getNomJoueurs() +" annonce Menteur";
+                envoiMessage("MENTEUR VALIDE", j, nomP);
             }
             else
             {
@@ -294,7 +298,8 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
             if (tmp.compareToIgnoreCase(nomP)==0)
             {
                   listePartie.get(i).surcharge(j, valDes, nbDes); 
-                  System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Surcharge de " +valDes + nbDes);
+                  //System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Surcharge de " +valDes + nbDes);
+                  envoiMessage("SURCHARGE VALIDE", j, nomP);
             }
             else
             {
@@ -342,9 +347,11 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
             }
        }   
               
-
+                // a suprimer ca sert a ???
             b.notificationNbDes(listePartie.get(numP).getListeJoueur().get(numJ).getNbDes());
-            
+            //
+//            String mess =
+//            envoiMessage("MENTEUR VALIDE", j, nomP);
        return listePartie.get(numP).getListeJoueur().get(numJ).getNbDes() ;
        
        }
@@ -427,13 +434,14 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
          if (listeJ.size()==1)
          {
              val = 1;
+             //ENVOI LA GAGNANT EST AVEC RMI INVERSE
          }
    return val;
    }   
             
-  ////
-   /// MAIN
-  //// 
+  ////////////////////////////
+  //// /// MAIN///////////////
+  //// ////////////////////
      
 public static void main(String[] args) throws Exception {
 	 	 LocateRegistry.createRegistry(1099);
@@ -470,12 +478,7 @@ while(listePartie.size() != 0)
     
     
     
-//    if (a == listeThread.size())
-//    {
-//        listeThread.get(a).start();
-//        listeThread.get(a).isAlive()
-//        a++;
-//    }
+
 }
     System.out.println("TOUTES LES PARTIES DONT FINIS");
 

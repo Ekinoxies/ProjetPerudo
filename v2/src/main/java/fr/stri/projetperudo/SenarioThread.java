@@ -31,10 +31,10 @@ public class SenarioThread extends Thread {
     try {
         ServeurImpl s = new ServeurImpl ();
         
-        s.attPartie();
-        s.attJoueur(numP); // v1 du site on attend que la partie 1 soit compplete
         
-        while(s.gagnant(numP) == 0)
+        s.attJoueur(numP); // On attend que la partie soit complette
+        
+        while(s.gagnant(numP) == 0) // tant qu'il n'y a pas de gagnant
         {
             listePartie.get(numP).avantManche();
             listePartie.get(numP).setFinManche(0);
@@ -89,9 +89,9 @@ public class SenarioThread extends Thread {
             
         }
         
-        /*LE GAGNANT EST :::: */
+        /*RMI INVERSE LE GAGNANT EST :::: */
         
-//FIN DU THREAD
+
     } catch (RemoteException ex) {
         Logger.getLogger(SenarioThread.class.getName()).log(Level.SEVERE, null, ex);
     } catch (InterruptedException ex) {
