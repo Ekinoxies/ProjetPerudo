@@ -96,6 +96,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 		} 
                 else
 			return false;
+                
 	}
         
     @Override
@@ -218,19 +219,12 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                        }
                     else
                     {
-                        
-                    
+                         // ce else est trés util 
                     }
                 
-                
-                
                 }
-                
-                
-                
-                
-                
-                //System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Pile");
+                                                       
+               //System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Pile");
                // envoiMessage("PILE VALIDE", j, nomP);
             }
             else
@@ -311,7 +305,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
             {
                   listePartie.get(i).surcharge(j, valDes, nbDes); 
                   //System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Surcharge de " +valDes + nbDes);
-                  envoiMessage("ok c'est noté !!! ", j, nomP);
+                  envoiMessage("Ok c'est noté !!! ", j, nomP);
             }
             else
             {
@@ -328,7 +322,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     }
   
   
-    public int actualiserNbDesRMI (Joueurs j,ClientImpl b, String nomP)  throws RemoteException 
+   public int actualiserNbDesRMI (Joueurs j,ClientImpl b, String nomP)  throws RemoteException 
        {
        String tmp;
        int numP,numJ;
@@ -360,7 +354,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
        }   
               
                 // a suprimer ca sert a ???
-            b.notificationNbDes(listePartie.get(numP).getListeJoueur().get(numJ).getNbDes());
+            
             //
 //            String mess =
 //            envoiMessage("MENTEUR VALIDE", j, nomP);
@@ -369,8 +363,8 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
        }
   
   
-     public ArrayList actualiserListeDesRMI (Joueurs j,ClientImpl b, String nomP)  throws RemoteException 
-       {
+public ArrayList actualiserListeDesRMI (Joueurs j,ClientImpl b, String nomP)  throws RemoteException 
+ {
       
        String tmp, tmp2;
        int numP,numJ;
@@ -402,7 +396,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
             }
        }   
        
-      b.notificationDes(listePartie.get(numP).getListeJoueur().get(numJ).getListeDes());
+      
 
        return listePartie.get(numP).getListeJoueur().get(numJ).getListeDes() ;
        
@@ -498,16 +492,4 @@ while(listePartie.size() != 0)
 } //crochet du main
 
 
-@Override
-public int actualiserNbDesRMI(Joueurs j, Client desNotif, String nomP) throws RemoteException {
-	// TODO Auto-generated method stub
-	return 0;
 }
-
-@Override
-public ArrayList actualiserListeDesRMI(Joueurs j, Client desNotif, String nomP) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
-}    // crochet de la classe

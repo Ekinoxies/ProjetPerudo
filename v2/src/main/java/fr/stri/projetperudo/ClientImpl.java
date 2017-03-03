@@ -35,17 +35,7 @@ protected ClientImpl() throws RemoteException {
 		// TODO Auto-generated constructor stub
 	}
 
-@Override
-   public void notificationNbDes(int nbDes) throws RemoteException{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   
-   }
 
-@Override
-   public void notificationDes(ArrayList listeDes) throws RemoteException{
-        
-      System.out.println(listeDes.toString()) ; 
-   }
 
 @Override
 public void alerte(String s) throws RemoteException {

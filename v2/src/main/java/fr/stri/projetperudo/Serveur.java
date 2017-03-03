@@ -25,9 +25,7 @@ public void menteurRMI(Joueurs j, String nomP) throws java.rmi.RemoteException;
   
 public void surchargeRMI(Joueurs j, int valDes,int nbDes, String nomP) throws java.rmi.RemoteException; 
   
-public ArrayList actualiserListeDesRMI(Joueurs j, Client desNotif, String nomP) throws java.rmi.RemoteException;
 
-public int actualiserNbDesRMI (Joueurs j,Client desNotif, String nomP) throws java.rmi.RemoteException;	
   
   
         
