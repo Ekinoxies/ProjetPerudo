@@ -49,11 +49,14 @@ public class SenarioThread extends Thread {
             {
                 j = listePartie.get(numP).getListeJoueur().get(i);
                 listePartie.get(numP).lanceDes(j); //lancéé de dés
+                s.envoiMessage(j.getListeDes().toString(), j, listePartie.get(numP).getNomPartie());
+                //s.setDesEnv(j.getListeDes().toString());
             }
  
             int i = 0;
             while (listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;
             {
+                
 
                 /*TOUR D'un Joueur */
                 listePartie.get(numP).setFinTour(0); // Début d'un nouveau tour
@@ -62,7 +65,7 @@ public class SenarioThread extends Thread {
                 
                 System.out.println("Au joueur :" +j.getNomJoueurs()+" de joueur");
                 
-                
+                s.envoiMessage("CACAOUETHE", j, listePartie.get(numP).getNomPartie());
                 
                 // c'est a ce joueur de jouer :
                 

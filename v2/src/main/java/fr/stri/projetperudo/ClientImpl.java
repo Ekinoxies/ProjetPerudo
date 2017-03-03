@@ -161,8 +161,8 @@ while (fin != true)
                     if (amoidejouer) // c'est a moi de jouer ?
                         {
                             // On joue
-				System.out.println("Annonce bien prise en compte");
-                                System.out.println("/////////////////");
+				//System.out.println("Annonce bien prise en compte");
+                               // System.out.println("/////////////////");
                                 
                                 // vos des sont
                                
@@ -172,13 +172,13 @@ while (fin != true)
                                     case 1: //PILE
                                     {
                                     proxy.pilRMI(envoijoueur, NomPartieRE);
-                                    System.out.println("Tu as dit pile, quel courage !");
+                                    //System.out.println("Tu as dit pile, quel courage !");
                                     break;
                                     }
                                     case 2: //MENTEUR
                                     {
                                     proxy.menteurRMI(envoijoueur, NomPartieRE);
-                                    System.out.println("Menteur ... ok on va voir");
+                                    //System.out.println("Menteur ... ok on va voir");
                                     break;
                                     }
                                     
