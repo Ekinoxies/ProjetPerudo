@@ -49,8 +49,8 @@ public class SenarioThread extends Thread {
             {
                 j = listePartie.get(numP).getListeJoueur().get(i);
                 listePartie.get(numP).lanceDes(j); //lancéé de dés
-               // s.envoiMessage(j.getListeDes().toString(), j, listePartie.get(numP).getNomPartie());
-                s.setDesEnv(j.getListeDes().toString());
+                listePartie.get(numP).getListeJoueur().get(i).setListeDes(j.getListeDes()); // on va voir
+                System.out.println(j.getListeDes().toString());
             }
  
             int i = 0;

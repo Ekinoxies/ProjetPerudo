@@ -25,7 +25,7 @@ public void menteurRMI(Joueurs j, String nomP) throws java.rmi.RemoteException;
   
 public void surchargeRMI(Joueurs j, int valDes,int nbDes, String nomP) throws java.rmi.RemoteException; 
   
-
+public void desRMI(Joueurs j, String nomP) throws java.rmi.RemoteException;
   
   
         

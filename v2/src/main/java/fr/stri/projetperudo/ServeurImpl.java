@@ -324,6 +324,36 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
        }      
   }
         
+  
+  
+    @Override
+  public void desRMI(Joueurs j, String nomP) throws RemoteException 
+  {
+      String tmp; 
+      String tmp2;
+      int nb =0;
+        for(int i = 0; i < listePartie.size(); i++)
+        {
+       tmp = listePartie.get(i).getNomPartie();
+            if (tmp.compareToIgnoreCase(nomP)==0)
+            {
+                                
+                for(int x = 0; x < listePartie.get(i).getListeJoueur().size(); x++)
+                {
+                    tmp2 = listePartie.get(i).getListeJoueur().get(x).getNomJoueurs();
+                      
+                    if (tmp2.compareToIgnoreCase(j.getNomJoueurs())==0)
+                       {
+                           String DesEnv = listePartie.get(i).getListeJoueur().get(x).getListeDes().toString() ;
+                           envoiMessage(DesEnv, j, nomP);
+                       }
+                }
+            }
+        }
+      
+  }
+  
+  
     
     @Override
    public ArrayList<Partie> getListePartie () throws RemoteException
@@ -484,7 +514,7 @@ while(listePartie.size() != 0)
     {
          if (listeThread.get(i).isAlive())
          {
-             System.out.println("La partie "+listePartie.get(i).getNomPartie()+" est en cours" );
+             //System.out.println("La partie "+listePartie.get(i).getNomPartie()+" est en cours" );
          }
     else
          {
