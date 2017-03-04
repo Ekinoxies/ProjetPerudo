@@ -40,18 +40,21 @@ public class SenarioThread extends Thread {
             listePartie.get(numP).setFinManche(0);
             
             /*LA MANCHE*/
-            System.out.println("//////////////////////////////");
-            System.out.println("Début d'une nouvelle Manche");
-            System.out.println("//////////////////////////////");
-            System.out.println("");
-            System.out.println("");
-            for (int i = 0; i < listePartie.get(numP).getListeJoueur().size(); i++)   //TOUR DE TABLE pour lancer les DES
+            System.out.println(" //////////////////////////////");
+            System.out.println("  Début d'une nouvelle Manche  ");
+            System.out.println(" //////////////////////////////");
+            System.out.println(" ");
+            System.out.println(" ");
+            
+            for (int i = 0; i < listePartie.get(numP).getListeJoueur().size() ; i++)   //TOUR DE TABLE pour lancer les DES
             {
-                j = listePartie.get(numP).getListeJoueur().get(i);
-                listePartie.get(numP).lanceDes(j); //lancéé de dés
-                listePartie.get(numP).getListeJoueur().get(i).setListeDes(j.getListeDes()); // on va voir
-                System.out.println(j.getListeDes().toString());
+                
+               j = listePartie.get(numP).getListeJoueur().get(i);
+               //listePartie.get(numP).lanceDes(j); //lancéé de dés
+               listePartie.get(numP).getListeJoueur().get(i).setListeDes(listePartie.get(numP).lanceDes(j)); // on va voir
+                
             }
+            
  
             int i = 0;
             while (listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;

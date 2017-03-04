@@ -151,7 +151,7 @@ while (fin != true)
         
                     if (amoidejouer) // c'est a moi de jouer ?
                         {
-                            sleep(100); // On attend que les DES soit disctribué
+                            sleep(1000); // On attend que les DES soit disctribué
                        proxy.desRMI(envoijoueur, NomPartieRE);
                               
                        

@@ -290,13 +290,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                 
                 }
                 
-                
-                
-                
-                
-                //String mess = "Le joueur " +j.getNomJoueurs() +" annonce Menteur";
-                //envoiMessage("MENTEUR VALIDE", j, nomP);
-            }
+           }
             else
             {
                 System.out.println("Le menteur n'a etait effectué sur aucunne partie");
@@ -335,17 +329,35 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         for(int i = 0; i < listePartie.size(); i++)
         {
        tmp = listePartie.get(i).getNomPartie();
+            System.out.println("TMP : "+ tmp);
             if (tmp.compareToIgnoreCase(nomP)==0)
             {
                                 
                 for(int x = 0; x < listePartie.get(i).getListeJoueur().size(); x++)
                 {
                     tmp2 = listePartie.get(i).getListeJoueur().get(x).getNomJoueurs();
-                      
+                       System.out.println("/////TMP 2 : "+ tmp2);
                     if (tmp2.compareToIgnoreCase(j.getNomJoueurs())==0)
                        {
+                           
+                            System.out.println("i x: "+ i +x);
+                           
+                        try {
+                            ///////*/////////////////////////////////////////////*//////////
+                            /*DESRMI est la premiere methode apeller par le RMi client a chaque neveau tour,
+                            notre programme yan un temps de réponse de 2 sec
+                            on utilise un temprisateur de 3sec afin d'eviter de "jouer trop vite" */
+                            
+                            sleep(3000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(ServeurImpl.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                           
+                           ///////////////////////////////////////////////////////////////////
                            String DesEnv = listePartie.get(i).getListeJoueur().get(x).getListeDes().toString() ;
+                           System.out.println("fr.stri.projetperudo.ServeurImpl.desRMI() " + DesEnv);
                            envoiMessage(DesEnv, j, nomP);
+                           ///////*/////////////////////////////////////////////*//////////
                        }
                 }
             }
@@ -362,86 +374,9 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     }
   
   
-   public int actualiserNbDesRMI (Joueurs j,ClientImpl b, String nomP)  throws RemoteException 
-       {
-       String tmp;
-       int numP,numJ;
-       numP = 0;
-       numJ = 0;
-        
-       //On recherche la liste DES du joueurs 
-       
-              for(int i = 0; i < listePartie.size(); i++)
-        {
-            tmp = listePartie.get(i).getNomPartie();
-            
-            if (tmp.compareToIgnoreCase(nomP) ==0 )
-            {
-                  for(int x = 0; x < listePartie.get(i).getListeJoueur().size() ; x++ )
-                  {
-                      tmp= j.getNomJoueurs();
-                      if (tmp.compareToIgnoreCase(listePartie.get(i).getListeJoueur().get(x).getNomJoueurs() ) ==0)
-                      {
-                         numP = i;
-                         numJ = x;
-                       }
-                  }
-            }
-            else
-            {
-                System.out.println("ERREUR ACTUALISER DES");
-            }
-       }   
-              
-                // a suprimer ca sert a ???
-            
-            //
-//            String mess =
-//            envoiMessage("MENTEUR VALIDE", j, nomP);
-       return listePartie.get(numP).getListeJoueur().get(numJ).getNbDes() ;
-       
-       }
   
   
-public ArrayList actualiserListeDesRMI (Joueurs j,ClientImpl b, String nomP)  throws RemoteException 
- {
-      
-       String tmp, tmp2;
-       int numP,numJ;
-       numP = 0;
-       numJ = 0;
-              
-       //On recherche la liste DES du joueurs 
-       
-              for(int i = 0; i < listePartie.size(); i++)
-        {
-            tmp = listePartie.get(i).getNomPartie();
-            
-            if (tmp.compareToIgnoreCase(nomP) ==0 ) //si non de partie trouvé
-            {
-                  for(int x = 0; x < listePartie.get(i).getListeJoueur().size() ; x++ )
-                  {
-                      tmp2= j.getNomJoueurs();
-                      if (tmp2.compareToIgnoreCase(listePartie.get(i).getListeJoueur().get(x).getNomJoueurs() ) ==0)
-                      {
-                         numP = i;
-                         numJ = x;
-                                       
-                       }
-                  }
-            }
-            else
-            {
-                System.out.println("ERREUR ACTUALISER DES");
-            }
-       }   
-       
-      
-
-       return listePartie.get(numP).getListeJoueur().get(numJ).getListeDes() ;
-       
-       }
-   
+ 
      
     /*Methode pour sénario*/
    public void attPartie() throws InterruptedException
