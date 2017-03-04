@@ -45,12 +45,12 @@ public class SenarioThread extends Thread {
             System.out.println("//////////////////////////////");
             System.out.println("");
             System.out.println("");
-            for (int i = 0; i < listePartie.get(numP).getListeJoueur().size(); i++)   //TOUR DE TABLE
+            for (int i = 0; i < listePartie.get(numP).getListeJoueur().size(); i++)   //TOUR DE TABLE pour lancer les DES
             {
                 j = listePartie.get(numP).getListeJoueur().get(i);
                 listePartie.get(numP).lanceDes(j); //lancéé de dés
-                s.envoiMessage(j.getListeDes().toString(), j, listePartie.get(numP).getNomPartie());
-                //s.setDesEnv(j.getListeDes().toString());
+               // s.envoiMessage(j.getListeDes().toString(), j, listePartie.get(numP).getNomPartie());
+                s.setDesEnv(j.getListeDes().toString());
             }
  
             int i = 0;
@@ -65,7 +65,7 @@ public class SenarioThread extends Thread {
                 
                 System.out.println("Au joueur :" +j.getNomJoueurs()+" de joueur");
                 
-                s.envoiMessage("CACAOUETHE", j, listePartie.get(numP).getNomPartie());
+                
                 
                 // c'est a ce joueur de jouer :
                 

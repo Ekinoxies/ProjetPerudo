@@ -12,6 +12,8 @@ import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     private String nom;
@@ -81,8 +83,18 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     @Override //fait changer de joueur
 	public boolean transmettreAnnonce(int idJoueur) throws RemoteException {
 		if (idJoueur == joueurCourant ) {
-			// prendre en compte l'annonce
-			
+			// On annonce au joueur qu'il a finis sont tour
+                        lesClients.get(joueurCourant).alerte(" ");
+                        lesClients.get(joueurCourant).alerte(" ");
+                        lesClients.get(joueurCourant).alerte(" ");
+                        lesClients.get(joueurCourant).alerte(" ");
+                       	lesClients.get(joueurCourant).alerte("////////////////////////");
+                        lesClients.get(joueurCourant).alerte("//Tu as finis ton tour//");
+                        lesClients.get(joueurCourant).alerte("////////////////////////");                    
+                        lesClients.get(joueurCourant).alerte(" ");
+                        
+
+                       
 			// passer au joueur suivant
 			joueurCourant++;
                           if (joueurCourant ==maxJoueur)
@@ -91,12 +103,15 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                         
                     
                               }
-		return true;
+                          
+                          //ANNONCE DE DEBUT DE TOUR
+            lesClients.get(joueurCourant).alerte("Heeee ... , tu peux jouer je crois");
+                          return true;
                         
 		} 
                 else
 			return false;
-                
+               
 	}
         
     @Override
@@ -109,18 +124,13 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 		joueurCourant++;
 		if (joueurCourant == maxJoueur) {
 			joueurCourant = 0;
-			// le prévenir
-		       
-			lesClients.get(joueurCourant).alerte("////////////////////////");
-                        lesClients.get(joueurCourant).alerte("//C'est à toi de jouer//");
-                        lesClients.get(joueurCourant).alerte("//VOICI TES DES //");                    
-                        lesClients.get(joueurCourant).alerte("//"+desEnv+"//");      
-                        lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
-                        
-                        
-                   
-                        
+			lesClients.get(joueurCourant).alerte("Tu es enregistré dans la partie");
+                       lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
+
 		}
+                // Bienvenue dans la partie
+      //          
+                //lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
 			
 		return idJoueur;
 		

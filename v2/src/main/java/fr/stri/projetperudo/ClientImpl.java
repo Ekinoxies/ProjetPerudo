@@ -11,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import fr.stri.projetperudo.Client;
+import static java.lang.Thread.sleep;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -91,7 +92,7 @@ public void surcharge()
 ////////////////////MAIN /////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 
-   public static void main(String[] args) throws NotBoundException, RemoteException, MalformedURLException 
+   public static void main(String[] args) throws NotBoundException, RemoteException, MalformedURLException, InterruptedException 
    {
        ClientImpl c = new ClientImpl();
        Serveur proxy = (Serveur) Naming.lookup("rmi://localhost:1099/MonServeur");
@@ -137,7 +138,7 @@ public void surcharge()
           
  // l'Enregistrement 
 int idJoueur = proxy.enregistrerClient(c);
-System.out.println(idJoueur);
+//System.out.println(idJoueur);
 
 
 boolean fin = false; // initialisation fin de partie
@@ -150,13 +151,12 @@ while (fin != true)
         
                     if (amoidejouer) // c'est a moi de jouer ?
                         {
-                            // On joue
-				//System.out.println("Annonce bien prise en compte");
-                               // System.out.println("/////////////////");
-                                
-                                // vos des sont
-                               
-                               int choix = c.choixAction(); 
+                            sleep(100); // On attend que les DES soit disctribué
+                       //System.out.println( proxy.transmettreAnnonce(idJoueur));  // On change de joueur et on affiche des et blabla
+                              
+                       
+                       
+                       int choix = c.choixAction(); 
                                switch (choix)
                                {
                                     case 1: //PILE
@@ -182,7 +182,7 @@ while (fin != true)
                                           System.out.println("Erreur Saisie"); 
                                 }
                                
-                          System.out.println( proxy.transmettreAnnonce(idJoueur));  // On change de joueur   
+                         System.out.println( proxy.transmettreAnnonce(idJoueur));  // On change de joueur   
                          }
                                 
                     else
