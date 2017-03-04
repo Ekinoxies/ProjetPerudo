@@ -225,6 +225,16 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                nb=nb-1;
                                listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
                                envoiMessage("Tu a perdu un Des, hummm ", j, nomP);
+                       
+                              //////On se demande si il nous reste des DES //////////////////
+                               if (listePartie.get(i).getListeJoueur().get(x).getListeDes().isEmpty() )
+                               {
+                                        envoiMessage("Tu a perdu !!!!", j, nomP);
+                                        listePartie.get(numP).getListeJoueur().remove(i);
+                                        
+                                }
+                               
+                           //////////////////////////////////////////////////////////////////////////////
                            }
                        }
                     else
@@ -278,6 +288,17 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                nb=nb-1;
                                listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
                                envoiMessage("Tu a perdu un Des, hummm ", j, nomP);
+        
+                               
+                          //////On se demande si il nous reste des DES //////////////////
+                               if (listePartie.get(i).getListeJoueur().get(x).getListeDes().isEmpty() )
+                               {
+                                        
+                                        listePartie.get(numP).getListeJoueur().remove(i);
+                                        envoiMessage("Tu a perdu !!!!", j, nomP);
+                                }
+                               
+                           //////////////////////////////////////////////////////////////////////////////
                            }
                        }
                     else

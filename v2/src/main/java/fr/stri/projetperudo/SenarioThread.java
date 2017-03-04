@@ -95,7 +95,8 @@ public class SenarioThread extends Thread {
             
         }
         
-        /*RMI INVERSE LE GAGNANT EST :::: */
+        /* Gestion du gagnant ou perdan dans les fonctiosn pileRMi et menteurRMI */
+        sleep(1000);// attente du a t'on gagné ?
         
 
     } catch (RemoteException ex) {
