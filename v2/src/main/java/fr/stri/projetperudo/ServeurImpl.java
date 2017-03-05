@@ -155,7 +155,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                     listePartie.get(i).ajoutJoueur(a);
                     System.out.println("Le Joueur " +a.getNomJoueurs()+ " est ajouté a la partie " + nomP );
                     
-                    retour = "Le joueurs est ajouté ";
+                    retour = "Le joueur est ajouté ";
             }
          }
         
@@ -168,11 +168,11 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
    public String creerPartie(String nomPartie, Integer nbJoueurs)throws RemoteException {
         Partie a = new Partie(nomPartie, nbJoueurs);
         listePartie.add(a);  
-        System.out.println("La partie :" + nomPartie +" a etait créer avec un nombre de joueur de : " + nbJoueurs);
+        System.out.println("La partie :" + nomPartie +" a ete créé avec un nombre de joueur de : " + nbJoueurs);
         
         listeThread.add(new SenarioThread(listePartie.size()-1)); // Création du thread
          
-        return "La Partie a bien était créer ";
+        return "La Partie a bien été créé ";
     }
 
     public static void setDesEnv (String messEnv) {
@@ -218,19 +218,19 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
                                nb=nb+1;
                                listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
-                               envoiMessage("Bien vue tu gagne un Des", j, nomP);
+                               envoiMessage("Bien vu tu gagnes un Des", j, nomP);
                            }
                            else
                            {
                                nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
                                nb=nb-1;
                                listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
-                               envoiMessage("Tu a perdu un Des, hummm ", j, nomP);
+                               envoiMessage("Tu as perdu un Des, hummm ", j, nomP);
                        
                               //////On se demande si il nous reste des DES //////////////////
                                if (listePartie.get(i).getListeJoueur().get(x).getListeDes().isEmpty() )
                                {
-                                        envoiMessage("Tu a perdu !!!!", j, nomP);
+                                        envoiMessage("Tu as perdu !!!!", j, nomP);
                                         listePartie.get(numP).getListeJoueur().remove(i);
                                         
                                 }
@@ -250,7 +250,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
             }
             else
             {
-                System.out.println("Le pile n'a etait effectué sur aucunne partie");
+                System.out.println("Le pile n'a ete effectué sur aucune partie");
             }
        }         
   }
@@ -281,14 +281,14 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
                                nb=nb+1;
                                listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
-                               envoiMessage("Bien vue tu gagne un Des", j, nomP);
+                               envoiMessage("Bien vu tu gagnes un Des", j, nomP);
                            }
                            else
                            {
                                nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
                                nb=nb-1;
                                listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
-                               envoiMessage("Tu a perdu un Des, hummm ", j, nomP);
+                               envoiMessage("Tu as perdu un Des, hummm ", j, nomP);
         
                                
                           //////On se demande si il nous reste des DES //////////////////
@@ -296,7 +296,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                {
                                         
                                         listePartie.get(numP).getListeJoueur().remove(i);
-                                        envoiMessage("Tu a perdu !!!!", j, nomP);
+                                        envoiMessage("Tu as perdu !!!!", j, nomP);
                                 }
                                
                            //////////////////////////////////////////////////////////////////////////////
@@ -315,7 +315,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
            }
             else
             {
-                System.out.println("Le menteur n'a etait effectué sur aucunne partie");
+                System.out.println("Le menteur n'a ete effectué sur aucune partie");
             }
        }      
   }
@@ -335,7 +335,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
             }
             else
             {
-                System.out.println("La surcharge n'a etait effectué sur aucune partie");
+                System.out.println("La surcharge n'a ete effectué sur aucune partie");
             }
        }      
   }

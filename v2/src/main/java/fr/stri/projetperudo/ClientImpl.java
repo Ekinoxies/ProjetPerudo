@@ -82,7 +82,7 @@ public void surcharge()
                     Scanner sc = new Scanner(System.in);
                     System.out.println("Quelle face choisis-tu ?");
                     miseFace = sc.nextInt();
-                    System.out.println("Quelle nombre de dés de la face : " + miseFace);
+                    System.out.println("Quel nombre de dés de la face : " + miseFace);
                     miseNb = sc.nextInt();        
         }
         
@@ -99,7 +99,7 @@ public void surcharge()
        Scanner sc = new Scanner(System.in);
        int nbJ = 0;
        // Récuperation du Joueur
-       System.out.println("Qu'elle est votre nom ?");
+       System.out.println("Quel est votre nom ?");
        String NomJoueur = sc.nextLine();
        Joueurs validejoueur = new Joueurs(NomJoueur);
        Joueurs envoijoueur;
