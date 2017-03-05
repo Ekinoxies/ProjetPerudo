@@ -17,8 +17,8 @@ public class Partie{
     private int nbJoueur;
     private ArrayList<Joueurs> listeJoueur = new ArrayList<Joueurs>();
     
-    static int desValeur;
-    static int nbVdes;
+    int desValeur;
+    int nbVdes;
     private int finTour;
     private int finManche;
     private int valeur;
@@ -31,6 +31,8 @@ public class Partie{
     this.nomPartie=nomPartie;
     this.nbJoueur = nbJoueur;
     this.partieEncours = false;
+    this.desValeur=0;
+    this.nbVdes=0;
     }
        
     /*GET SET*/
@@ -74,6 +76,14 @@ public class Partie{
 
     public void setFinTour(int finTour) {
         this.finTour = finTour;
+    }
+
+    public  int getNbVdes() {
+        return nbVdes;
+    }
+
+    public int getDesValeur() {
+        return desValeur;
     }
           
        

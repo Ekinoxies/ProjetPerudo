@@ -37,6 +37,8 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     {
         super();
     }   
+   
+ 
     
     
     @Override
@@ -86,9 +88,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 			// On annonce au joueur qu'il a finis sont tour
                         lesClients.get(joueurCourant).alerte(" ");
                         lesClients.get(joueurCourant).alerte(" ");
-                        lesClients.get(joueurCourant).alerte(" ");
-                        lesClients.get(joueurCourant).alerte(" ");
-                       	lesClients.get(joueurCourant).alerte("////////////////////////");
+               	      lesClients.get(joueurCourant).alerte("////////////////////////");
                         lesClients.get(joueurCourant).alerte("//Tu as finis ton tour//");
                         lesClients.get(joueurCourant).alerte("////////////////////////");                    
                         lesClients.get(joueurCourant).alerte(" ");
@@ -105,6 +105,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                               }
                           
                           //ANNONCE DE DEBUT DE TOUR
+            lesClients.get(joueurCourant).alerte("");          
             lesClients.get(joueurCourant).alerte("Heeee ... , tu peux jouer je crois");
                           return true;
                         
@@ -375,8 +376,16 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                         }
                            
                            ///////////////////////////////////////////////////////////////////
+                           ////////////////////l'etat de la partie
+                           int miseval = listePartie.get(i).getDesValeur();
+                           int nbmis = listePartie.get(i).getNbVdes();
+                           String envvv = "L'état actuel de la mise est de : " + nbmis +" de valeur " + miseval;
+                           envoiMessage(envvv, j, nomP);
+                           ////////////////////LES DES///
                            String DesEnv = listePartie.get(i).getListeJoueur().get(x).getListeDes().toString() ;
                            System.out.println("fr.stri.projetperudo.ServeurImpl.desRMI() " + DesEnv);
+                           String tmpenvv = "Tu as : "+listePartie.get(i).getListeJoueur().get(x).getNbDes() +" Des" ;
+                           envoiMessage(tmpenvv, j, nomP);
                            envoiMessage(DesEnv, j, nomP);
                            ///////*/////////////////////////////////////////////*//////////
                        }
