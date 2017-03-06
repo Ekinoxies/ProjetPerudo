@@ -93,12 +93,13 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 	public synchronized boolean transmettreAnnonce(int idJoueur) throws RemoteException {
 		if (idJoueur == joueurCourant ) {
 			// On annonce au joueur qu'il a finis sont tour
-                        lesClients.get(joueurCourant).alerte(" ");
-                        lesClients.get(joueurCourant).alerte(" ");
-               	      lesClients.get(joueurCourant).alerte("////////////////////////");
+                       
+                        lesClients.get(joueurCourant).alerte("////////////////////////");
                         lesClients.get(joueurCourant).alerte("//Tu as finis ton tour//");
                         lesClients.get(joueurCourant).alerte("////////////////////////");                    
                         lesClients.get(joueurCourant).alerte(" ");
+                        lesClients.get(joueurCourant).alerte(" ");
+                        
                         
 
                        
@@ -112,8 +113,9 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                               }
                           
                           //ANNONCE DE DEBUT DE TOUR
-            lesClients.get(joueurCourant).alerte("");          
-            lesClients.get(joueurCourant).alerte("Heeee ... , tu peux jouer je crois");
+                        lesClients.get(joueurCourant).alerte(" ");
+                        lesClients.get(joueurCourant).alerte("//////////////////////////////////");          
+                        lesClients.get(joueurCourant).alerte("Heeee ... , tu peux jouer je crois");
                           return true;
                         
 		} 
@@ -137,10 +139,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                        lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
 
 		}
-                // Bienvenue dans la partie
-      //          
-                //lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
-			
+                     
 		return idJoueur;
 		
 	}     
@@ -239,7 +238,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                if (listePartie.get(i).getListeJoueur().get(x).getListeDes().isEmpty() )
                                {
                                         envoiMessage("Tu as perdu !!!!", j, nomP);
-                                        listePartie.get(numP).getListeJoueur().remove(i);
+                                        listePartie.get(i).getListeJoueur().remove(x);
                                         
                                 }
                                
@@ -253,8 +252,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                 
                 }
                                                        
-               //System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Pile");
-               // envoiMessage("PILE VALIDE", j, nomP);
+              
             }
             else
             {
@@ -302,9 +300,9 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                           //////On se demande si il nous reste des DES //////////////////
                                if (listePartie.get(i).getListeJoueur().get(x).getListeDes().isEmpty() )
                                {
-                                        
-                                        listePartie.get(numP).getListeJoueur().remove(i);
                                         envoiMessage("Tu as perdu !!!!", j, nomP);
+                                        listePartie.get(i).getListeJoueur().remove(x);
+                                        
                                 }
                                
                            //////////////////////////////////////////////////////////////////////////////
@@ -478,21 +476,21 @@ public static void main(String[] args) throws Exception {
 s.attPartie();
 
 int a = 1;
-while(listePartie.size() != 0)  
+while( !listePartie.isEmpty())  
 {
-    
-    
-    
+   
     for (int i=0;i<=listeThread.size()-1;i++)    
     {
          if (listeThread.get(i).isAlive())
          {
+             
              //System.out.println("La partie "+listePartie.get(i).getNomPartie()+" est en cours" );
          }
     else
          {
             listeThread.get(i).start();
          }
+         sleep(2000); //le temps de réaction pour le debut d'une parti n'a pas besoin d'etre elevé
     }
     
     
