@@ -21,14 +21,12 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     HashMap<String, Joueurs> ju;
     HashMap<String, Partie> pa;  
     static String desEnv; // a synchroniser
-    
-   
    public static ArrayList<Partie> listePartie = new ArrayList<Partie>();
+   //la variable liste partie etant utilisé sur plusieur thread toute methode qui la modifi sera donc synchronisé
     int joueurCourant = 0;
     private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();
     private static final int maxJoueur = 2;
     int numP =0;
-    
     public static ArrayList<SenarioThread> listeThread = new ArrayList<SenarioThread>();
     
     
@@ -42,24 +40,33 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     
     
     @Override
-    public boolean aMoiDeJouer (int idJoueur, Joueurs j, String nomP) throws RemoteException
+    public synchronized boolean  aMoiDeJouer (int idJoueur, Joueurs j, String nomP) throws RemoteException
     {
-    boolean PartiEncour = listePartie.get(0).getPartieEncours(); 
+        boolean retour = false;
+       for(int i = 0; i < listePartie.size(); i++)
+        {
+           String tmp = listePartie.get(i).getNomPartie();
+            if (tmp.compareToIgnoreCase(nomP)==0)
+            {  
         
-        if ((idJoueur == joueurCourant) && (PartiEncour == true))  
-//je suis le joueur concerné et la partie est lancé prendre en compte l'annonce
+        
+            boolean PartiEncour = listePartie.get(i).getPartieEncours(); 
+        
+            if ((idJoueur == joueurCourant) && (PartiEncour == true))  
+                    //je suis le joueur concerné et la partie est lancé prendre en compte l'annonce
                   {
                         lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
-                    
-                                        
-			return true;
-                            }
+                                                          
+			retour = true;
+                   }
+               
+            }         
+    }
+      return retour;
+  }
     
-		else
-                    {return false;}
-    }  
     
-    public void envoiMessage (String aEnvoyer, Joueurs j, String nomP) throws RemoteException
+    public synchronized void envoiMessage (String aEnvoyer, Joueurs j, String nomP) throws RemoteException
     {
            for(int i = 0; i < listePartie.size(); i++)
         {
@@ -83,7 +90,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     }
     
     @Override //fait changer de joueur
-	public boolean transmettreAnnonce(int idJoueur) throws RemoteException {
+	public synchronized boolean transmettreAnnonce(int idJoueur) throws RemoteException {
 		if (idJoueur == joueurCourant ) {
 			// On annonce au joueur qu'il a finis sont tour
                         lesClients.get(joueurCourant).alerte(" ");
@@ -115,6 +122,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                
 	}
         
+        
     @Override
 	public int enregistrerClient(Client c) throws RemoteException {
 		int idJoueur = joueurCourant;
@@ -139,7 +147,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         
     /*Ajouter un joueur dans la listejoueur d'une partie*/
     @Override
-    public String connexionAunePartie(Joueurs a, String nomP) throws RemoteException
+    public synchronized String connexionAunePartie(Joueurs a, String nomP) throws RemoteException
     {
          String tmp;
          String retour = " ERREUR Joueur non ajouté";
@@ -165,7 +173,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
      
     
       /*Methode Creer partier*/
-   public String creerPartie(String nomPartie, Integer nbJoueurs)throws RemoteException {
+   public synchronized String creerPartie(String nomPartie, Integer nbJoueurs)throws RemoteException {
         Partie a = new Partie(nomPartie, nbJoueurs);
         listePartie.add(a);  
         System.out.println("La partie :" + nomPartie +" a ete créé avec un nombre de joueur de : " + nbJoueurs);
@@ -184,7 +192,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
    /*Methode suplementaire pour le rmi*/
     
     @Override
-  public String getNomPartieRMI(int nb) throws RemoteException{
+  public synchronized String getNomPartieRMI(int nb) throws RemoteException{
         
             String nomPartie;
             
@@ -194,7 +202,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     }
        
     @Override
-  public void pilRMI(Joueurs j, String nomP) throws RemoteException {
+  public synchronized void pilRMI(Joueurs j, String nomP) throws RemoteException {
       
  String tmp; 
       String tmp2;
@@ -257,7 +265,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         
     
     @Override
-  public void menteurRMI(Joueurs j, String nomP) throws RemoteException {
+  public synchronized void menteurRMI(Joueurs j, String nomP) throws RemoteException {
       
       String tmp; 
       String tmp2;
@@ -321,7 +329,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
   }
   
     @Override
-  public void surchargeRMI(Joueurs j, int valDes,int nbDes, String nomP) throws RemoteException {
+  public synchronized void surchargeRMI(Joueurs j, int valDes,int nbDes, String nomP) throws RemoteException {
       
       String tmp;            
         for(int i = 0; i < listePartie.size(); i++)
@@ -343,7 +351,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
   
   
     @Override
-  public void desRMI(Joueurs j, String nomP) throws RemoteException 
+  public synchronized void desRMI(Joueurs j, String nomP) throws RemoteException 
   {
       String tmp; 
       String tmp2;
@@ -400,16 +408,16 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     @Override
    public ArrayList<Partie> getListePartie () throws RemoteException
     {
-        return listePartie;
+        synchronized(this) {
+                return listePartie;
+        }
+        
     }
-  
-  
-  
-  
- 
+
+     
      
     /*Methode pour sénario*/
-   public void attPartie() throws InterruptedException
+   public synchronized void attPartie() throws InterruptedException
     {
         while (listePartie.isEmpty())    
         { 
@@ -418,7 +426,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         }
     }
     
-   public void attJoueur (int nb) throws InterruptedException
+   public synchronized void attJoueur (int nb) throws InterruptedException
    {
        ArrayList listeJ = new ArrayList();
        int nbj = listePartie.get(nb).getNbJoueur();
@@ -436,7 +444,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
    }
    
    
-   public int gagnant(int nb) 
+   public synchronized int gagnant(int nb) 
    {
        int val = 0;
          ArrayList listeJ = new ArrayList();  
