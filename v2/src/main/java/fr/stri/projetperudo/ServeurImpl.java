@@ -11,7 +11,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +22,6 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     static String desEnv; // a synchroniser
     public static ArrayList<Partie> listePartie = new ArrayList<Partie>();
    //la variable liste partie etant utilisé sur plusieur thread toute methode qui la modifi sera donc synchronisé
-    private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();
     private static final int maxJoueur = 2;
     public static ArrayList<SenarioThread> listeThread = new ArrayList<SenarioThread>();
     
@@ -46,11 +44,12 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         
         
             boolean PartiEncour = listePartie.get(i).getPartieEncours(); 
-        
-            if ((idJoueur == listePartie.get(i).getJoueurCourant()) && (PartiEncour == true))  
+            int jc = listePartie.get(i).getJoueurCourant();
+            if ( (idJoueur==jc) && (PartiEncour == true))  
                     //je suis le joueur concerné et la partie est lancé prendre en compte l'annonce
                   {
-                        lesClients.get(listePartie.get(i).getJoueurCourant()).aMoiDeJouerReponse(true);
+                        HashMap<Integer, Client> lesClients = listePartie.get(i).getLesClients();
+                        lesClients.get(jc).aMoiDeJouerReponse(true);
                                                           
 			retour = true;
                    }
@@ -75,7 +74,8 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                       
                     if (tmp2.compareToIgnoreCase(j.getNomJoueurs())==0)
                        {
-                          lesClients.get(x).alerte(aEnvoyer);
+                           HashMap<Integer, Client> lesClients = listePartie.get(i).getLesClients();
+                           lesClients.get(x).alerte(aEnvoyer);
                        }
                    
 
@@ -94,20 +94,24 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
             if (tmp.compareToIgnoreCase(nomP)==0)
             {   
             
+                System.err.println("PARTIE TROUVER");
+                  
             
             int jc = listePartie.get(i).getJoueurCourant();
+            
+            System.out.println(".transmettreAnnonce JC " + jc);
+            System.out.println("transmettreAnnonce IfJ " + idJoueur);
+            
             if (idJoueur == jc) {
 			// On annonce au joueur qu'il a finis sont tour
-                       
+                      HashMap<Integer, Client> lesClients = listePartie.get(i).getLesClients();
+                        System.out.println("fr.stri.projetperudo.ServeurImpl.transmettreAnnonce JC " + jc);
                         lesClients.get(jc).alerte("////////////////////////");
                         lesClients.get(jc).alerte("//Tu as finis ton tour//");
                         lesClients.get(jc).alerte("////////////////////////");                    
                         lesClients.get(jc).alerte(" ");
                         lesClients.get(jc).alerte(" ");
                         
-                        
-
-                       
 			// passer au joueur suivant
 			
                         jc++;
@@ -119,18 +123,23 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                               
                     
                               }
+                          System.out.println("JC envoyé " + jc);
                           listePartie.get(i).setJoueurCourant(jc);
                           
                           //ANNONCE DE DEBUT DE TOUR
                         lesClients.get(jc).alerte(" ");
                         lesClients.get(jc).alerte("//////////////////////////////////");          
                         lesClients.get(jc).alerte("Heeee ... , tu peux jouer je crois");
-                          etat=true;
+                        lesClients.get(jc).alerte(" ");
+                        etat=true;
                         
 		
-			etat=false;
-            }      
+			
+            }
+            etat=false;
 	}
+            else
+            {System.err.println("PARTIE PAS TROUVER");}
          
       }
           return etat;
@@ -139,29 +148,35 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     @Override
 	public int enregistrerClient(Client c, String nomP) throws RemoteException {
             
-            int jc=0;
+          int jc =99;  
   for(int i = 0; i < listePartie.size(); i++)
         {
+            
              String tmp = listePartie.get(i).getNomPartie();
             if (tmp.compareToIgnoreCase(nomP)==0)
             {		
-            
-               jc=listePartie.get(i).getJoueurCourant();
-               int idJoueur = jc;
+                jc=listePartie.get(i).getJoueurCourant();
+               
+               jc++;
+               
+                HashMap<Integer, Client> lesClients = listePartie.get(i).getLesClients();
                 lesClients.put(jc, c);
+                listePartie.get(i).setLesClients(lesClients);
+                
+                
+		listePartie.get(i).setJoueurCourant(jc);
 		
-		
-		// passer au joueur suivant
+		/*/// passer au joueur suivant
 		jc++;
 		if (jc == maxJoueur) 
                 {
 			jc = 0;
 			lesClients.get(jc).alerte("Tu es enregistré dans la partie");
-                       lesClients.get(jc).aMoiDeJouerReponse(true);
+                        lesClients.get(jc).aMoiDeJouerReponse(true);
 
 		}
                 listePartie.get(i).setJoueurCourant(jc);
-                     
+                     */
 		
 		
             }

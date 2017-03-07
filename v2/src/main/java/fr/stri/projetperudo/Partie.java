@@ -5,6 +5,7 @@
  */
 package fr.stri.projetperudo;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -23,8 +24,8 @@ public class Partie{
     private int finManche;
     private int valeur;
     private boolean partieEncours;
- int joueurCourant = 0;
-        
+    int joueurCourant = 0;
+    private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();    
     /*Constructeur*/
     public Partie(String nomPartie,int nbJoueur) 
     {
@@ -33,7 +34,7 @@ public class Partie{
     this.partieEncours = false;
     this.desValeur=0;
     this.nbVdes=0;
-    this.joueurCourant = 0;
+    this.joueurCourant = -1;
     }
        
     /*GET SET*/
@@ -87,13 +88,23 @@ public class Partie{
         return desValeur;
     }
 
-    public int getJoueurCourant() {
+    public synchronized int getJoueurCourant() {
         return joueurCourant;
     }
 
-    public void setJoueurCourant(int joueurCourant) {
+    public synchronized void setJoueurCourant(int joueurCourant) {
         this.joueurCourant = joueurCourant;
     }
+
+    public HashMap<Integer, Client> getLesClients() {
+        return lesClients;
+    }
+
+    public void setLesClients(HashMap<Integer, Client> lesClients) {
+        this.lesClients = lesClients;
+    }
+    
+    
        
         
     /*Test Avant de débuter une manche*/
