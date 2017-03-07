@@ -26,6 +26,8 @@ public class Partie{
     private boolean partieEncours;
     int joueurCourant = 0;
     private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();    
+    String messgae;
+    
     /*Constructeur*/
     public Partie(String nomPartie,int nbJoueur) 
     {
@@ -35,6 +37,7 @@ public class Partie{
     this.desValeur=0;
     this.nbVdes=0;
     this.joueurCourant = -1;
+    this.messgae =" ";
     }
        
     /*GET SET*/
@@ -103,6 +106,23 @@ public class Partie{
     public void setLesClients(HashMap<Integer, Client> lesClients) {
         this.lesClients = lesClients;
     }
+
+    public void setNbVdes(int nbVdes) {
+        this.nbVdes = nbVdes;
+    }
+
+    public void setDesValeur(int desValeur) {
+        this.desValeur = desValeur;
+    }
+
+    public void setMessgae(String messgae) {
+        this.messgae = messgae;
+    }
+
+    public String getMessgae() {
+        return messgae;
+    }
+    
     
     
        

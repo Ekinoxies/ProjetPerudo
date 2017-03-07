@@ -268,6 +268,10 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                nb=nb+1;
                                listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
                                envoiMessage("Bien vu tu gagnes un Des", j, nomP);
+                              
+                               //////////////////Mise en memoire du message a affiché en fin de parti
+                               String tmpMess = "Le joueur " +j.getNomJoueurs() + " a eu raison de dire pile, il gagne un des" ;
+                               listePartie.get(i).setMessgae(tmpMess);
                            }
                            else
                            {
@@ -275,8 +279,12 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                nb=nb-1;
                                listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
                                envoiMessage("Tu as perdu un Des, hummm ", j, nomP);
-                       
-                              //////On se demande si il nous reste des DES //////////////////
+                               
+                                //////////////////Mise en memoire du message a affiché en fin de parti
+                               String tmpMess = "Le joueur " +j.getNomJoueurs() + " a eu tort  de dire pile, il perd un des" ;
+                               listePartie.get(i).setMessgae(tmpMess);
+                               
+                                //////On se demande si il nous reste des DES //////////////////
                                if (listePartie.get(i).getListeJoueur().get(x).getListeDes().isEmpty() )
                                {
                                         envoiMessage("Tu as perdu !!!!", j, nomP);
@@ -330,6 +338,10 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                nb=nb+1;
                                listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
                                envoiMessage("Bien vu tu gagnes un Des", j, nomP);
+                               
+                                //////////////////Mise en memoire du message a affiché en fin de parti
+                               String tmpMess = "Le joueur " +j.getNomJoueurs() + " a eu raison de dire menteur, il gagne un des" ;
+                               listePartie.get(i).setMessgae(tmpMess);
                            }
                            else
                            {
@@ -337,6 +349,10 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                                nb=nb-1;
                                listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
                                envoiMessage("Tu as perdu un Des, hummm ", j, nomP);
+                               
+                                //////////////////Mise en memoire du message a affiché en fin de parti
+                               String tmpMess = "Le joueur " +j.getNomJoueurs() + " a eu tort de dire menteur, il perd un des" ;
+                               listePartie.get(i).setMessgae(tmpMess);
         
                                
                           //////On se demande si il nous reste des DES //////////////////
@@ -380,6 +396,9 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                   listePartie.get(i).surcharge(j, valDes, nbDes); 
                   //System.out.println("Le joueur " +j.getNomJoueurs() +" annonce Surcharge de " +valDes + nbDes);
                   envoiMessage("Ok c'est noté !!! ", j, nomP);
+                  
+                    //////////////////Mise en memoire du message a affiché en fin de parti
+                               listePartie.get(i).setMessgae(" "); // On a rien a dire donc on dit rien 
             }
             else
             {
@@ -425,6 +444,9 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                            
                            ///////////////////////////////////////////////////////////////////
                            ////////////////////l'etat de la partie
+                           
+                           envoiMessage(listePartie.get(i).getMessgae(), j, nomP);
+                           envoiMessage(" ", j, nomP);
                            int miseval = listePartie.get(i).getDesValeur();
                            int nbmis = listePartie.get(i).getNbVdes();
                            String envvv = "L'état actuel de la mise est de : " + nbmis +" de valeur " + miseval;

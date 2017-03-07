@@ -46,20 +46,24 @@ public class SenarioThread extends Thread {
             System.out.println(" ");
             System.out.println(" ");
             
-            for (int i = 0; i < listePartie.get(numP).getListeJoueur().size() ; i++)   //TOUR DE TABLE pour lancer les DES
+            /////////////////////////////On lance les DES ///////////////////////////
+                            ////Pour chaque Joueur dans la partie ////
+            for (int i = 0; i < listePartie.get(numP).getListeJoueur().size() ; i++)   
             {
-                
                j = listePartie.get(numP).getListeJoueur().get(i);
-               //listePartie.get(numP).lanceDes(j); //lancéé de dés
                listePartie.get(numP).getListeJoueur().get(i).setListeDes(listePartie.get(numP).lanceDes(j)); // on va voir
-                
             }
             
+               /////////////On Initialise la Mise des Des ////////////
+                listePartie.get(numP).setDesValeur(0);
+                listePartie.get(numP).setNbVdes(0);
+            
+                
  
             int i = 0;
             while (listePartie.get(numP).getFinManche()== 0) //fin manche tant que la manche est pas fini;
             {
-                
+             
 
                 /*TOUR D'un Joueur */
                 listePartie.get(numP).setFinTour(0); // Début d'un nouveau tour
@@ -68,11 +72,7 @@ public class SenarioThread extends Thread {
                 
                 System.out.println("Au joueur :" +j.getNomJoueurs()+" de joueur");
                 
-                
-                
-                // c'est a ce joueur de jouer :
-                
-                
+
                 while (listePartie.get(numP).getFinTour()== 0) //tant que le tour du joueur n'est pas fini
                 {
                     System.out.println(listePartie.get(numP).getFinTour());
