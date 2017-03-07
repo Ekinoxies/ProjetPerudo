@@ -23,7 +23,7 @@ public class Partie{
     private int finManche;
     private int valeur;
     private boolean partieEncours;
- 
+ int joueurCourant = 0;
         
     /*Constructeur*/
     public Partie(String nomPartie,int nbJoueur) 
@@ -33,6 +33,7 @@ public class Partie{
     this.partieEncours = false;
     this.desValeur=0;
     this.nbVdes=0;
+    this.joueurCourant = 0;
     }
        
     /*GET SET*/
@@ -85,11 +86,16 @@ public class Partie{
     public int getDesValeur() {
         return desValeur;
     }
-          
+
+    public int getJoueurCourant() {
+        return joueurCourant;
+    }
+
+    public void setJoueurCourant(int joueurCourant) {
+        this.joueurCourant = joueurCourant;
+    }
        
-    
-    
-    
+        
     /*Test Avant de débuter une manche*/
     public String avantManche ()
     {

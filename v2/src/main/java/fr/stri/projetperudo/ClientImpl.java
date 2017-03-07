@@ -137,7 +137,7 @@ public void surcharge()
        
           
  // l'Enregistrement 
-int idJoueur = proxy.enregistrerClient(c);
+int idJoueur = proxy.enregistrerClient(c,NomPartieRE);
 //System.out.println(idJoueur);
 
 
@@ -182,7 +182,7 @@ while (fin != true)
                                           System.out.println("Erreur Saisie"); 
                                 }
                                
-                         System.out.println( proxy.transmettreAnnonce(idJoueur));  // On change de joueur   
+                         System.out.println( proxy.transmettreAnnonce(idJoueur,NomPartieRE));  // On change de joueur   
                          }
                                 
                     else

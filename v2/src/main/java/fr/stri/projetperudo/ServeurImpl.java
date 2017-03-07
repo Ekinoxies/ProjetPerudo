@@ -21,12 +21,10 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     HashMap<String, Joueurs> ju;
     HashMap<String, Partie> pa;  
     static String desEnv; // a synchroniser
-   public static ArrayList<Partie> listePartie = new ArrayList<Partie>();
+    public static ArrayList<Partie> listePartie = new ArrayList<Partie>();
    //la variable liste partie etant utilisé sur plusieur thread toute methode qui la modifi sera donc synchronisé
-    int joueurCourant = 0;
     private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();
     private static final int maxJoueur = 2;
-    int numP =0;
     public static ArrayList<SenarioThread> listeThread = new ArrayList<SenarioThread>();
     
     
@@ -35,10 +33,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     {
         super();
     }   
-   
- 
-    
-    
+       
     @Override
     public synchronized boolean  aMoiDeJouer (int idJoueur, Joueurs j, String nomP) throws RemoteException
     {
@@ -52,10 +47,10 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         
             boolean PartiEncour = listePartie.get(i).getPartieEncours(); 
         
-            if ((idJoueur == joueurCourant) && (PartiEncour == true))  
+            if ((idJoueur == listePartie.get(i).getJoueurCourant()) && (PartiEncour == true))  
                     //je suis le joueur concerné et la partie est lancé prendre en compte l'annonce
                   {
-                        lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
+                        lesClients.get(listePartie.get(i).getJoueurCourant()).aMoiDeJouerReponse(true);
                                                           
 			retour = true;
                    }
@@ -90,59 +85,91 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     }
     
     @Override //fait changer de joueur
-	public synchronized boolean transmettreAnnonce(int idJoueur) throws RemoteException {
-		if (idJoueur == joueurCourant ) {
+	public synchronized boolean transmettreAnnonce(int idJoueur, String nomP) throws RemoteException {
+	//
+        boolean etat = false;
+          for(int i = 0; i < listePartie.size(); i++)
+        {
+             String tmp = listePartie.get(i).getNomPartie();
+            if (tmp.compareToIgnoreCase(nomP)==0)
+            {   
+            
+            
+            int jc = listePartie.get(i).getJoueurCourant();
+            if (idJoueur == jc) {
 			// On annonce au joueur qu'il a finis sont tour
                        
-                        lesClients.get(joueurCourant).alerte("////////////////////////");
-                        lesClients.get(joueurCourant).alerte("//Tu as finis ton tour//");
-                        lesClients.get(joueurCourant).alerte("////////////////////////");                    
-                        lesClients.get(joueurCourant).alerte(" ");
-                        lesClients.get(joueurCourant).alerte(" ");
+                        lesClients.get(jc).alerte("////////////////////////");
+                        lesClients.get(jc).alerte("//Tu as finis ton tour//");
+                        lesClients.get(jc).alerte("////////////////////////");                    
+                        lesClients.get(jc).alerte(" ");
+                        lesClients.get(jc).alerte(" ");
                         
                         
 
                        
 			// passer au joueur suivant
-			joueurCourant++;
-                          if (joueurCourant ==maxJoueur)
+			
+                        jc++;
+                        
+                          if (jc ==maxJoueur)
                              {
-                                joueurCourant = 0;
-                                        
+                               
+                                 jc = 0;
+                              
                     
                               }
+                          listePartie.get(i).setJoueurCourant(jc);
                           
                           //ANNONCE DE DEBUT DE TOUR
-                        lesClients.get(joueurCourant).alerte(" ");
-                        lesClients.get(joueurCourant).alerte("//////////////////////////////////");          
-                        lesClients.get(joueurCourant).alerte("Heeee ... , tu peux jouer je crois");
-                          return true;
+                        lesClients.get(jc).alerte(" ");
+                        lesClients.get(jc).alerte("//////////////////////////////////");          
+                        lesClients.get(jc).alerte("Heeee ... , tu peux jouer je crois");
+                          etat=true;
                         
-		} 
-                else
-			return false;
-               
+		
+			etat=false;
+            }      
 	}
-        
+         
+      }
+          return etat;
+        }
         
     @Override
-	public int enregistrerClient(Client c) throws RemoteException {
-		int idJoueur = joueurCourant;
-                lesClients.put(joueurCourant, c);
+	public int enregistrerClient(Client c, String nomP) throws RemoteException {
+            
+            int jc=0;
+  for(int i = 0; i < listePartie.size(); i++)
+        {
+             String tmp = listePartie.get(i).getNomPartie();
+            if (tmp.compareToIgnoreCase(nomP)==0)
+            {		
+            
+               jc=listePartie.get(i).getJoueurCourant();
+               int idJoueur = jc;
+                lesClients.put(jc, c);
 		
 		
 		// passer au joueur suivant
-		joueurCourant++;
-		if (joueurCourant == maxJoueur) {
-			joueurCourant = 0;
-			lesClients.get(joueurCourant).alerte("Tu es enregistré dans la partie");
-                       lesClients.get(joueurCourant).aMoiDeJouerReponse(true);
+		jc++;
+		if (jc == maxJoueur) 
+                {
+			jc = 0;
+			lesClients.get(jc).alerte("Tu es enregistré dans la partie");
+                       lesClients.get(jc).aMoiDeJouerReponse(true);
 
 		}
+                listePartie.get(i).setJoueurCourant(jc);
                      
-		return idJoueur;
 		
-	}     
+		
+            }
+           
+        }
+     
+   return jc;
+       }
         
     /*Ajouter un joueur dans la listejoueur d'une partie*/
     @Override

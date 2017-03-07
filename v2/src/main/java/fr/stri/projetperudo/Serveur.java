@@ -31,8 +31,8 @@ public void desRMI(Joueurs j, String nomP) throws java.rmi.RemoteException;
         
     
   /////////////////***///////////////////////////////////////
-  boolean transmettreAnnonce(int idJoueur) throws RemoteException;
-  int enregistrerClient(Client c) throws RemoteException;
+  boolean transmettreAnnonce(int idJoueur,String nomP) throws RemoteException;
+  int enregistrerClient(Client c, String nomP) throws RemoteException;
   boolean aMoiDeJouer (int idJoueur, Joueurs j, String nomP) throws RemoteException;
      
    
