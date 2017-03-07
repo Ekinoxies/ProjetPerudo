@@ -13,10 +13,10 @@ import java.util.ArrayList;
  *
  * @author florian b
  */
-public interface Client extends Remote 
-{
-	 	 
-                 void alerte(String s) throws RemoteException;
-                 void aMoiDeJouerReponse (boolean bo) throws RemoteException;
+public interface Client extends Remote {
 
-   }
+    void alerte(String s) throws RemoteException;
+
+    void aMoiDeJouerReponse(boolean bo) throws RemoteException;
+
+}
