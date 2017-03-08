@@ -127,8 +127,8 @@ public class Partie {
         retour = "La Manche peut commencer";
 
         for (int i = 0; i < nbJoueur; i++) {
-            /*on déroula la liste joueur et on regarde le nombre de dé de chaque 
-           personne et on vires les gents qui on pas des Des */
+            /*on déroule la liste joueur et on regarde le nombre de dé de chaque 
+           personne et on vire les gens qui ont pas de Des */
         }
         return retour;
     }

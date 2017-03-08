@@ -31,7 +31,7 @@ public class SenarioThread extends Thread {
         try {
             ServeurImpl s = new ServeurImpl();
 
-            s.attJoueur(numP); // On attend que la partie soit complette
+            s.attJoueur(numP); // On attend que la partie soit complete
 
             while (s.gagnant(numP) == 0) // tant qu'il n'y a pas de gagnant
             {

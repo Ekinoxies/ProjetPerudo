@@ -21,7 +21,7 @@ import java.util.Scanner;
  */
 public class ClientImpl extends UnicastRemoteObject implements Client {
 
-    static Boolean amoidejouer; // BOOlean qui renvoi vrai quand c'est a notre joueur de jouer 
+    static Boolean amoidejouer; // BOOlean qui renvoi vrai quand c'est à notre joueur de jouer 
     static int miseFace; //la face du dés misé
     static int miseNb; // le nombre de face du dé misé annoncé
     static int nbDes;
@@ -63,7 +63,7 @@ public class ClientImpl extends UnicastRemoteObject implements Client {
 
     public int nbJoueur() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Entrez le nombre de joueurs");
+        System.out.println("Entrez le nombre de joueur");
         int NbJoueur = sc.nextInt();
         return NbJoueur;
     }
@@ -127,13 +127,13 @@ public class ClientImpl extends UnicastRemoteObject implements Client {
         boolean fin = false; // initialisation fin de partie
 
         while (fin != true) {
-            amoidejouer = false;// par defaut ce n'est pas a moi de jouer
+            amoidejouer = false;// par defaut ce n'est pas à moi de jouer
 
-            proxy.aMoiDeJouer(idJoueur, envoijoueur, NomPartieRE); // je demande au serveur si je doit jouer
+            proxy.aMoiDeJouer(idJoueur, envoijoueur, NomPartieRE); // je demande au serveur si je dois jouer
 
-            if (amoidejouer) // c'est a moi de jouer ?
+            if (amoidejouer) // c'est à moi de jouer ?
             {
-                sleep(1000); // On attend que les DES soit disctribué
+                sleep(1000); // On attend que les DES soit disctribués
                 proxy.desRMI(envoijoueur, NomPartieRE);
 
                 int choix = c.choixAction();

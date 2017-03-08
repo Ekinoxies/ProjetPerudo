@@ -23,7 +23,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     HashMap<String, Partie> pa;
     static String desEnv; // a synchroniser
     public static ArrayList<Partie> listePartie = new ArrayList<Partie>();
-    //la variable liste partie etant utilisé sur plusieur thread toute methode qui la modifi sera donc synchronisé
+    //la variable liste partie etant utilisé sur plusieur thread toute methode qui la modifie sera donc synchronisé
     private static final int maxJoueur = 2;
     public static ArrayList<SenarioThread> listeThread = new ArrayList<SenarioThread>();
 
@@ -33,7 +33,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         super();
     }
 
-    //Permet d'indiquer si le joueur qui appel la methode doit jouer
+    //Permet d'indiquer si le joueur qui appelle la methode doit jouer
     @Override
     public synchronized boolean aMoiDeJouer(int idJoueur, Joueurs j, String nomP) throws RemoteException {
         boolean retour = false;
@@ -43,7 +43,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 
                 boolean PartiEncour = listePartie.get(i).getPartieEncours();
                 int jc = listePartie.get(i).getJoueurCourant();
-                if ((idJoueur == jc) && (PartiEncour == true)) //je suis le joueur concerné et la partie est lancé prendre en compte l'annonce
+                if ((idJoueur == jc) && (PartiEncour == true)) //je suis le joueur concerné et la partie est lancée prendre en compte l'annonce
                 {
                     HashMap<Integer, Client> lesClients = listePartie.get(i).getLesClients();
                     lesClients.get(jc).aMoiDeJouerReponse(true);
@@ -92,7 +92,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                 System.out.println("transmettreAnnonce IfJ " + idJoueur);
 
                 if (idJoueur == jc) {
-                    // On annonce au joueur qu'il a finis sont tour
+                    // On annonce au joueur qu'il a finis son tour
                     HashMap<Integer, Client> lesClients = listePartie.get(i).getLesClients();
                     System.out.println("fr.stri.projetperudo.ServeurImpl.transmettreAnnonce JC " + jc);
                     lesClients.get(jc).alerte("////////////////////////");
@@ -122,7 +122,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                 }
                 etat = false;
             } else {
-                System.err.println("PARTIE PAS TROUVER");
+                System.err.println("PARTIE PAS TROUVEE");
             }
 
         }
@@ -176,7 +176,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         return retour;
     }
 
-    /*Methode Creer partier*/
+    /*Methode Creer partie*/
     public synchronized String creerPartie(String nomPartie, Integer nbJoueurs) throws RemoteException {
         Partie a = new Partie(nomPartie, nbJoueurs);
         listePartie.add(a);
@@ -225,7 +225,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                             listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
                             envoiMessage("Bien vu tu gagnes un Des", j, nomP);
 
-                            //////////////////Mise en memoire du message a affiché en fin de parti
+                            //////////////////Mise en memoire du message a affiché en fin de partie
                             String tmpMess = "Le joueur " + j.getNomJoueurs() + " a eu raison de dire pile, il gagne un des";
                             listePartie.get(i).setMessgae(tmpMess);
                         } 
@@ -235,11 +235,11 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                             listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
                             envoiMessage("Tu as perdu un Des, hummm ", j, nomP);
 
-                            //////////////////Mise en memoire du message a affiché en fin de parti
+                            //////////////////Mise en memoire du message a affiché en fin de partie
                             String tmpMess = "Le joueur " + j.getNomJoueurs() + " a eu tort  de dire pile, il perd un des";
                             listePartie.get(i).setMessgae(tmpMess);
 
-                            //////On se demande si il nous reste des DES //////////////////
+                            //////On ce demande si il nous reste des DES //////////////////
                             if (listePartie.get(i).getListeJoueur().get(x).getListeDes().isEmpty()) {
                                 envoiMessage("Tu as perdu !!!!", j, nomP);
                                 listePartie.get(i).getListeJoueur().remove(x);
@@ -282,7 +282,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                             listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
                             envoiMessage("Bien vu tu gagnes un Des", j, nomP);
 
-                            //////////////////Mise en memoire du message a affiché en fin de parti
+                            //////////////////Mise en memoire du message a affiché en fin de partie
                             String tmpMess = "Le joueur " + j.getNomJoueurs() + " a eu raison de dire menteur, il gagne un des";
                             listePartie.get(i).setMessgae(tmpMess);
                         } else {
@@ -291,7 +291,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                             listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
                             envoiMessage("Tu as perdu un Des, hummm ", j, nomP);
 
-                            //////////////////Mise en memoire du message a affiché en fin de parti
+                            //////////////////Mise en memoire du message a affiché en fin de partie
                             String tmpMess = "Le joueur " + j.getNomJoueurs() + " a eu tort de dire menteur, il perd un des";
                             listePartie.get(i).setMessgae(tmpMess);
 
@@ -353,9 +353,9 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 
                        try {
                             ///////*/////////////////////////////////////////////*//////////
-                            /*DESRMI est la premiere methode apeller par le RMi client a chaque neveau tour,
-                            notre programme yan un temps de réponse de 2 sec
-                            on utilise un temprisateur de 3sec afin d'eviter de "jouer trop vite" */
+                            /*DESRMI est la premiere methode apeller par le RMi client a chaque nouveau tour,
+                            notre programme a un temps de réponse de 2 sec
+                            on utilise un temporisateur de 3sec afin d'eviter de "jouer trop vite" */
                             sleep(3000);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(ServeurImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -441,7 +441,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         s.attPartie(); // Attente d'une partie pour pouvoir lancer la boucle de lancement des threads
 
        
-        /*Dans cette boucle on associe une partie a un thread,si la partie a était créer on lance le thread*/
+        /*Dans cette boucle on associe une partie a un thread,si la partie a été créé on lance le thread*/
         while (!listePartie.isEmpty()) {
 
             for (int i = 0; i <= listeThread.size() - 1; i++) {
@@ -450,9 +450,9 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                    System.out.println("La partie "+listePartie.get(i).getNomPartie()+" est en cours" );
                 } else {
                     listeThread.get(i).start();
-                    System.out.println("LA PARTIE "+listePartie.get(i).getNomPartie()+" EST LANCER");
+                    System.out.println("LA PARTIE "+listePartie.get(i).getNomPartie()+" EST LANCEE");
                 }
-                sleep(2000); //le temps de réaction pour le debut d'une parti n'a pas besoin d'etre elevé
+                sleep(2000); //le temps de réaction pour le debut d'une partiE n'a pas besoin d'etre elevé
             }
 
         }
