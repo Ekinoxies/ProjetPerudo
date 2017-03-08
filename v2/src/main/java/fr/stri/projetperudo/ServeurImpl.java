@@ -81,7 +81,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
             if (tmp.compareToIgnoreCase(nomP) == 0) {
 
                 System.err.println("PARTIE TROUVER");
-
+                //jc corespond au joueur qui doit jouer le joueur courant
                 int jc = listePartie.get(i).getJoueurCourant();
 
                 System.out.println(".transmettreAnnonce JC " + jc);
@@ -93,8 +93,8 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                     System.out.println("fr.stri.projetperudo.ServeurImpl.transmettreAnnonce JC " + jc);
                     lesClients.get(jc).alerte("////////////////////////");
                     lesClients.get(jc).alerte("//Tu as finis ton tour//");
-                    lesClients.get(jc).alerte("////////////////////////");
                     lesClients.get(jc).alerte(" ");
+                    lesClients.get(jc).alerte("Attente des adversaires");
                     lesClients.get(jc).alerte(" ");
 
                     // passer au joueur suivant
@@ -105,7 +105,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                         jc = 0;
 
                     }
-                    System.out.println("JC envoyé " + jc);
+                   
                     listePartie.get(i).setJoueurCourant(jc);
 
                     //ANNONCE DE DEBUT DE TOUR
@@ -206,14 +206,15 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         for (int i = 0; i < listePartie.size(); i++) {
             tmp = listePartie.get(i).getNomPartie();
             if (tmp.compareToIgnoreCase(nomP) == 0) {
-                boolean nbDes = listePartie.get(i).pileMache(j);
-                // on ajoute les des pour cela on va rechercher le bon joueur
-
+                boolean nbDes = listePartie.get(i).pileMache(j); //On réalise la pil Manche
+               
+                 // on ajoute les des pour cela on va rechercher le bon joueur
                 for (int x = 0; x < listePartie.get(i).getListeJoueur().size(); x++) {
                     tmp2 = listePartie.get(i).getListeJoueur().get(x).getNomJoueurs();
 
                     if (tmp2.compareToIgnoreCase(j.getNomJoueurs()) == 0) {
-                        if (nbDes) {
+                        if (nbDes == true) 
+                        {
                             nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
                             nb = nb + 1;
                             listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
@@ -222,7 +223,8 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                             //////////////////Mise en memoire du message a affiché en fin de parti
                             String tmpMess = "Le joueur " + j.getNomJoueurs() + " a eu raison de dire pile, il gagne un des";
                             listePartie.get(i).setMessgae(tmpMess);
-                        } else {
+                        } 
+                        else {
                             nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
                             nb = nb - 1;
                             listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
@@ -242,7 +244,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                             //////////////////////////////////////////////////////////////////////////////
                         }
                     } else {
-                        // ce else est trés util 
+                        System.out.println("Le Joueur n'a pas était trouvé");
                     }
 
                 }
@@ -269,7 +271,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                     tmp2 = listePartie.get(i).getListeJoueur().get(x).getNomJoueurs();
 
                     if (tmp2.compareToIgnoreCase(j.getNomJoueurs()) == 0) {
-                        if (nbDes) {
+                        if (nbDes == true) {
                             nb = listePartie.get(i).getListeJoueur().get(x).getNbDes();
                             nb = nb + 1;
                             listePartie.get(i).getListeJoueur().get(x).setNbDes(nb);
@@ -298,6 +300,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
                             //////////////////////////////////////////////////////////////////////////////
                         }
                     } else {
+                        System.out.println("Le joueur n'a pas était trouvé");
 
                     }
 
@@ -335,22 +338,19 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         int nb = 0;
         for (int i = 0; i < listePartie.size(); i++) {
             tmp = listePartie.get(i).getNomPartie();
-            System.out.println("TMP : " + tmp);
+            
             if (tmp.compareToIgnoreCase(nomP) == 0) {
 
                 for (int x = 0; x < listePartie.get(i).getListeJoueur().size(); x++) {
                     tmp2 = listePartie.get(i).getListeJoueur().get(x).getNomJoueurs();
-                    System.out.println("/////TMP 2 : " + tmp2);
+                    
                     if (tmp2.compareToIgnoreCase(j.getNomJoueurs()) == 0) {
 
-                        System.out.println("i x: " + i + x);
-
-                        try {
+                       try {
                             ///////*/////////////////////////////////////////////*//////////
                             /*DESRMI est la premiere methode apeller par le RMi client a chaque neveau tour,
                             notre programme yan un temps de réponse de 2 sec
                             on utilise un temprisateur de 3sec afin d'eviter de "jouer trop vite" */
-
                             sleep(3000);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(ServeurImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -378,6 +378,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 
     }
 
+  
     @Override
     public ArrayList<Partie> getListePartie() throws RemoteException {
         synchronized (this) {
@@ -386,14 +387,15 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 
     }
 
-    /*Methode pour sénario*/
+    
     public synchronized void attPartie() throws InterruptedException {
         while (listePartie.isEmpty()) {
             sleep(2000);
-            System.out.println("ATTENTE Partie");
+           // System.out.println("ATTENTE Partie");
         }
     }
 
+    
     public synchronized void attJoueur(int nb) throws InterruptedException {
         ArrayList listeJ = new ArrayList();
         int nbj = listePartie.get(nb).getNbJoueur();
@@ -420,31 +422,29 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         return val;
     }
 
-    ////////////////////////////
-    //// /// MAIN///////////////
-    //// ////////////////////
+    ////    //////////  //////////
+    ////   /// MAIN//  //////////
+    ////  /////////  //////////
     public static void main(String[] args) throws Exception {
         LocateRegistry.createRegistry(1099);
 
         Naming.rebind("MonServeur", new ServeurImpl());
         System.out.println("RMI OK");
 
-        /*                                         
-                 ICI LE CODE SERVEUR       
-                                             
-         */
+        ///////Implémentation serveur
         ServeurImpl s = new ServeurImpl();
-        s.attPartie();
+        s.attPartie(); // Attente d'uen partie
 
-        int a = 1;
+       
         while (!listePartie.isEmpty()) {
 
             for (int i = 0; i <= listeThread.size() - 1; i++) {
                 if (listeThread.get(i).isAlive()) {
 
-                    //System.out.println("La partie "+listePartie.get(i).getNomPartie()+" est en cours" );
+                   System.out.println("La partie "+listePartie.get(i).getNomPartie()+" est en cours" );
                 } else {
                     listeThread.get(i).start();
+                    System.out.println("LA PARTIE "+listePartie.get(i).getNomPartie()+" EST LANCER");
                 }
                 sleep(2000); //le temps de réaction pour le debut d'une parti n'a pas besoin d'etre elevé
             }

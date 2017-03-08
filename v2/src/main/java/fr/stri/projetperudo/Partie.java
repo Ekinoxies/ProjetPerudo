@@ -23,7 +23,6 @@ public class Partie {
     int nbVdes;
     private int finTour;
     private int finManche;
-    private int valeur;
     private boolean partieEncours;
     int joueurCourant = 0;
     private HashMap<Integer, Client> lesClients = new HashMap<Integer, Client>();
@@ -148,11 +147,12 @@ public class Partie {
 
             for (int x = 0; x < listeDes.size(); x++) {
 
-                val = (int) listeDes.get(i);
-                if (val == desValeur || val == 1) //le 1 en perrudo est un joker 
+                 val = (int) listeDes.get(i);
+                if ((val == desValeur) || (val == 1)) //le 1 en perrudo est un joker 
                 {
 
                     compter = compter + 1;
+                    
                 }
             }
         }
@@ -223,6 +223,7 @@ public class Partie {
 
     public ArrayList lanceDes(Joueurs j) {
         // liste 
+       int  valeur;
         int nb = j.getNbDes();
         String tmp2;
 
