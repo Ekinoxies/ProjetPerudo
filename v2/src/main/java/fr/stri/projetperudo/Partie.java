@@ -39,7 +39,7 @@ public class Partie {
         this.messgae = " ";
     }
 
-    /*GET SET*/
+    /*Getter Setter Stronger*/
     public ArrayList<Joueurs> getListeJoueur() {
         return listeJoueur;
     }
@@ -133,7 +133,11 @@ public class Partie {
         return retour;
     }
 
-    /*Methode pile manche*/
+    
+    
+    /*////Methode de jeu//////////*/
+    
+    //Methode pile manche
     boolean pileMache(Joueurs j) {
         /*Récupère la liste de DES de chaque joueur et regarde si 
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
@@ -171,7 +175,7 @@ public class Partie {
         return nb;
     }
 
-    /*Methode menteur*/
+    //Methode menteur
     boolean menteur(Joueurs j) {
         /*Récupère la liste de DES de chaque joueur et regarde si 
      la valeur correspond aux annonces en cours (valeurDes nbDes) */
@@ -202,13 +206,12 @@ public class Partie {
            
 
         }
-
         finTour = 1;
         finManche = 1;
-
         return nb;
     }
 
+    //Methode surcharge
     public void surcharge(Joueurs j, int valDes, int nbDes) {
 
         if (valDes < 7 && valDes > 0 && desValeur <= valDes) {
@@ -221,6 +224,7 @@ public class Partie {
         finTour = 1;
     }
 
+    //methode lance Des, lance les des du joueurs indiqué
     public ArrayList lanceDes(Joueurs j) {
         // liste 
        int  valeur;

@@ -21,6 +21,8 @@ public class Joueurs implements Serializable {
     private Client notif;
     private String j;
 
+    
+    /*Getter Setter Stronger*/
     public int getNbDes() {
         return nbDes;
     }
@@ -37,6 +39,8 @@ public class Joueurs implements Serializable {
         return listeDes;
     }
 
+    
+    
     public Joueurs(String nomJoueurs) throws RemoteException {
         this.nomJoueurs = nomJoueurs;
         this.nbDes = 5;

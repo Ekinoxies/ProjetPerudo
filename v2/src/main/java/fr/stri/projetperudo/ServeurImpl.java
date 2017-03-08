@@ -27,11 +27,13 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     private static final int maxJoueur = 2;
     public static ArrayList<SenarioThread> listeThread = new ArrayList<SenarioThread>();
 
+    
     /*Constructeur*/
     public ServeurImpl() throws RemoteException {
         super();
     }
 
+    //Permet d'indiquer si le joueur qui appel la methode doit jouer
     @Override
     public synchronized boolean aMoiDeJouer(int idJoueur, Joueurs j, String nomP) throws RemoteException {
         boolean retour = false;
@@ -54,6 +56,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         return retour;
     }
 
+    //Methode pour simplifier l'envoi de message au client conserné via RMI
     public synchronized void envoiMessage(String aEnvoyer, Joueurs j, String nomP) throws RemoteException {
         for (int i = 0; i < listePartie.size(); i++) {
             String tmp = listePartie.get(i).getNomPartie();
@@ -72,7 +75,8 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         }
     }
 
-    @Override //fait changer de joueur
+    //Permet de changer de Joueur
+    @Override 
     public synchronized boolean transmettreAnnonce(int idJoueur, String nomP) throws RemoteException {
         //
         boolean etat = false;
@@ -125,6 +129,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         return etat;
     }
 
+    //Permet d'enregistrer le client/joueur dans la ListePartie
     @Override
     public int enregistrerClient(Client c, String nomP) throws RemoteException {
 
@@ -377,7 +382,6 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
         }
 
     }
-
   
     @Override
     public ArrayList<Partie> getListePartie() throws RemoteException {
@@ -425,6 +429,7 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
     ////    //////////  //////////
     ////   /// MAIN//  //////////
     ////  /////////  //////////
+    
     public static void main(String[] args) throws Exception {
         LocateRegistry.createRegistry(1099);
 
@@ -433,9 +438,10 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 
         ///////Implémentation serveur
         ServeurImpl s = new ServeurImpl();
-        s.attPartie(); // Attente d'uen partie
+        s.attPartie(); // Attente d'une partie pour pouvoir lancer la boucle de lancement des threads
 
        
+        /*Dans cette boucle on associe une partie a un thread,si la partie a était créer on lance le thread*/
         while (!listePartie.isEmpty()) {
 
             for (int i = 0; i <= listeThread.size() - 1; i++) {
@@ -454,4 +460,4 @@ public class ServeurImpl extends UnicastRemoteObject implements Serveur {
 
     } //crochet du main
 
-}
+} // crochet de la class

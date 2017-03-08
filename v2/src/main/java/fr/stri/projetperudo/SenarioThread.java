@@ -56,7 +56,7 @@ public class SenarioThread extends Thread {
                 listePartie.get(numP).setDesValeur(0);
                 listePartie.get(numP).setNbVdes(0);
 
-                int i = 0;
+                int i = 0; //On initialise le compteur
                 while (listePartie.get(numP).getFinManche() == 0) //fin manche tant que la manche est pas fini;
                 {
 
@@ -86,7 +86,6 @@ public class SenarioThread extends Thread {
 
             }
 
-            /* Gestion du gagnant ou perdan dans les fonctiosn pileRMi et menteurRMI */
             sleep(1000);// attente du a t'on gagné ?
 
         } catch (RemoteException ex) {
@@ -95,6 +94,6 @@ public class SenarioThread extends Thread {
             Logger.getLogger(SenarioThread.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
+    } // Fin du Run ()
 
-}
+} //Fin de class
